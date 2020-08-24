@@ -3,6 +3,7 @@ package edu.dwlx;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,6 +17,8 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @WebAppConfiguration
 class DwlxApplicationTests {
+    private static final String user = "/zhifou/user";
+    private static final String people = "/zhifou/people";
 
     @Autowired
     private WebApplicationContext context;
@@ -52,5 +55,24 @@ class DwlxApplicationTests {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("forward:/zhifou/people/personalHomepage.html"));
     }
-//    @Test
+    @Test
+    public void newControllerTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(user + "/login?username=zhanasdfgsan&password=123"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.model().attribute("message", "用户不存在"))
+                .andExpect(MockMvcResultMatchers.view().name("/zhifou/error/error.html"));
+    }
+    @Test
+    public void newControllerTest1() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(user + "/register?name=zhangsan&password=123"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.model().attribute("message", "用户名已存在"))
+                .andExpect(MockMvcResultMatchers.view().name("/zhifou/error/error.html"));
+    }
+    @Test
+    public void newControllerTest2() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/zhifou/people/1/answers"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
 }

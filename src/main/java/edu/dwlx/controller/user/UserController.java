@@ -21,15 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/zhifou/user")
 public class UserController {
 
     @Autowired
     private UserMapper userMapper;
 
     //登陆处理
-    @RequestMapping("/zhifou/user/login")
+    @RequestMapping("/login")
     public String userLogin(String username, String password, Model model, HttpSession session) {
-        System.out.println("userLogin");
         User user = userMapper.searchByName(username);
         if(user==null){
             System.out.println("null");
@@ -38,17 +38,15 @@ public class UserController {
         }
         String page = "/zhifou/user/login.html";
         if(user.getPassword().equals(password)){
-            System.out.println("sucess");
             page = "forward:/zhifou/people/" + user.getUid();
             session.setAttribute("user", user);
-            return page;
         }
         else
             model.addAttribute("message", "密码错误");
         return page;
     }
     //注册处理
-    @RequestMapping("/zhifou/user/register")
+    @RequestMapping("/register")
     public String userRegister(String name, String password, Model model) {
         User user = userMapper.searchByName(name);
         if(user != null) {
@@ -67,28 +65,5 @@ public class UserController {
         }
     }
     //个人主页
-    @RequestMapping("/zhifou/people/{id}")
-    public String personalInfo(@PathVariable("id") String uid, Model model) {
-        System.out.println("homepage");
-        User user = userMapper.searchUserById(uid);
-        model.addAttribute("user", user);
-        return "/zhifou/people/personalHomepage.html";
-    }
-    //查看收藏
-    @RequestMapping("/zhifou/people/{id}/collections")
-    public List<Answer> getCollection(@PathVariable("id") int id) {
-        return userMapper.searchCollectAnswerByUid(id);
-    }
-    //提出的问题
-    @RequestMapping("/zhifou/people/{id}/asks")
-    public List<Question> getAskedQuestion(@PathVariable("id") int id) {
-        return userMapper.searchAskedQuestionByUid(id);
-    }
-    //回答
-    @RequestMapping("zhifou/people/{id}/answers")
-    public List<Question> getAnsweredQuestion(@PathVariable("id") int id) {
 
-        return new ArrayList<Question>();
-    }
-    //收藏回答和关注问题相同
 }
