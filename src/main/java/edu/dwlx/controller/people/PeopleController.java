@@ -23,7 +23,7 @@ public class PeopleController {
     public String personalInfo(@PathVariable("uid") String uid, Model model) {
         User user = userMapper.searchUserById(uid);
         model.addAttribute("user", user);
-        return "/zhifou/people/personalHomepage.html";
+        return "/zhifou/people/user.html";
     }
     //查看收藏
     @RequestMapping("/{uid}/collections")
