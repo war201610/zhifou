@@ -4,8 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,7 +20,7 @@ public class User
     private String address;
     private String industry;
     private String collection;
-    private Date registerTime;
+    private Date registerDate;
     private String email;
     private String question;
     private String answer;
@@ -42,7 +40,7 @@ public class User
                 ", address='" + address + '\'' +
                 ", industry='" + industry + '\'' +
                 ", collection='" + collection + '\'' +
-                ", registerTime=" + registerTime +
+                ", registerDate=" + registerDate +
                 ", email='" + email + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
@@ -55,7 +53,7 @@ public class User
     public User() {
     }
 
-    public User(int uid, String name, int gender, String password, String career, String introduction, String address, String industry, String collection, Date registerTime, String email, String question, String answer, String subscribeQuestion, String subscribeMember, String followMember) {
+    public User(int uid, String name, int gender, String password, String career, String introduction, String address, String industry, String collection, Date registerDate, String email, String question, String answer, String subscribeQuestion, String subscribeMember, String followMember) {
         this.uid = uid;
         this.name = name;
         this.gender = gender;
@@ -65,7 +63,7 @@ public class User
         this.address = address;
         this.industry = industry;
         this.collection = collection;
-        this.registerTime = registerTime;
+        this.registerDate = registerDate;
         this.email = email;
         this.question = question;
         this.answer = answer;
@@ -176,12 +174,12 @@ public class User
         this.collection = collection;
     }
 
-    public Date getRegisterTime() {
-        return registerTime;
+    public Date getRegisterDate() {
+        return registerDate;
     }
 
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
     }
 
     public String getEmail() {

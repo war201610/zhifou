@@ -1,24 +1,15 @@
 package edu.dwlx.controller.user;
 
-import edu.dwlx.entity.Answer;
-import edu.dwlx.entity.Collection;
-import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/zhifou/user")
@@ -58,12 +49,10 @@ public class UserController {
             user = new User();
             user.setName(name);
             user.setPassword(password);
-            user.setRegisterTime(date);
+            user.setRegisterDate(date);
             userMapper.insertUser(user);
             model.addAttribute("message", "注册成功");
             return "/zhifou/user/login.html";
         }
     }
-    //个人主页
-
 }

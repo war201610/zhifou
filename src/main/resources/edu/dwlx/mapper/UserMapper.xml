@@ -5,14 +5,11 @@
         select * from user where name=#{name}
     </select>
     <insert id="insertUser" parameterType="edu.dwlx.entity.User">
-        insert into user(name, password, registerTime) values(#{name}, #{password}, #{registerTime})
+        insert into user(name, password, registerDate, following, follower, collect_article,
+        collect_answer, question, answer, like_count) values(#{name}, #{password}, #{registerDate}, 1, 1, 1,
+        1, 1, 1, 1)
     </insert>
-<!--    <insert id="insertUser" parameterType="User">-->
-<!--        insert into user values(#{user.id}, #{user.name}, #{user.}, #{user.}, #{user.},-->
-<!--                                #{user.}, #{user.}, #{user.}, #{user.}, #{user.},-->
-<!--                                #{user.}, #{user.}, #{user.}, #{user.}, #{user.},-->
-<!--                                #{user.})-->
-<!--    </insert>-->
+
     <select id="searchUserById" parameterType="String" resultType="edu.dwlx.entity.User">
         select * from user where uid=#{uid};
     </select>

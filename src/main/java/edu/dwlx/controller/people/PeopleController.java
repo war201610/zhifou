@@ -37,10 +37,13 @@ public class PeopleController {
     }
     //回答
     @RequestMapping("/{uid}/answers")
-    public List<Question> getAnsweredQuestions(@PathVariable("uid") int uid) {
-        return null;
-//        return new ArrayList<Question>();
-//        return userMapper.searchAnswerByUid(uid);
+    public List<Answer> getAnsweredQuestions(@PathVariable("uid") int uid) {
+        Answer a1 = new Answer();
+        Answer a2 = new Answer();
+        List<Answer> list = new ArrayList<>();
+        list.add(a1);
+        list.add(a2);
+        return list;
     }
     //收藏回答和关注问题相同
     @RequestMapping("/{uid}/questions")
