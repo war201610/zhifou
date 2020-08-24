@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+</head>
+<body>
+    <span th:if="${user}">
+        <span>
+            <p th:text="${user}"></p>
+        </span>
+        <span>
+            <a th:href="@{'zhifou/people/+${user.uid}+'/collections'}">收藏</a>&nbsp;
+            <a th:href="@{'zhifou/people/'+${user.uid}+'/asks'}">提问</a>&nbsp;
+            <a th:href="@{'zhifou/people/'+${user.uid}+'/answers'}">回答</a>&nbsp;
+            <a th:href="@{'zhifou/people/'+${user.uid}+'/questions'}">关注问题</a>&nbsp;
+            <a th:href="@{'zhifou/people/'+${user.uid}+'/following'}">关注用户</a>&nbsp;
+            <a th:href="@{'zhifou/people/'+${user.uid}+'/followers'}">粉丝</a>
+        </span>
+    </span>
+</body>
+</html>

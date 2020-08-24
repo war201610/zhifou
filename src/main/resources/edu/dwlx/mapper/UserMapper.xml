@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dwlx.mapper.UserMapper">
+    <select id="searchByName" parameterType="String" resultType="edu.dwlx.entity.User">
+        select * from user where name=#{name}
+    </select>
+    <insert id="insertUser" parameterType="edu.dwlx.entity.User">
+        insert into user(name, password, registerTime) values(#{name}, #{password}, #{registerTime})
+    </insert>
+<!--    <insert id="insertUser" parameterType="User">-->
+<!--        insert into user values(#{user.id}, #{user.name}, #{user.}, #{user.}, #{user.},-->
+<!--                                #{user.}, #{user.}, #{user.}, #{user.}, #{user.},-->
+<!--                                #{user.}, #{user.}, #{user.}, #{user.}, #{user.},-->
+<!--                                #{user.})-->
+<!--    </insert>-->
+    <select id="searchUserById" parameterType="String" resultType="edu.dwlx.entity.User">
+        select * from user where uid=#{uid};
+    </select>
+</mapper>
