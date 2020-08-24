@@ -1,21 +1,22 @@
-// <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 /* session中存储的uid */
 const uid = sessionStorage.getItem("uid");
 
 /* 当前url 即zhifou/people/uid */
 // const pathName = window.location.pathname;
 const pathName = window.location.pathname.concat("/").concat(uid);
+console.log(pathName);
 
 /* 个人信息请求，加载页面 */
 function getUser() {
-    $.get(pathName, function (user) {
-        console.log(user);
+    $.get(pathName.concat("/info"), function (user) {
+        // console.log(user);
+        console.log("向", pathName.concat("/info"), "发起了get请求")
         /* todo 访问主页，打印从后台获取的用户信息 */
-        $("#gender").text(user.gender)
-        $("#introduction").text(user.introduction)
-        $("#career").text(user.career)
-        $("#industry").text(user.industry)
-        $("#email").text(user.email)
+        // $("#gender").text(user.gender)
+        // $("#introduction").text(user.introduction)
+        // $("#career").text(user.career)
+        // $("#industry").text(user.industry)
+        // $("#email").text(user.email)
     })
 }
 
@@ -44,10 +45,11 @@ function editUser(){
         "industry": $("#exampleFormControlSelect2").val(),
         "email": $("#exampleFormControlInput3").val()
     };
-    $.post(pathName, user, function (result) {
+    $.post(pathName.concat("/edit"), user, function (result) {
         /* todo 重新获取个人信息，加载页面 */
         getUser();
-        console.log(result)
+        // console.log(result)
+        console.log("向", pathName.concat("/edit"), "发起了post请求")
     })
 }
 
@@ -59,5 +61,5 @@ $("#btn-confirm-edit").click(function () {
 /**/
 
 $(document).ready(function () {
-
+    getUser()
 });
