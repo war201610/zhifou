@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../../css/answerAgree.css">
+    <link rel="stylesheet" type="text/css" href="../../css/answer.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+
+    <title>知否</title>
+</head>
+<body>
+
+<div class="root">
+    <div class="HeaderBar shadow-sm">
+        <div class="HeaderInner">
+            <div class="HeaderTabs">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">知否</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">发现</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="input-group mb-3" id="sb-3">
+                <input type="text" class="form-control" placeholder="忘了他吧，我偷电瓶养你！" aria-label="Recipient's username"
+                       aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">搜索</button>
+                </div>
+            </div>
+            <div class="HeaderUserInfo">
+                <img src="https://img.icons8.com/clouds/50/000000/super-mario.png" class="float-right" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题导航头 -->
+    <div class="card shadow-sm question-card">
+        <!-- 问题主体区域 -->
+        <div class="header-question">
+            <!-- 问题标签区域 -->
+            <div class="question-label" id="tag">
+                <button type="button" class="btn btn-outline-success btn-label">电影</button>
+                <button type="button" class="btn btn-outline-success btn-label">漫画</button>
+                <button type="button" class="btn btn-outline-success btn-label">生活</button>
+                <button type="button" class="btn btn-outline-success btn-label">美食</button>
+            </div>
+            <!-- 问题内容区域 -->
+            <div class="question-container">
+                <div class="card-body">
+                    <h5 class="card-title" id="content">Special title treatment</h5>
+                    <p class="card-text" id="introduction">With supporting text below as a natural lead-in to additional content.</p>
+<!--                    <a href="#" class="btn btn-primary">Go somewhere</a> a标签的按钮样式 -->
+                </div>
+            </div>
+            <!-- 问题底部操作区域 -->
+            <div class="question-footer">
+                <!-- 赞同评论收藏 -->
+                <div class="container-footer">
+                    <button type="button" class="btn btn-outline-primary agree"><img src="../../img/icons8-smiling-face-with-heart-17.png" alt="">好问题 <span id="agree_count">1234</span></button>
+                    <div class="footer-comment"><img src="../../img/icons8-topic-30.png" alt=""><span id="viewCount">66 </span>&nbsp;我要回答</div>
+                    <div class="footer-star"><img src="../../img/icons8-star-25.png" alt="" class="footer-icon"><span id="collectCount">55 </span>收藏</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="TopStory">
+            <div class="TopStory-container">
+                <!-- 左侧内容区域 -->
+                <div class="TopStory-mainColumn">
+                    <!-- 左侧卡片区域 -->
+                    <div class="card shadow-sm">
+                        <!-- 回答内容 -->
+                        <div class="answer card-body">
+                            <!-- 回答者头像和信息区域 -->
+                            <div class="user">
+                                <!-- 头像 -->
+                                <div class="user-head"><img src="../../img/icons8-online-support-38.png" alt=""></div>
+                                <!-- 个人id和简介 -->
+                                <div class="user-info">窃格瓦拉<span class="user-intro">一位不知名的电瓶杀手</span></div>
+                            </div>
+                            <!-- 回答内容信息 -->
+                            <div class="answer-info">
+                                <pre>    4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。
+                                </pre>
+                            </div>
+                            <!-- 赞同评论收藏 -->
+                            <div class="container-footer2">
+                                <button type="button" class="btn btn-outline-primary agree2"><img src="../../img/icons8-smiling-face-with-heart-17.png" alt="">赞同 <span>1234</span></button>
+                                <div class="footer-comment2" data-toggle="modal" data-target="#comment-modal"><img src="../../img/icons8-topic-30.png" alt=""><span>66 </span>&nbsp;条评论</div>
+                                <div class="footer-star2"><img src="../../img/icons8-star-25.png" alt="" class="footer-icon2"><span>&nbsp;收藏</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <!-- 回答内容 -->
+                        <div class="answer card-body">
+                            <!-- 回答者头像和信息区域 -->
+                            <div class="user">
+                                <!-- 头像 -->
+                                <div class="user-head"><img src="../../img/icons8-technical-support-38.png" alt=""></div>
+                                <!-- 个人id和简介 -->
+                                <div class="user-info">山哥<span class="user-intro">德克萨斯州著名歌王</span></div>
+                            </div>
+                            <!-- 回答内容信息 -->
+                            <div class="answer-info">
+                                <pre>    1984年考上多伦多大学东亚系开始攻读中国研究，并起了中文名字“路士伟”。1988年毕业后留学于北京大学进修中国语言文学，1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。1998年首次登上央视春节联欢晚会，和潘长江、黑妹表演小品《一张邮票》
+                                </pre>
+                            </div>
+                            <div class="container-footer2">
+                                <button type="button" class="btn btn-outline-primary agree2"><img src="../../img/icons8-smiling-face-with-heart-17.png" alt="">赞同 <span>1234</span></button>
+                                <div class="footer-comment2"><img src="../../img/icons8-topic-30.png" alt=""><span>66 </span>&nbsp;条评论</div>
+                                <div class="footer-star2"><img src="../../img/icons8-star-25.png" alt="" class="footer-icon2"><span>&nbsp;收藏</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧内容区域 -->
+                <div class="GlobalSideBar">
+                    <div class="card sideCard shadow-sm">
+                        <div class="card-body">
+                            <!-- 右侧卡片小组件 -->
+                            <div class="SideBar">
+                                <div class="tittle1"><p class="card-text">Lorem</p></div>
+                                <div>
+                                    <img src="https://img.icons8.com/color/50/000000/star--v1.png"/>
+                                    <span>收藏</span>
+                                </div>
+                                <div>
+                                    <img src="https://img.icons8.com/color/50/000000/help--v1.png"/>
+                                    <span>提问</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评论弹窗 -->
+    <!-- Scrollable modal -->
+    <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">评论</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- 评论内容区块 -->
+                <div class="modal-body">
+                    <!-- 所有评论 -->
+                    <div class="all-comment">
+                        <!-- 评论列表 -->
+                        <ul>
+                        <li><div class="comment-item">
+                            <div class="comment-area">
+                                <!-- 评论者头像、账户、时间 -->
+                                <div class="comment-info">
+                                    <div class="comment-head">
+                                        <img src="../../img/icons8-online-support-38.png" width="25" height="25">
+                                    </div>
+                                    <div class="comment-name">切格瓦拉</div>
+                                    <div class="comment-time">2020.8.20</div>
+                                </div>
+                                <!-- 评论的内容 -->
+                                <div class="comment-container">
+                                    <div class="comment-text">精神领袖,别偷我的电瓶车，谢谢。</div>
+                                </div>
+                            </div>
+                        </div></li>
+                    </ul>
+                        <ul>
+                            <li><div class="comment-item">
+                                <div class="comment-area">
+                                    <!-- 评论者头像、账户、时间 -->
+                                    <div class="comment-info">
+                                        <div class="comment-head">
+                                            <img src="../../img/icons8-technical-support-38.png" width="25" height="25">
+                                        </div>
+                                        <div class="comment-name">山哥</div>
+                                        <div class="comment-time">2020.8.21</div>
+                                    </div>
+                                    <!-- 评论的内容 -->
+                                    <div class="comment-container">
+                                        <div class="comment-text">1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。</div>
+                                    </div>
+                                </div>
+                            </div></li>
+                        </ul>
+                        </ul>
+                        <ul>
+                            <li><div class="comment-item">
+                                <div class="comment-area">
+                                    <!-- 评论者头像、账户、时间 -->
+                                    <div class="comment-info">
+                                        <div class="comment-head">
+                                            <img src="../../img/icons8-technical-support-38.png" width="25" height="25">
+                                        </div>
+                                        <div class="comment-name">山哥</div>
+                                        <div class="comment-time">2020.8.21</div>
+                                    </div>
+                                    <!-- 评论的内容 -->
+                                    <div class="comment-container">
+                                        <div class="comment-text">1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。</div>
+                                    </div>
+                                </div>
+                            </div></li>
+                        </ul>
+                        </ul>
+                        <ul>
+                            <li><div class="comment-item">
+                                <div class="comment-area">
+                                    <!-- 评论者头像、账户、时间 -->
+                                    <div class="comment-info">
+                                        <div class="comment-head">
+                                            <img src="../../img/icons8-technical-support-38.png" width="25" height="25">
+                                        </div>
+                                        <div class="comment-name">山哥</div>
+                                        <div class="comment-time">2020.8.21</div>
+                                    </div>
+                                    <!-- 评论的内容 -->
+                                    <div class="comment-container">
+                                        <div class="comment-text">1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。</div>
+                                    </div>
+                                </div>
+                            </div></li>
+                        </ul>
+                        </ul>
+                        <ul>
+                            <li><div class="comment-item">
+                                <div class="comment-area">
+                                    <!-- 评论者头像、账户、时间 -->
+                                    <div class="comment-info">
+                                        <div class="comment-head">
+                                            <img src="../../img/icons8-technical-support-38.png" width="25" height="25">
+                                        </div>
+                                        <div class="comment-name">山哥</div>
+                                        <div class="comment-time">2020.8.21</div>
+                                    </div>
+                                    <!-- 评论的内容 -->
+                                    <div class="comment-container">
+                                        <div class="comment-text">1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。</div>
+                                    </div>
+                                </div>
+                            </div></li>
+                        </ul>
+                        </ul>
+                        <ul>
+                            <li><div class="comment-item">
+                                <div class="comment-area">
+                                    <!-- 评论者头像、账户、时间 -->
+                                    <div class="comment-info">
+                                        <div class="comment-head">
+                                            <img src="../../img/icons8-technical-support-38.png" width="25" height="25">
+                                        </div>
+                                        <div class="comment-name">山哥</div>
+                                        <div class="comment-time">2020.8.21</div>
+                                    </div>
+                                    <!-- 评论的内容 -->
+                                    <div class="comment-container">
+                                        <div class="comment-text">1989年中央电视台元旦晚会因小品《夜归》中扮演洋学生“大山”而为大家熟知，并改中文名为“大山”，拜姜昆为师学习相声。</div>
+                                    </div>
+                                </div>
+                            </div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" class="comment-input form-control" placeholder="写下您的评论">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">发表评论</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        // $('#comment').modal();
+
+    })
+
+</script>
+
+</body>
+</html>
