@@ -14,22 +14,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
     @Autowired
     UserMapper userMapper;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("自定义登陆控制");
-        User user = userMapper.searchUserByName(username);
-        return user;
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        System.out.println("自定义登陆控制");
+//        User user = userMapper.searchUserByName(username);
+//        return user;
+//    }
 
     public int insertUser(User user){
         if(userMapper.searchUserByName(user.getName()) != null){
             return -1;
         }
 
-        int flag = userMapper.insertUser(user);
+        userMapper.insertUser(user);
         User user1 = userMapper.searchUserByName(user.getName());
         user1.setUid(user1.getUid());
         userMapper.updateUser(user1);
@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
         userMapper.createUserQuestionTable(user1);
         userMapper.createUserAnswerTable(user1);
 
-        return flag;
+        return 1;
     }
 
     public int updateUser(User user){

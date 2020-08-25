@@ -9,13 +9,13 @@ public class Answer {
     private String content;
     private int agree;
     private String comment;
-    private int collection;
+    private int collection_count;
     private Date createDate;
 
     public Answer(){
         comment = id + "_answer_comment";
         agree = 0;
-        collection = 0;
+        collection_count = 0;
         createDate = new Date(System.currentTimeMillis());
     }
 
@@ -74,12 +74,12 @@ public class Answer {
         this.comment = comment;
     }
 
-    public int getCollection() {
-        return collection;
+    public int getCollection_count() {
+        return collection_count;
     }
 
-    public void setCollection(int collection) {
-        this.collection = collection;
+    public void setCollection_count(int collection) {
+        this.collection_count = collection;
     }
 
     public Date getCreateDateDate() {

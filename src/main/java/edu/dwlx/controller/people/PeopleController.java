@@ -4,6 +4,7 @@ import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
+import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,23 +19,23 @@ import java.util.List;
 @RequestMapping("/zhifou/people")
 public class PeopleController {
     @Autowired
-    UserMapper userMapper;
+    UserService userService;
     //个人首页
     @RequestMapping("/{uid}")
     public String personalInfo(@PathVariable("uid") String uid, Model model) {
-        User user = userMapper.searchUserById(new Integer(uid));
+        User user = userService.searchUserById(new Integer(uid));
         model.addAttribute("user", user);
         return "/zhifou/people/user.html";
     }
     //查看收藏
     @RequestMapping("/{uid}/collections")
     public List<Answer> getCollections(@PathVariable("uid") int uid) {
-        return userMapper.searchCollectAnswerByUid(uid);
+        return userService.searchCollectAnswerByUid(uid);
     }
     //提出的问题
     @RequestMapping("/{id}/asks")
     public List<Question> getAskedQuestions(@PathVariable("uid") int uid) {
-        return userMapper.searchQuestionByUid(uid);
+        return userService.searchQuestionByUid(uid);
     }
     //回答
     @RequestMapping("/{uid}/answers")

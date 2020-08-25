@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    public int insertUser(User user);
+    public void insertUser(User user);
 
     public void createFollowerTable(User user);
 
