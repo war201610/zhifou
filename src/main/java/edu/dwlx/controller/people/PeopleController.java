@@ -22,10 +22,15 @@ public class PeopleController {
     UserService userService;
     //个人首页
     @RequestMapping("/{uid}")
-    public String personalInfo(@PathVariable("uid") String uid, Model model) {
-        User user = userService.searchUserById(new Integer(uid));
+    public String personalHomepage(@PathVariable("uid") int uid, Model model) {
+        User user = userService.searchUserById(uid);
         model.addAttribute("user", user);
         return "/zhifou/people/user.html";
+    }
+    //查看个人信息
+    @RequestMapping("/{uid}/info")
+    public User personalInfo(@PathVariable("uid") int uid) {
+        return userService.searchUserById(uid);
     }
     //查看收藏
     @RequestMapping("/{uid}/collections")
