@@ -21,7 +21,7 @@ public class UserController {
     //登陆处理
     @RequestMapping("/login")
     public String userLogin(String username, String password, Model model, HttpSession session) {
-        User user = userMapper.searchByName(username);
+        User user = userMapper.searchUserByName(username);
         if(user==null){
             System.out.println("null");
             model.addAttribute("message","用户不存在");
@@ -39,7 +39,7 @@ public class UserController {
     //注册处理
     @RequestMapping("/register")
     public String userRegister(String name, String password, Model model) {
-        User user = userMapper.searchByName(name);
+        User user = userMapper.searchUserByName(name);
         if(user != null) {
             model.addAttribute("message", "用户名已存在");
             return "/zhifou/error/error.html";

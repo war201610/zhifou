@@ -55,12 +55,12 @@
         select * from #{uid}_answer
     </select>
 
-    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">
-        select * from question where id in
-            (
-                select question_id from #{uid}_question
-            )
-    </select>
+<!--    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">-->
+<!--        select * from question where id in-->
+<!--            (-->
+<!--                select question_id from #{uid}_question-->
+<!--            )-->
+<!--    </select>-->
 
     <select id="searchFollowerByUid" parameterType="Integer" resultType="User">
         select * from user where uid in

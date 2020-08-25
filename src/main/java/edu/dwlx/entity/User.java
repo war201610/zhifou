@@ -19,12 +19,12 @@ public class User implements UserDetails
     private String address;
     private Date registerDate;
     private String email;
-    private String following;
-    private String follower;
-    private String collect_article;
-    private String collect_answer;
-    private String question;
-    private String answer;
+    private String following;          //关注了谁的表名
+    private String follower;           //谁关注了我的表名
+    private String collect_article;    //收藏的文章的表名
+    private String collect_answer;     //收藏的问题的表名
+    private String question;           //提出的问题的表名
+    private String answer;             //做出的回答的表名
     private int like_count;
 
     public User(){
@@ -230,7 +230,9 @@ public class User implements UserDetails
         this.like_count = like_count;
     }
 
-    public void setRegisterTime(java.sql.Date date) {
+    public void setRegisterDate(java.sql.Date date) {
         this.registerDate = date;
     }
+    
+    
 }

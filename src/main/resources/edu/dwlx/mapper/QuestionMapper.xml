@@ -1,5 +1,42 @@
-<mapper xmlns="http://mybatis.org/schema/mybatis-mapper">
-    <update id="insertQuestion">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.QuestionMapper">
+    <insert id="insertQuestion" parameterType="Question">
+        insert into question(uid, content, introduction, tag, agree_count, comment, answer, follower, viewCount, collectCount, createDate)
+        values(#{uid}, #{content}, #{introduction}, #{tag}, #{agree_count}, #{comment}, #{answer}, #{follower}, #{viewCount}, #{collectCount}, #{createDate})
+    </insert>
 
+    <update id="updateQuestion" parameterType="Question">
+
+        private int id;
+        private int uid;                    //提出者的uid
+        private String content;             //内容
+        private String introduction;        //简介
+        private String tag;                 //标签
+        private int agree_count;            //点赞数量
+        private String comment;             //评论表的名字
+        private String answer;              //回答表的名字
+        private String follower;            //关注者表的名字
+        private int viewCount;              //浏览数量
+        private int collectCount;           //收藏数量
+        private Date createDate;            //创建日期
+
+        update question set()
+        where id = #{id}
     </update>
+
+    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">
+        select * from question where uid = #{uid}
+    </select>
+
+    <select id="searchQuestionByTag" parameterType="String" resultType="Question">
+        select * from question
+        <where>
+            <if test="tag !=null and tag !=''">
+                and tag like concat('%', #{tag}, '%')
+            </if>
+        </where>
+    </select>
+
+
 </mapper>

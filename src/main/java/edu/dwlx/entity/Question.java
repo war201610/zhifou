@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Question {
     private int id;
-    private int uid;
-    private String content;
-    private String introduction;
-    private String tag;
-    private int agree_count;
-    private String comment;
-    private String answer;
-    private String follower;
-    private int viewCount;
-    private int collectCount;
-    private Date date;
+    private int uid;                    //提出者的uid
+    private String content;             //内容
+    private String introduction;        //简介
+    private String tag;                 //标签
+    private int agree_count;            //点赞数量
+    private String comment;             //评论表的名字
+    private String answer;              //回答表的名字
+    private String follower;            //关注者表的名字
+    private int viewCount;              //浏览数量
+    private int collectCount;           //收藏数量
+    private Date createDate;            //创建日期
 
     public Question(){
         agree_count = 0;
@@ -23,7 +23,7 @@ public class Question {
         follower = "default";
         viewCount = 0;
         collectCount = 0;
-        date = new Date(System.currentTimeMillis());
+        createDate = new Date(System.currentTimeMillis());
     }
 
     public Question(int uid, String content){
@@ -123,11 +123,11 @@ public class Question {
         this.collectCount = collectCount;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreateDate(Date date) {
+        this.createDate = date;
     }
 }

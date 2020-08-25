@@ -34,7 +34,7 @@ public interface UserMapper {
 
     public List<Article> searchCollectArticleByUid(Integer uid);
 
-    public List<Answer> searchAnswerByUid(Integer uid);
+//    public List<Answer> searchAnswerByUid(Integer uid);
 
     public List<Question> searchQuestionByUid(Integer uid);
 
