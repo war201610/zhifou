@@ -4,72 +4,66 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class User
-        implements UserDetails
+public class User implements UserDetails
 {
     private int uid;
     private String name;
-    private int gender;
     private String password;
+    private String gender;
     private String career;
     private String introduction;
     private String address;
-    private String industry;
-    private String collection;
     private Date registerDate;
     private String email;
+    private String following;
+    private String follower;
+    private String collect_article;
+    private String collect_answer;
     private String question;
     private String answer;
-    private String subscribeQuestion;
-    private String subscribeMember;
-    private String followMember;
+    private int like_count;
+
+    public User(){
+        this.registerDate = new Date(System.currentTimeMillis());
+        this.following = "default";
+        this.follower = "default";
+        this.collect_article = "default";
+        this.collect_answer = "default";
+        this.question = "default";
+        this.answer = "default";
+        this.like_count = 0;
+    }
+
+    public User(String username, String password) {
+        this();
+        this.name = username;
+        this.password = password;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
                 ", name='" + name + '\'' +
-                ", gender=" + gender +
                 ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
                 ", career='" + career + '\'' +
                 ", introduction='" + introduction + '\'' +
                 ", address='" + address + '\'' +
-                ", industry='" + industry + '\'' +
-                ", collection='" + collection + '\'' +
                 ", registerDate=" + registerDate +
                 ", email='" + email + '\'' +
+                ", following='" + following + '\'' +
+                ", follower='" + follower + '\'' +
+                ", collect_article='" + collect_article + '\'' +
+                ", collect_answer='" + collect_answer + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
-                ", subscribeQuestion='" + subscribeQuestion + '\'' +
-                ", subscribeMember='" + subscribeMember + '\'' +
-                ", followMember='" + followMember + '\'' +
+                ", like_count=" + like_count +
                 '}';
-    }
-
-    public User() {
-    }
-
-    public User(int uid, String name, int gender, String password, String career, String introduction, String address, String industry, String collection, Date registerDate, String email, String question, String answer, String subscribeQuestion, String subscribeMember, String followMember) {
-        this.uid = uid;
-        this.name = name;
-        this.gender = gender;
-        this.password = password;
-        this.career = career;
-        this.introduction = introduction;
-        this.address = address;
-        this.industry = industry;
-        this.collection = collection;
-        this.registerDate = registerDate;
-        this.email = email;
-        this.question = question;
-        this.answer = answer;
-        this.subscribeQuestion = subscribeQuestion;
-        this.subscribeMember = subscribeMember;
-        this.followMember = followMember;
     }
 
     @Override
@@ -108,6 +102,12 @@ public class User
 
     public void setUid(int uid) {
         this.uid = uid;
+        this.following = uid+"_following";
+        this.follower = uid+"_follower";
+        this.collect_article = uid+"_collect_article";
+        this.collect_answer = uid+"_collect_answer";
+        this.question = uid+"_question";
+        this.answer = uid+"_answer";
     }
 
     public String getName() {
@@ -118,20 +118,20 @@ public class User
         this.name = name;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCareer() {
@@ -158,22 +158,6 @@ public class User
         this.address = address;
     }
 
-    public String getIndustry() {
-        return industry;
-    }
-
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
-
-    public String getCollection() {
-        return collection;
-    }
-
-    public void setCollection(String collection) {
-        this.collection = collection;
-    }
-
     public Date getRegisterDate() {
         return registerDate;
     }
@@ -188,6 +172,38 @@ public class User
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(String following) {
+        this.following = following;
+    }
+
+    public String getFollower() {
+        return follower;
+    }
+
+    public void setFollower(String follower) {
+        this.follower = follower;
+    }
+
+    public String getCollect_article() {
+        return collect_article;
+    }
+
+    public void setCollect_article(String collect_article) {
+        this.collect_article = collect_article;
+    }
+
+    public String getCollect_answer() {
+        return collect_answer;
+    }
+
+    public void setCollect_answer(String collect_answer) {
+        this.collect_answer = collect_answer;
     }
 
     public String getQuestion() {
@@ -206,27 +222,15 @@ public class User
         this.answer = answer;
     }
 
-    public String getSubscribeQuestion() {
-        return subscribeQuestion;
+    public int getLike_count() {
+        return like_count;
     }
 
-    public void setSubscribeQuestion(String subscribeQuestion) {
-        this.subscribeQuestion = subscribeQuestion;
+    public void setLike_count(int like_count) {
+        this.like_count = like_count;
     }
 
-    public String getSubscribeMember() {
-        return subscribeMember;
-    }
-
-    public void setSubscribeMember(String subscribeMember) {
-        this.subscribeMember = subscribeMember;
-    }
-
-    public String getFollowMember() {
-        return followMember;
-    }
-
-    public void setFollowMember(String followMember) {
-        this.followMember = followMember;
+    public void setRegisterTime(java.sql.Date date) {
+        this.registerDate = date;
     }
 }

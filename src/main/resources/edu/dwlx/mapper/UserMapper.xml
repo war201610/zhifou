@@ -1,16 +1,87 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dwlx.mapper.UserMapper">
-    <select id="searchByName" parameterType="String" resultType="edu.dwlx.entity.User">
-        select * from user where name=#{name}
-    </select>
-    <insert id="insertUser" parameterType="edu.dwlx.entity.User">
-        insert into user(name, password, registerDate, following, follower, collect_article,
-        collect_answer, question, answer, like_count) values(#{name}, #{password}, #{registerDate}, 1, 1, 1,
-        1, 1, 1, 1)
+
+    <insert id="insertUser" parameterType="User">
+        insert into user(name, password, registerDate, following, follower, collect_article, collect_answer, question, answer, like_count)
+            values(#{name}, #{password}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{question}, #{answer}, #{like_count}
     </insert>
 
-    <select id="searchUserById" parameterType="String" resultType="edu.dwlx.entity.User">
+    <update id="createFollowerTable" parameterType="User">
+        create table #{uid}_follower (uid int(20) primary key)
+    </update>
+
+    <update id="createFollowingTable" parameterType="User">
+        create table #{uid}_following (uid int(20) primary key)
+    </update>
+
+    <update id="createCollectAnswerTable" parameterType="User">
+        create table #{uid}_collect_answer
+            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collection int(20), createDate date )
+    </update>
+
+    <update id="createCollectArticleTable" parameterType="User">
+        create table #{uid}_collect_article (article_id int(20) primary key)
+    </update>
+
+    <update id="createUserAnswerTable" parameterType="User">
+        create table #{uid}_answer
+            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collection int(20), createDate date )
+    </update>
+
+    <update id="createUserQuestionTable" parameterType="User">
+        create table #{uid}_question (question_id int(20) primary key)
+    </update>
+
+    <update id="updateUser" parameterType="User">
+        update user
+            set name=#{name},password=#{password},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
+            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},question=#{question},answer=#{answer},like_count=#{like_count}
+        where uid=#{uid}
+    </update>
+
+    <select id="searchCollectAnswerByUid" parameterType="Integer" resultType="Answer">
+        select * from #{uid}_collect_answer
+    </select>
+
+    <select id="searchCollectArticleByUid" parameterType="Integer" resultType="Article">
+        select * from article where id in
+            (
+                select article_id from #{uid}_collect_article
+            )
+    </select>
+
+    <select id="searchAnswerByUid" parameterType="Integer" resultType="Answer">
+        select * from #{uid}_answer
+    </select>
+
+    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">
+        select * from question where id in
+            (
+                select question_id from #{uid}_question
+            )
+    </select>
+
+    <select id="searchFollowerByUid" parameterType="Integer" resultType="User">
+        select * from user where uid in
+            (
+                select * from #(uid)_follower
+            )
+    </select>
+
+    <select id="searchFollowingByUid" parameterType="Integer" resultType="User">
+        select * from user where uid in
+            (
+                select * from #(uid)_following
+            )
+    </select>
+
+    <select id="searchUserById" parameterType="Integer" resultType="User">
         select * from user where uid=#{uid};
     </select>
+
+    <select id="searchUserByName" parameterType="String" resultType="User">
+        select * from user where name = #{name};
+    </select>
+
 </mapper>
