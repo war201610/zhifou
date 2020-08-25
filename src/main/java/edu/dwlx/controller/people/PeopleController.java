@@ -5,6 +5,8 @@ import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +22,17 @@ public class PeopleController {
     UserMapper userMapper;
     //个人首页
     @RequestMapping("/{uid}")
-    public String personalInfo(@PathVariable("uid") String uid, Model model) {
+    public String personalInfo(@PathVariable("uid") String uid, Model model, Authentication authentication) {
         User user = userMapper.searchUserById(uid);
-        model.addAttribute("user", user);
-        return "/zhifou/people/user.html";
+        System.out.println(user);
+        String currentUsername = authentication.getName();
+        if(currentUsername.equals(user.getName())){
+            model.addAttribute("user", user);
+            return "/zhifou/people/user.html";
+        } else {
+            user = userMapper.searchByName(currentUsername);
+            return "redirect:" + user.getUid();
+        }
     }
     //查看收藏
     @RequestMapping("/{uid}/collections")

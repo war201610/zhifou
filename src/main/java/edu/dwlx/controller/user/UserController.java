@@ -3,6 +3,9 @@ package edu.dwlx.controller.user;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,10 @@ public class UserController {
         }
         String page = "/zhifou/user/login.html";
         if(user.getPassword().equals(password)){
-            page = "forward:/zhifou/people/" + user.getUid();
+            UsernamePasswordAuthenticationToken token =
+                    new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword(), user.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(token);
+            page = "redirect:/zhifou/people/" + user.getUid();
             session.setAttribute("user", user);
         }
         else
