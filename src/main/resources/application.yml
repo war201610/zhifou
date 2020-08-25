@@ -31,7 +31,10 @@ spring:
     encoding: UTF-8
     prefix: classpath:/static/
     suffix: .html
+
 #  security:
 #    user:
 #      name: user
 #      password: 123
+mybatis:
+  type-aliases-package: edu.dwlx.entity
