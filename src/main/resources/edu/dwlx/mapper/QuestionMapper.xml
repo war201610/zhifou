@@ -1,0 +1,5 @@
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper">
+    <update id="insertQuestion">
+
+    </update>
+</mapper>
