@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class PeopleController {
     //个人首页
     @RequestMapping("/{uid}")
     public String personalInfo(@PathVariable("uid") String uid, Model model) {
-        User user = userMapper.searchUserById(uid);
+        User user = userMapper.searchUserById(new Integer(uid));
         model.addAttribute("user", user);
         return "/zhifou/people/user.html";
     }
@@ -33,7 +34,7 @@ public class PeopleController {
     //提出的问题
     @RequestMapping("/{id}/asks")
     public List<Question> getAskedQuestions(@PathVariable("uid") int uid) {
-        return userMapper.searchAskedQuestionByUid(uid);
+        return userMapper.searchQuestionByUid(uid);
     }
     //回答
     @RequestMapping("/{uid}/answers")
