@@ -4,7 +4,7 @@
 
     <insert id="insertUser" parameterType="User">
         insert into user(name, password, registerDate, following, follower, collect_article, collect_answer, question, answer, like_count)
-            values(#{name}, #{password}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{question}, #{answer}, #{like_count}
+            values(#{name}, #{password}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{question}, #{answer}, #{like_count})
     </insert>
 
     <update id="createFollowerTable" parameterType="User">

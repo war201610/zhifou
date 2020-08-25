@@ -5,6 +5,7 @@ import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;

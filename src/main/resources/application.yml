@@ -38,3 +38,6 @@ spring:
 #      password: 123
 mybatis:
   type-aliases-package: edu.dwlx.entity
+
+  configuration:
+    map-underscore-to-camel-case: true
