@@ -3,10 +3,12 @@ package edu.dwlx.mapper;
 import edu.dwlx.entity.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface QuestionMapper {
     void insertQuestion(Question question);
 

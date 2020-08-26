@@ -2,6 +2,7 @@ package edu.dwlx;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -14,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest
 @WebAppConfiguration
+@MapperScan("edu.dwlx.mapper")
 class DwlxApplicationTests {
     private static final String user = "/zhifou/user";
     private static final String people = "/zhifou/people";

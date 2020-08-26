@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.AnswerMapper">
+<mapper  namespace="edu.dwlx.mapper.AnswerMapper">
     <insert id="insertAnswer" parameterType="Answer">
         insert into #{questionId}_question_answer(uid, questionId, content, agree, comment, collection, createDate)
             values(#{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection}, #{createDate})

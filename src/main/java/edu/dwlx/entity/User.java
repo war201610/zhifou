@@ -13,7 +13,7 @@ public class User implements UserDetails
     private int uid;                    //主键
     private String name;                //用户名
     private String password;            //密码
-    private String gender;              //性别
+    private int gender;              //性别
     private String career;              //职业
     private String introduction;        //个人简介
     private String address;             //地址
@@ -126,11 +126,11 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 

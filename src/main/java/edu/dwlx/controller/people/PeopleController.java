@@ -4,6 +4,7 @@ import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
+import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import java.util.List;
 public class PeopleController {
     @Autowired
     UserService userService;
+    @Autowired
+    QuestionService questionService;
     //个人首页
     @RequestMapping("/{uid}")
     public String personalHomepage(@PathVariable("uid") int uid, Model model) {
@@ -32,7 +35,6 @@ public class PeopleController {
     @RequestMapping("/{uid}/info")
     @ResponseBody
     public User personalInfo(@PathVariable("uid") int uid) {
-        System.out.println(userService.searchUserById(uid));
         return userService.searchUserById(uid);
     }
     //查看收藏
@@ -45,7 +47,7 @@ public class PeopleController {
     @RequestMapping("/{id}/asks")
     @ResponseBody
     public List<Question> getAskedQuestions(@PathVariable("uid") int uid) {
-        return userService.searchQuestionByUid(uid);
+        return questionService.searchQuestionByUid(uid);
     }
     //回答
     @RequestMapping("/{uid}/answers")
@@ -57,7 +59,7 @@ public class PeopleController {
     @RequestMapping("/{uid}/questions")
     @ResponseBody
     public List<Question> getSubscribeQuestions(@PathVariable("uid") int uid) {
-        return userService.searchQuestionByUid(uid);
+        return questionService.searchQuestionByUid(uid);
     }
     //关注的用户
     @RequestMapping("/{uid}/following")
@@ -70,5 +72,24 @@ public class PeopleController {
     @ResponseBody
     public List<User> getFollowers(@PathVariable("uid") int uid) {
         return userService.searchFollowerByUid(uid);
+    }
+    //编辑个人信息
+    @RequestMapping("/{uid}/edit")
+    @ResponseBody
+    public boolean editPersonalInfo(User user) {
+        User user1 = userService.searchUserById(user.getUid());
+        user.setUid(user1.getUid());
+        user.setName(user1.getName());
+        user.setPassword(user1.getPassword());
+        user.setRegisterDate(user1.getRegisterDate());
+        user.setFollowing(user1.getFollowing());
+        user.setFollower(user1.getFollower());
+        user.setCollect_article(user1.getCollect_article());
+        user.setCollect_answer(user1.getCollect_answer());
+        user.setQuestion(user1.getQuestion());
+        user.setAnswer(user1.getAnswer());
+        user.setLike_count(user1.getLike_count());
+        userService.updateUser(user);
+        return true;
     }
 }
