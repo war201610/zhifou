@@ -84,4 +84,23 @@
 /*.card-header{*/
 /*    background-color: #F0F8FF!important;*/
 /*}*/
+.qList-area{
+    width: 1056px;
+}
+.qList-area a{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.content-p{
+    display: -webkit-box;
+    /*white-space:nowrap; 加上后...无法显示，即ellipsis不生效*/
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1; /* 限制在一个块元素显示的文本的行数 */
+    -webkit-box-orient: vertical; /* 垂直排列 */
+    overflow: hidden;
+    font-weight: 500;
+
+    margin-left: 15px;
+}
 
