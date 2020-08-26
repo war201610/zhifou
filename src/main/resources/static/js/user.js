@@ -39,9 +39,15 @@ $("#btn-edit-user").click(function () {
 /* 个人信息修改请求 */
 function editUser(){
     // console.log($("#exampleFormControlSelect1").val()); // 测试select dom val
+    var gender;
+    if ($("#exampleFormControlSelect1").val()==="男") {
+        gender = 1
+    }else {
+        gender = 0
+    }
     const user = {
         "uid": uid,
-        "gender": $("#exampleFormControlSelect1").val(),
+        "gender": gender,
         "introduction": $("#exampleFormControlTextarea1").val(),
         "career": $("#exampleFormControlInput1").val(),
         "industry": $("#exampleFormControlSelect2").val(),
@@ -120,6 +126,11 @@ $("#btn4").click(function () {
 function getFollowing() {
     $.get(pathName.concat("/following"), function (followingList) {
         console.log(followingList);
+        var html = ""
+        for (i=0; i<followingList.length; i++) {
+
+        }
+        html = ""
     })
 }
 /* 点击事件-关注的用户 */
