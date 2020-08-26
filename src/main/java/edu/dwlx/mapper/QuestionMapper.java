@@ -1,6 +1,7 @@
 package edu.dwlx.mapper;
 
 import edu.dwlx.entity.Question;
+import edu.dwlx.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +26,6 @@ public interface QuestionMapper {
     Question searchQuestionById(@Param("id") Integer id);
 
     Question searchQuestionByContentAndUid(Question question);
+
+    List<User> searchQuestionFollower(Question question);
 }

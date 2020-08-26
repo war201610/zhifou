@@ -37,6 +37,6 @@ public class AnswerService {
     }
 
     public List<Answer> searchAnswerByTableName(String tableName){
-        return answerMapper.searchAnswerByTableName(tableName)
+        return answerMapper.searchAnswerByTableName(tableName);
     }
 }
