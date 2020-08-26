@@ -3,16 +3,17 @@ package edu.dwlx.entity;
 import java.util.Date;
 
 public class Article {
-    private int id;
-    private int uid;
-    private String text;
-    private int agree;
-    private String comment;
-    private Date createDate;
-    private String tag;
+    private int id;             //主键
+    private int uid;            //文章的发布者uid
+    private String text;        //内容
+    private int agree;          //点赞数
+    private String comment;     //评论的表名
+    private Date createDate;    //发布日期
+    private String tag;         //标签
 
     public Article(){
         createDate = new java.sql.Date(System.currentTimeMillis());
+        comment = "default";
     }
 
     public Article(int uid, String text) {

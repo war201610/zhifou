@@ -3,19 +3,19 @@ package edu.dwlx.entity;
 import java.util.Date;
 
 public class Answer {
-    private int id;
-    private int uid;
-    private int questionId;
-    private String content;
-    private int agree;
-    private String comment;
-    private int collection_count;
-    private Date createDate;
+    private int id;             //主键
+    private int uid;            //回答者uid
+    private int questionId;     //对应问题的id
+    private String content;     //内容
+    private int agree;          //点赞数量
+    private String comment;     //评论表的名字
+    private int collection;     //收藏数量
+    private Date createDate;    //回答时间
 
     public Answer(){
-        comment = id + "_answer_comment";
+        comment = "default";
         agree = 0;
-        collection_count = 0;
+        collection = 0;
         createDate = new Date(System.currentTimeMillis());
     }
 
@@ -74,12 +74,12 @@ public class Answer {
         this.comment = comment;
     }
 
-    public int getCollection_count() {
-        return collection_count;
+    public int getCollection() {
+        return collection;
     }
 
-    public void setCollection_count(int collection) {
-        this.collection_count = collection;
+    public void setCollection(int collection) {
+        this.collection = collection;
     }
 
     public Date getCreateDateDate() {

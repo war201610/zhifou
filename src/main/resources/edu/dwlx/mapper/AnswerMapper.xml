@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.AnswerMapper">
+    <insert id="insertAnswer" parameterType="Answer">
+        insert into #{questionId}_question_answer(uid, questionId, content, agree, comment, collection, createDate)
+            values(#{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection}, #{createDate})
+    </insert>
+
+    <update id="updateAnswer" parameterType="Answer">
+        update #{questionId}_question_answer
+            set uid=#{uid}, questionId=#{questionId}, content=#{content}, agree=#{agree}, comment=#{comment}, collection=#{collection}, createDate=#{createDate}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAnswer" parameterType="Answer">
+        delete from #{questionId}_question_answer where id=#{id}
+    </delete>
+
+    <update id="createAnswerCommentTable">
+        create table #{id}_answer_comment(id int(20) auto_increment primary key, uid int(20), content varchar(200), agree int(20), toWho int(20), createDate date)
+    </update>
+
+    <select id="searchAnswerByQuestionId" resultType="Answer">
+        select * from #{questionId}_question_answer
+    </select>
+
+<!--    <select id="searchAnswerByUid" parameterType="Answer" resultType="Answer">-->
+<!--        select * from #{questionId}_question_answer where uid=#{uid}-->
+<!--    </select>-->
+
+    <select id="searchAnswerByContentAndUid" parameterType="Answer" resultType="Answer">
+        select * from #{questionId}_question_answer where uid=#{uid} and content=#{content}
+    </select>
+
+    <select id="searchAnswerByTableName" resultType="Answer">
+        select * from #{tableName}
+    </select>
+</mapper>

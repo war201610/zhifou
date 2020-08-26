@@ -10,22 +10,22 @@ import java.util.Collection;
 
 public class User implements UserDetails
 {
-    private int uid;
-    private String name;
-    private String password;
-    private String gender;
-    private String career;
-    private String introduction;
-    private String address;
-    private Date registerDate;
-    private String email;
-    private String following;
-    private String follower;
-    private String collect_article;
-    private String collect_answer;
-    private String question;
-    private String answer;
-    private int like_count;
+    private int uid;                    //主键
+    private String name;                //用户名
+    private String password;            //密码
+    private String gender;              //性别
+    private String career;              //职业
+    private String introduction;        //个人简介
+    private String address;             //地址
+    private Date registerDate;          //注册日期
+    private String email;               //邮箱
+    private String following;           //关注了谁的表名
+    private String follower;            //谁关注了我的表名
+    private String collect_article;     //收藏的文章的表名
+    private String collect_answer;      //收藏的问题的表名
+    private String question;            //提出的问题的表名
+    private String answer;              //做出的回答的表名
+    private int like_count;             //获得的点赞数量
 
     public User(){
         this.registerDate = new Date(System.currentTimeMillis());
@@ -230,7 +230,9 @@ public class User implements UserDetails
         this.like_count = like_count;
     }
 
-    public void setRegisterTime(java.sql.Date date) {
+    public void setRegisterDate(java.sql.Date date) {
         this.registerDate = date;
     }
+    
+    
 }

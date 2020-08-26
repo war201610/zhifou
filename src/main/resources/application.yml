@@ -40,4 +40,6 @@ mybatis:
   type-aliases-package: edu.dwlx.entity
 
   configuration:
+    environment:
+    database-id:
     map-underscore-to-camel-case: true

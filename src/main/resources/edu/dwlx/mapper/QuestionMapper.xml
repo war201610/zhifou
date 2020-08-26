@@ -1,5 +1,50 @@
-<mapper xmlns="http://mybatis.org/schema/mybatis-mapper">
-    <update id="insertQuestion">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.QuestionMapper">
+    <insert id="insertQuestion" parameterType="Question">
+        insert into question(uid, content, introduction, tag, agree_count, comment, answer, follower, viewCount, collectCount, createDate)
+        values(#{uid}, #{content}, #{introduction}, #{tag}, #{agree_count}, #{comment}, #{answer}, #{follower}, #{viewCount}, #{collectCount}, #{createDate})
+    </insert>
 
+    <update id="createQuestionCommentTable" parameterType="Question">
+        create table #{id}_question_comment (id int(20) auto_increment primary key, uid int(20),
+                    content varchar(200), agree int(20), toWho int(20), createDate date)
     </update>
+
+    <update id="createQuestionAnswerTable" parameterType="Question">
+        create table #{id}_question_answer (id int(20) auto_increment primary key, uid int(20), questionId int(20),
+                    content varchar(200), agree int(20), comment varchar(20), collection int(20), createDate date )
+    </update>
+
+    <update id="createQuestionFollowerTable" parameterType="Question">
+        create table #{id}_question_follower (uid int(20) primary key)
+    </update>
+
+    <update id="updateQuestion" parameterType="Question">
+        update question set(uid=#{uid}, content=#{content}, introduction=#{introduction}, tag=#{tag}, agree_count=#{agree_count},
+            comment=#{comment}, answer=#{answer}, follower=#{follower}, viewCount=#{viewCount}, collectCount=#{collectCount}, createDate=#{createDate})
+        where id = #{id}
+    </update>
+
+    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">
+        select * from question where uid = #{uid}
+    </select>
+
+    <select id="searchQuestionByTag" parameterType="String" resultType="Question">
+        select * from question
+        <where>
+            <if test="tag !=null and tag !=''">
+                and tag like concat('%', #{tag}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="searchQuestionById" parameterType="Integer" resultType="Question">
+        select * from question where id = #{id}
+    </select>
+
+    <select id="searchQuestionByContentAndUid" parameterType="Question" resultType="Question">
+        select * from question where content = #{content} and uid = #{uid}
+    </select>
+
 </mapper>
