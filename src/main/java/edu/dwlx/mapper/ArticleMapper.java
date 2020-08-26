@@ -3,10 +3,12 @@ package edu.dwlx.mapper;
 import edu.dwlx.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface ArticleMapper {
 
     void insertArticle(Article article);
