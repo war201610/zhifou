@@ -1,9 +1,15 @@
 /* session中存储的uid */
-const uid = sessionStorage.getItem("uid");
+// const uid = sessionStorage.getItem("user");
+// console.log(uid)
+// const u = ${user}
+// console.log(u);
 
-/* 当前url 即zhifou/people/uid */
-// const pathName = window.location.pathname;
-const pathName = window.location.pathname.concat("/").concat(uid);
+/* 当前url 即/zhifou/people/uid */
+// const pathName1 = window.location.pathname;
+// pathName = pathName1.substring(0, pathName1.length-2)
+// 去除pathName1后的/null ,null为一个字符
+const pathName = window.location.pathname
+// const pathName = window.location.pathname.substring(0, pathName1.length-2).concat("/").concat(uid);
 console.log(pathName);
 
 /* 个人信息请求，加载页面 */
