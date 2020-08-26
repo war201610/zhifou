@@ -103,4 +103,45 @@
 
     margin-left: 15px;
 }
-
+/* 关注 */
+.follow-container{
+    display: flex;
+    /*justify-content: center;*/
+    padding-left: 50px;
+}
+.fiveBox{
+    display: flex;
+    height: 80px;
+}
+.follow-head{
+    width: 60px;
+    display: flex;
+    align-items: center;
+    /*align-content: center;*/
+    justify-content: center;
+}
+.follow-info-area{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.follow-info{
+    width: 600px;
+}
+.follow-name{
+    font-weight: 600;
+    font-size: 18px;
+}
+.follow-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-body ul{
+    /*text-decoration: none;*/
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-bottom: #F7F7F7 1px solid;
+}
