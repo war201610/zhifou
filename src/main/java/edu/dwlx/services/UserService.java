@@ -4,6 +4,7 @@ import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
+import edu.dwlx.mapper.QuestionMapper;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     @Autowired
     UserMapper userMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("自定义登陆控制");
@@ -33,7 +35,7 @@ public class UserService implements UserDetailsService {
         User user1 = userMapper.searchUserByName(user.getName());
         user1.setUid(user1.getUid());
         userMapper.updateUser(user1);
-        System.out.println(user1);
+//        System.out.println(user1);
         userMapper.createFollowerTable(user1);
         userMapper.createFollowingTable(user1);
         userMapper.createCollectArticleTable(user1);
@@ -68,9 +70,9 @@ public class UserService implements UserDetailsService {
         return userMapper.searchAnswerByUid(uid);
     }
 
-    public List<Question> searchQuestionByUid(Integer uid){
-        return userMapper.searchQuestionByUid(uid);
-    }
+//    public List<Question> searchQuestionByUid(Integer uid){
+//        return userMapper.searchQuestionByUid(uid);
+//    }
 
     public List<User> searchFollowerByUid(Integer uid){
         return userMapper.searchFollowerByUid(uid);

@@ -8,11 +8,21 @@ import java.util.List;
 
 @Mapper
 public interface QuestionMapper {
-    public void insertQuestion(Question question);
+    void insertQuestion(Question question);
 
-    public void updateQuestion(Question question);
+    void createQuestionCommentTable(Question question);
 
-    public List<Question> searchQuestionByUid(@Param("uid") Integer uid);
+    void createQuestionAnswerTable(Question question);
 
-    public List<Question> searchQuestionByTag(@Param("tag") String tag);
+    void createQuestionFollowerTable(Question question);
+
+    void updateQuestion(Question question);
+
+    List<Question> searchQuestionByUid(@Param("uid") Integer uid);
+
+    List<Question> searchQuestionByTag(@Param("tag") String tag);
+
+    Question searchQuestionById(@Param("id") Integer id);
+
+    Question searchQuestionByContentAndUid(Question question);
 }

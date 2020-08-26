@@ -3,12 +3,12 @@ package edu.dwlx.entity;
 import java.util.Date;
 
 public class Comment {
-    private int id;
-    private int uid;
-    private String content;
-    private int agree;
-    private int toWho;
-    private Date createDate;
+    private int id;             //主键
+    private int uid;            //评论者uid
+    private String content;     //内容
+    private int agree;          //点赞数
+    private int toWho;          //向谁评论（用户的uid）（-1代表是对文章的评论，其余是对用户评论的评论）
+    private Date createDate;    //评论日期
 
     public Comment(){
         agree = 0;
