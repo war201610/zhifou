@@ -1,28 +1,22 @@
 /* session中存储的uid */
 // const uid = sessionStorage.getItem("user");
-// console.log(uid)
-// const u = ${user}
-// console.log(u);
 
 /* 当前url 即/zhifou/people/uid */
-// const pathName1 = window.location.pathname;
-// pathName = pathName1.substring(0, pathName1.length-2)
-// 去除pathName1后的/null ,null为一个字符
 const pathName = window.location.pathname
-// const pathName = window.location.pathname.substring(0, pathName1.length-2).concat("/").concat(uid);
-console.log(pathName);
+// 字符串分隔获取uid
+const uid = pathName.substring(15)
 
 /* 个人信息请求，加载页面 */
 function getUser() {
     $.get(pathName.concat("/info"), function (user) {
-        // console.log(user);
+        console.log(user);
         console.log("向", pathName.concat("/info"), "发起了get请求")
         /* todo 访问主页，打印从后台获取的用户信息 */
-        // $("#gender").text(user.gender)
-        // $("#introduction").text(user.introduction)
-        // $("#career").text(user.career)
-        // $("#industry").text(user.industry)
-        // $("#email").text(user.email)
+        $("#gender").text(user.gender)
+        $("#introduction").text(user.introduction)
+        $("#career").text(user.career)
+        $("#industry").text(user.industry)
+        $("#email").text(user.email)
     })
 }
 
