@@ -233,6 +233,6 @@ public class User implements UserDetails
     public void setRegisterDate(java.sql.Date date) {
         this.registerDate = date;
     }
-    
-    
+
+
 }

@@ -12,7 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -82,5 +84,59 @@ public class UserService implements UserDetailsService {
         return userMapper.searchFollowingByUid(uid);
     }
 
+    public void insertFollower(Integer uid, Integer followerId){
+        userMapper.insertFollower(uid, followerId);
+    }
 
+    public void deleteFollower(Integer uid, Integer followerId){
+        userMapper.deleteFollower(uid, followerId);
+    }
+
+    public void insertFollowing(Integer uid, Integer followingId){
+        userMapper.insertFollowing(uid, followingId);
+    }
+
+    public void deleteFollowing(Integer uid, Integer followingId){
+        userMapper.deleteFollowing(uid, followingId);
+    }
+
+    public void insertCollectArticle(Integer uid, Integer articleId){
+        userMapper.insertCollectArticle(uid, articleId);
+    }
+
+    public void deleteCollectArticle(Integer uid, Integer articleId){
+        userMapper.deleteCollectArticle(uid, articleId);
+    }
+
+    public void insertCollectAnswer(Integer uid, Answer answer){
+        Map map = new HashMap<String, Object>();
+        map.put("uid", uid);                    //收藏者uid
+        map.put("id", answer.getId());
+        map.put("answerUid", answer.getUid());  //回答者uid
+        map.put("questionId", answer.getQuestionId());
+        map.put("content", answer.getContent());
+        map.put("agree", answer.getAgree());
+        map.put("comment", answer.getComment());
+        map.put("collection_count", answer.getCollection());
+        map.put("createDate", answer.getCreateDateDate());
+
+        userMapper.insertCollectAnswer(map);
+    }
+
+    public void deleteCollectAnswer(Integer uid, Answer answer){
+        Map map = new HashMap<String, Object>();
+        map.put("uid", uid);
+        map.put("id", answer.getId());
+        map.put("questionId", answer.getQuestionId());
+
+        userMapper.deleteCollectAnswer(map);
+    }
+
+    public void insertUserAnswer(Answer answer){
+        userMapper.insertUserAnswer(answer);
+    }
+
+    public void deleteUserAnswer(Answer answer){
+        userMapper.deleteUserAnswer(answer);
+    }
 }

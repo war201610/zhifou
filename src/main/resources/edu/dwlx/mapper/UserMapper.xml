@@ -3,8 +3,8 @@
 <mapper namespace="edu.dwlx.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="User">
-        insert into user(name, password, registerDate, following, follower, collect_article, collect_answer, question, answer, like_count)
-            values(#{name}, #{password}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{question}, #{answer}, #{like_count})
+        insert into user(name, password,nickname, registerDate, following, follower, collect_article, collect_answer, answer, like_count)
+            values(#{name}, #{password}, #{nickname}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{answer}, #{like_count})
     </insert>
 
     <update id="createFollowerTable" parameterType="User">
@@ -29,14 +29,10 @@
             (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collection_count int(20), createDate date )
     </update>
 
-    <update id="createUserQuestionTable" parameterType="User">
-        create table #{uid}_question (question_id int(20) primary key)
-    </update>
-
     <update id="updateUser" parameterType="User">
         update user
-            set name=#{name},password=#{password},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
-            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},question=#{question},answer=#{answer},like_count=#{like_count}
+            set name=#{name},password=#{password},nickname=#{nickname},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
+            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},answer=#{answer},like_count=#{like_count}
         where uid=#{uid}
     </update>
 
@@ -83,5 +79,47 @@
     <select id="searchUserByName" parameterType="String" resultType="User">
         select * from user where name = #{name};
     </select>
+
+    <insert id="insertFollower">
+        insert into #{uid}_follower(uid) values(#{followerId})
+    </insert>
+
+    <delete id="deleteFollower">
+        delete from #{uid}_follower where uid=#{followerId}
+    </delete>
+
+    <insert id="insertFollowing">
+        insert into #{uid}_following(uid) values(#{followingId})
+    </insert>
+
+    <delete id="deleteFollowing">
+        delete from #{uid}_following where uid=#{followingId}
+    </delete>
+
+    <insert id="insertCollectArticle">
+        insert into #{uid}_collect_article values(#{articleId})
+    </insert>
+
+    <delete id="deleteCollectArticle">
+        delete from #{uid}_collect_article where article_id=#{articleId}
+    </delete>
+
+    <insert id="insertCollectAnswer" parameterType="java.util.Map">
+        insert into #{uid}_collect_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
+            values(#{id}, #{answerUid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
+    </insert>
+
+    <delete id="deleteCollectAnswer" parameterType="java.util.Map">
+        delete from #{uid}_collect_answer where id=#{id} and questionId=#{questionId}
+    </delete>
+
+    <insert id="insertUserAnswer" parameterType="Answer">
+        insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
+            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
+    </insert>
+
+    <delete id="deleteUserAnswer" parameterType="Answer">
+        delete from #{uid}_answer where id=#{id} and questionId=#{questionId}
+    </delete>
 
 </mapper>
