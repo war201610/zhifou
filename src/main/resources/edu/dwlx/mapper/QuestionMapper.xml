@@ -47,4 +47,11 @@
         select * from question where content = #{content} and uid = #{uid}
     </select>
 
+    <select id="searchQuestionFollower" parameterType="Question" resultType="User">
+        select * from user where uid in
+        (
+            select * from #{follower}
+        )
+    </select>
+
 </mapper>

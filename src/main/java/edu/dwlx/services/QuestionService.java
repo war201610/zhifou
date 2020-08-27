@@ -1,6 +1,7 @@
 package edu.dwlx.services;
 
 import edu.dwlx.entity.Question;
+import edu.dwlx.entity.User;
 import edu.dwlx.mapper.QuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,9 @@ public class QuestionService {
 
     public Question searchQuestionByContentAndUid(Question question){
         return questionMapper.searchQuestionByContentAndUid(question);
+    }
+
+    public List<User> searchQuestionFollower(Question question){
+        return questionMapper.searchQuestionFollower(question);
     }
 }
