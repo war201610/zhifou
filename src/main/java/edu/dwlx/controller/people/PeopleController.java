@@ -97,4 +97,24 @@ public class PeopleController {
         userService.updateUser(user);
         return true;
     }
+    //取消关注用户
+    @RequestMapping("/zhifou/people/{self}}/following/{subscribed}")
+    @ResponseBody
+    public boolean unsubscribe(@PathVariable("self") int self, @PathVariable("subscribed") int subscribed) {
+        //被关注的人删除粉丝
+        userService.deleteFollower(subscribed, self);
+        //关注的人删除关注
+        userService.deleteFollowing(self, subscribed);
+        return true;
+    }
+    //关注用户
+    @RequestMapping("/zhifou/people/{self}}/followers/{subscribed}")
+    @ResponseBody
+    public boolean subscribe(@PathVariable("self") int self, @PathVariable("subscribed") int subscribed) {
+        //被关注的人添加粉丝
+        userService.insertFollower(subscribed, self);
+        //关注的人添加关注者
+        userService.insertFollowing(self, subscribed);
+        return true;
+    }
 }

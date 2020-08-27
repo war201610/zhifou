@@ -11,12 +11,27 @@ import java.util.List;
 @Controller
 @RequestMapping("/zhifou/comment")
 public class CommentController {
-
+/*1. 评论表内容
+请求方式：post
+请求地址：zhifou/comment
+请求参数：{ "comment": 评论表名 }
+请求数据：评论信息
+2. 获取总评论的条数
+请求方式：get
+请求地址：zhifou/comment/评论表名/number
+请求数据：评论表内的评论条数。
+*/
     @Autowired
     CommentMapper commentMapper;
-//    @RequestMapping
-//    public List<Comment> getCommentList(String comment) {
-//        return commentMapper.
-//    }
+    //评论表内容
+    @RequestMapping
+    public List<Comment> getCommentList(String comment) {
+        return commentMapper.searchCommentByTableName(comment);
+    }
+    //获取总评论的条数
+    @RequestMapping
+    public int getCommentNumber(String comment) {
+        return commentMapper.searchCommentByTableName(comment).size();
+    }
 
 }
