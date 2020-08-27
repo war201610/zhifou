@@ -1,10 +1,17 @@
 /* session中存储的uid */
 // const uid = sessionStorage.getItem("user");
 
+// 获取主机地址和端口号 如localhost:8080
+const host = window.location.host
+
 /* 当前url 即/zhifou/people/uid */
 const pathName = window.location.pathname
+
 // 字符串分隔获取uid
 const uid = pathName.substring(15)
+
+// 从session中获取登陆用户的uid
+const suid = $(".session-user").val()
 
 /* 个人信息请求，加载页面 */
 function getUser() {
@@ -13,7 +20,13 @@ function getUser() {
         console.log("向", pathName.concat("/info"), "发起了get请求")
         /* todo 访问主页，打印从后台获取的用户信息 */
         $("#name").text(user.name)
-        $("#gender").text(user.gender)
+        var gender;
+        if (user.gender===0) {
+            gender = "女"
+        }else {
+            gender = "男"
+        }
+        $("#gender").text(gender)
         $("#introduction").text(user.introduction)
         $("#career").text(user.career)
         $("#industry").text(user.industry)
@@ -70,6 +83,12 @@ $("#btn-confirm-edit").click(function () {
 function getCollections() {
     $.get(pathName.concat("/collections"), function (collectionList) {
         console.log(collectionList)
+        $(".q1").empty()
+        var html = ""
+        for (i=0; i<collectionList.length; i++) {
+            html = printQuestionsList(collectionList[i].id, collectionList[i].content)
+            $(".q1").append(html)
+        }
     })
 }
 
@@ -84,6 +103,12 @@ $("#btn1").click(function () {
 function getAsks() {
     $.get(pathName.concat("/asks"), function (asksList) {
         console.log(asksList);
+        $(".q2").empty()
+        var html = ""
+        for (i=0; i<asksList.length; i++) {
+            html = printQuestionsList(asksList[i].id, asksList[i].content)
+            $(".q2").append(html)
+        }
     })
 }
 
@@ -98,6 +123,12 @@ $("#btn2").click(function () {
 function getAnswers() {
     $.get(pathName.concat("/answers"), function (answersList) {
         console.log(answersList);
+        $(".q3").empty()
+        var html = ""
+        for (i=0; i<answersList.length; i++) {
+            html = printQuestionsList(answersList[i].id, answersList[i].content)
+            $(".q3").append(html)
+        }
     })
 }
 
@@ -112,6 +143,12 @@ $("#btn3").click(function () {
 function getQuestions() {
     $.get(pathName.concat("/questions"), function (questionsList) {
         console.log(questionsList);
+        $(".q4").empty()
+        var html = ""
+        for (i=0; i<questionsList.length; i++) {
+            html = printQuestionsList(questionsList[i].id, questionsList[i].content)
+            $(".q4").append(html)
+        }
     })
 }
 
@@ -126,11 +163,29 @@ $("#btn4").click(function () {
 function getFollowing() {
     $.get(pathName.concat("/following"), function (followingList) {
         console.log(followingList);
+        $("#follow-card").empty()
         var html = ""
         for (i=0; i<followingList.length; i++) {
-
+            // <input type=\"text\" value=\""+ uid +"\">
+            html = "<div class=\"follow-container\">\n" +
+                "                                        <ul><li>\n" +
+                "                                            <div class=\"fiveBox\">\n" +
+                "                                                <div class=\"follow-head\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></div>\n" +
+                "                                                <a href=\""+ host.concat("/zhifou/people/").concat(followingList[i].uid) +"\">\n" +
+                "                                                <div class=\"follow-info-area\">\n" +
+                "                                                    <div class=\"follow-info\">\n" +
+                "                                                        <div class=\"follow-name\">"+ followingList[i].name +"</div>\n" +
+                "                                                        <div class=\"follow-intro\">"+ followingList[i].introduction +"</div>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                                </a>\n" +
+                "                                                <input type='hidden' value=\""+ followingList[i].uid +"\">\n" +
+                "                                                <div class=\"follow-btn\"><button type=\"button\" class=\"btn btn-info cancel-btn\">取消关注</button></div>\n" +
+                "                                            </div>\n" +
+                "                                        </li></ul>\n" +
+                "                                    </div>"
+            $("#follow-card").append(html)
         }
-        html = ""
     })
 }
 /* 点击事件-关注的用户 */
@@ -153,6 +208,32 @@ $("#btn6").click(function () {
     }
 })
 
+/* 点击事件-取消关注 */
+$(".cancel-btn").click(function () {
+    const fid = $(".follow-btn").prev().val()
+    $.get(pathName.concat("/following/").concat(fid), function (result) {
+        getFollowing()
+        console.log("发起了取消关注:", result)
+    })
+})
+
+/* 打印（收藏、提出的问题、回答的问题、关注的问题）列表*/
+function printQuestionsList(qid, qContent) {
+    var html = ""
+    html = "<a href=\""+ host.concat("/zhifou/question/").concat(qid) +"\"><p class=\"content-p\">"+ qContent +"</p></a>"
+    return html
+}
+
+/* 访问他人主页时，去除修改按钮 */
+function visitOther() {
+    if (suid !== uid) {
+        $("btn-edit-user").hidden
+    }
+}
+
 $(document).ready(function () {
+    // 获取个人主页数据
     getUser()
+    // 若非自己的主页，去除修改按钮
+    visitOther()
 });

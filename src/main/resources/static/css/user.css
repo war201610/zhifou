@@ -109,7 +109,7 @@
     /*justify-content: center;*/
     padding-left: 50px;
 }
-.fiveBox{
+.fiveBox {
     display: flex;
     height: 80px;
 }
@@ -120,8 +120,16 @@
     /*align-content: center;*/
     justify-content: center;
 }
+.fiveBox a{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover{
+    text-decoration-line: none!important;
+}
 .follow-info-area{
     width: 600px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
