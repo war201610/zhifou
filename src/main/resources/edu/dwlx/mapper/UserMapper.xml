@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.UserMapper">
+<mapper namespace="edu.dwlx.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="User">
         insert into user(name, password, registerDate, following, follower, collect_article, collect_answer, question, answer, like_count)

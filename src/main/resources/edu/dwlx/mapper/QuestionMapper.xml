@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="edu.dwlx.mapper.QuestionMapper">
+<mapper namespace="edu.dwlx.mapper.QuestionMapper">
     <insert id="insertQuestion" parameterType="Question">
         insert into question(uid, content, introduction, tag, agree_count, comment, answer, follower, viewCount, collectCount, createDate)
         values(#{uid}, #{content}, #{introduction}, #{tag}, #{agree_count}, #{comment}, #{answer}, #{follower}, #{viewCount}, #{collectCount}, #{createDate})
