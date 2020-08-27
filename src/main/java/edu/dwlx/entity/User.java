@@ -13,8 +13,7 @@ public class User implements UserDetails
     private int uid;                    //主键
     private String name;                //用户名
     private String password;            //密码
-    private String nickname;            //昵称
-    private int gender;                 //性别
+    private int gender;              //性别
     private String career;              //职业
     private String introduction;        //个人简介
     private String address;             //地址
@@ -24,16 +23,17 @@ public class User implements UserDetails
     private String follower;            //谁关注了我的表名
     private String collect_article;     //收藏的文章的表名
     private String collect_answer;      //收藏的问题的表名
+    private String question;            //提出的问题的表名
     private String answer;              //做出的回答的表名
     private int like_count;             //获得的点赞数量
 
     public User(){
         this.registerDate = new Date(System.currentTimeMillis());
-        this.nickname = name;
         this.following = "default";
         this.follower = "default";
         this.collect_article = "default";
         this.collect_answer = "default";
+        this.question = "default";
         this.answer = "default";
         this.like_count = 0;
     }
@@ -50,8 +50,7 @@ public class User implements UserDetails
                 "uid=" + uid +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", career='" + career + '\'' +
                 ", introduction='" + introduction + '\'' +
                 ", address='" + address + '\'' +
@@ -61,6 +60,7 @@ public class User implements UserDetails
                 ", follower='" + follower + '\'' +
                 ", collect_article='" + collect_article + '\'' +
                 ", collect_answer='" + collect_answer + '\'' +
+                ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
                 ", like_count=" + like_count +
                 '}';
@@ -106,6 +106,7 @@ public class User implements UserDetails
         this.follower = uid+"_follower";
         this.collect_article = uid+"_collect_article";
         this.collect_answer = uid+"_collect_answer";
+        this.question = uid+"_question";
         this.answer = uid+"_answer";
     }
 
@@ -123,14 +124,6 @@ public class User implements UserDetails
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public int getGender() {
@@ -211,6 +204,14 @@ public class User implements UserDetails
 
     public void setCollect_answer(String collect_answer) {
         this.collect_answer = collect_answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public String getAnswer() {
