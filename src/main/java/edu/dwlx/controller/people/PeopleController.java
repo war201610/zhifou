@@ -76,7 +76,7 @@ public class PeopleController {
     public boolean editPersonalInfo(@PathVariable("uid") int uid, User user) {
         User user1 = userService.searchUserById(user.getUid());
         user.setUid(user1.getUid());
-        user.setNickname(user1.getNickname());
+        user.setName(user1.getName());
         user.setPassword(user1.getPassword());
         user.setRegisterDate(user1.getRegisterDate());
         user.setFollowing(user1.getFollowing());
