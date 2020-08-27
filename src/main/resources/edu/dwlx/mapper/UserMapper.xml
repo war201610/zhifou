@@ -3,7 +3,7 @@
 <mapper namespace="edu.dwlx.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="User">
-        insert into user(name, password,nickname, registerDate, following, follower, collect_article, collect_answer, answer, like_count)
+        insert into user(name, password, nickname, registerDate, following, follower, collect_article, collect_answer, answer, like_count)
             values(#{name}, #{password}, #{nickname}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{answer}, #{like_count})
     </insert>
 

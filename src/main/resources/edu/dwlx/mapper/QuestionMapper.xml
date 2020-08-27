@@ -39,6 +39,15 @@
         </where>
     </select>
 
+    <select id="searchQuestionByContent" resultType="Question">
+        select * from question
+        <where>
+            <if test="content !=null and content !=''">
+                and tag like concat('%', #{content}, '%')
+            </if>
+        </where>
+    </select>
+
     <select id="searchQuestionById" parameterType="Integer" resultType="Question">
         select * from question where id = #{id}
     </select>
