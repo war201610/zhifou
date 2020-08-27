@@ -1,7 +1,6 @@
 package edu.dwlx.controller.people;
 
 import edu.dwlx.entity.Answer;
-import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.services.QuestionService;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/zhifou/people")
@@ -40,13 +37,8 @@ public class PeopleController {
     //查看收藏
     @RequestMapping("/{uid}/collections")
     @ResponseBody
-    public Map<String, Object> getCollections(@PathVariable("uid") int uid) {
-        Map<String, Object> collection = new HashMap<>();
-        List<Answer> answers = userService.searchCollectAnswerByUid(uid);
-        List<Article> articles = userService.searchCollectArticleByUid(uid);
-        collection.put("answers", answers);
-        collection.put("articles", articles);
-        return collection;
+    public List<Answer> getCollections(@PathVariable("uid") int uid) {
+        return userService.searchCollectAnswerByUid(uid);
     }
     //提出的问题
     @RequestMapping("/{id}/asks")
