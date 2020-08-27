@@ -3,8 +3,8 @@
 <mapper namespace="edu.dwlx.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="User">
-        insert into user(name, password, registerDate, following, follower, collect_article, collect_answer, question, answer, like_count)
-            values(#{name}, #{password}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{question}, #{answer}, #{like_count})
+        insert into user(name, password,nickname, registerDate, following, follower, collect_article, collect_answer, answer, like_count)
+            values(#{name}, #{password}, #{nickname}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{answer}, #{like_count})
     </insert>
 
     <update id="createFollowerTable" parameterType="User">
@@ -35,8 +35,8 @@
 
     <update id="updateUser" parameterType="User">
         update user
-            set name=#{name},password=#{password},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
-            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},question=#{question},answer=#{answer},like_count=#{like_count}
+            set name=#{name},password=#{password},nickname=#{nickname},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
+            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},answer=#{answer},like_count=#{like_count}
         where uid=#{uid}
     </update>
 

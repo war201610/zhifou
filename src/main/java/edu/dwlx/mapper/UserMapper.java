@@ -22,8 +22,6 @@ public interface UserMapper {
 
     void createCollectAnswerTable(User user);
 
-    void createUserQuestionTable(User user);
-
     void createUserAnswerTable(User user);
 
     int updateUser(User user);
