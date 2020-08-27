@@ -9,7 +9,7 @@ public class Question {
     private String introduction;        //简介
     private String tag;                 //标签
     private int agree_count;            //点赞数量
-    private String comment;             //评论表的名字
+    private String comment;             //对问题的评论表的名字
     private String answer;              //回答表的名字
     private String follower;            //关注者表的名字
     private int viewCount;              //浏览数量
