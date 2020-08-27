@@ -199,6 +199,28 @@ $("#btn5").click(function () {
 function getFollowers() {
     $.get(pathName.concat("/followers"), function (followersList) {
         console.log(followersList);
+        $(".followed-card").empty()
+        var html = ""
+        for (i=0; i<followersList.length; i++) {
+            html = "<div class=\"follow-container\">\n" +
+                "                                        <ul><li>\n" +
+                "                                            <div class=\"fiveBox\">\n" +
+                "                                                <div class=\"follow-head\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></div>\n" +
+                "                                                <a href=\""+ host.concat("/zhifou/people/").concat(followersList[i].uid) +"\">\n" +
+                "                                                    <div class=\"follow-info-area\">\n" +
+                "                                                        <div class=\"follow-info\">\n" +
+                "                                                            <div class=\"follow-name\">"+ followersList[i].name +"</div>\n" +
+                "                                                            <div class=\"follow-intro\">"+ followersList[i].introduction +"</div>\n" +
+                "                                                        </div>\n" +
+                "                                                    </div>\n" +
+                "                                                </a>\n" +
+                "                                                <input type=\"hidden\" value=\""+ followersList[i].uid +"\">\n" +
+                "                                                <div class=\"follow-btn\"><button type=\"button\" class=\"btn btn-info care-btn\">关注Ta</button></div>\n" +
+                "                                            </div>\n" +
+                "                                        </li></ul>\n" +
+                "                                    </div>"
+            $(".followed-card").append(html)
+        }
     })
 }
 /* 点击事件-粉丝 */
@@ -210,11 +232,21 @@ $("#btn6").click(function () {
 
 /* 点击事件-取消关注 */
 $(".cancel-btn").click(function () {
-    const fid = $(".follow-btn").prev().val()
+    const fid = $(this).parent().prev().val()
     $.get(pathName.concat("/following/").concat(fid), function (result) {
         getFollowing()
         console.log("发起了取消关注:", result)
     })
+})
+
+/* 点击事件-关注Ta*/
+$(".care-btn").click(function () {
+    const fid = $(this).parent().prev().val()
+    $.get(pathName.concat("/followers/").concat(fid), function (result) {
+        getFollowers()
+        console.log("发起了关注Ta：", result)
+    })
+
 })
 
 /* 打印（收藏、提出的问题、回答的问题、关注的问题）列表*/
