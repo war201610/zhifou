@@ -3,7 +3,6 @@ package edu.dwlx.controller.people;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
-import edu.dwlx.mapper.UserMapper;
 import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -76,7 +73,7 @@ public class PeopleController {
     //编辑个人信息
     @RequestMapping("/{uid}/edit")
     @ResponseBody
-    public boolean editPersonalInfo(User user) {
+    public boolean editPersonalInfo(@PathVariable("uid") int uid, User user) {
         User user1 = userService.searchUserById(user.getUid());
         user.setUid(user1.getUid());
         user.setName(user1.getName());
