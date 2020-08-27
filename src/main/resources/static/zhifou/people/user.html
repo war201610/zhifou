@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/header.css">
@@ -117,7 +117,7 @@
 
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="qList-area">
+                                    <div class="qList-area q1">
                                             <a href="#"><p class="content-p">4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。</p></a>
                                     </div>
                                 </div>
@@ -133,7 +133,8 @@
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="qList-area">
+                                    <div class="qList-area q2">
+                                        <a href="#"><p class="content-p">4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。</p></a>
                                         <a href="#"><p class="content-p">4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。</p></a>
                                     </div>
                                 </div>
@@ -149,7 +150,7 @@
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="qList-area">
+                                    <div class="qList-area q3">
                                         <a href="#"><p class="content-p">4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。</p></a>
                                     </div>
                                 </div>
@@ -166,7 +167,7 @@
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="qList-area">
+                                    <div class="qList-area q4">
                                         <a href="#"><p class="content-p">4月18日，“不可能打工”的周某出狱了，来接他的除了家人还有多家网红公司，公司代表们开着名贵跑车，开出数百万价码想签约周某。一时间周某成为了焦点，有人支持他直播，也有人抵制，因为他做过许多错事。早在出狱的14天隔离期内，周某就公开致歉，称自己的言行并不成熟，他还透露不会签约做网红，只想做普通人。可是，抵制他的人依旧不依不饶，因为他们不相信周某的声明，毕竟年薪几百万的诱惑太大了。</p></a>
                                     </div>
                                 </div>
@@ -182,17 +183,19 @@
                                 </h2>
                             </div>
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                                <div class="card-body">
+                                <div class="card-body" id="follow-card">
                                     <div class="follow-container">
                                         <ul><li>
                                             <div class="fiveBox">
                                                 <div class="follow-head"><img src="../../img/icons8-online-support-38.png" alt=""></div>
-                                                <div class="follow-info-area">
-                                                    <div class="follow-info">
-                                                        <div class="follow-name">吱吱</div>
-                                                        <div class="follow-intro">是积分卡时间</div>
+                                                <a href="#">
+                                                    <div class="follow-info-area">
+                                                        <div class="follow-info">
+                                                            <div class="follow-name">吱吱</div>
+                                                            <div class="follow-intro">是积分卡时间</div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                                 <div class="follow-btn"><button type="button" class="btn btn-info">取消关注</button></div>
                                             </div>
                                         </li></ul>
@@ -200,13 +203,16 @@
                                     <div class="follow-container">
                                         <ul><li>
                                             <div class="fiveBox">
+                                                <div class="follow-click"></div>
                                                 <div class="follow-head"><img src="../../img/icons8-online-support-38.png" alt=""></div>
-                                                <div class="follow-info-area">
-                                                    <div class="follow-info">
-                                                        <div class="follow-name">吱吱</div>
-                                                        <div class="follow-intro">是积分卡时间</div>
+                                                <a href="#">
+                                                    <div class="follow-info-area">
+                                                        <div class="follow-info">
+                                                            <div class="follow-name">吱吱</div>
+                                                            <div class="follow-intro">是积分卡时间</div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                                 <div class="follow-btn"><button type="button" class="btn btn-info">取消关注</button></div>
                                             </div>
                                         </li></ul>
@@ -281,12 +287,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btn-confirm-edit">保存</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirm-edit" data-dismiss="modal">保存</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<input type="hidden" th:value="${session.user.uid}" class="session-user">
 
 <!-- 引入DOM操作，需要放在body底部 -->
 <script type="text/javascript" src="../../js/user.js"></script>
