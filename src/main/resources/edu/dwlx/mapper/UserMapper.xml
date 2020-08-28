@@ -52,7 +52,6 @@
     </select>
 
     <select id="searchFollowerByUid" parameterType="Integer" resultType="User">
-
         select * from user where uid in
             (
                 select * from #{uid}_follower
