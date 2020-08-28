@@ -36,8 +36,6 @@ public interface UserMapper {
 
     List<Answer> searchAnswerByUid(Integer uid);
 
-//    List<Question> searchQuestionByUid(Integer uid);
-
     List<User> searchFollowerByUid(@Param("uid")Integer uid);
 
     List<User> searchFollowingByUid(@Param("uid")Integer uid);
@@ -51,8 +49,6 @@ public interface UserMapper {
     void deleteFollower(@Param("uid")Integer uid, @Param("followerId") Integer followerId);
 
     void insertFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
-/*********************/
-//    List<Integer> findFollowingUid(@Param("uid")Integer uid);
 
     void deleteFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
 
@@ -60,9 +56,9 @@ public interface UserMapper {
 
     void deleteCollectArticle(@Param("uid")Integer uid, @Param("articleId") Integer articleId);
 
-    void insertCollectAnswer(Map map);  //稍微有点疑问，等待检验
+    void insertCollectAnswer(Map<String, Object> map);  //稍微有点疑问，等待检验
 
-    void deleteCollectAnswer(Map map);  //稍微有点疑问，等待检验
+    void deleteCollectAnswer(Map<String, Object> map);  //稍微有点疑问，等待检验
 
     void insertUserAnswer(Answer answer);
 
