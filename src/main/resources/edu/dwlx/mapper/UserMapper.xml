@@ -61,14 +61,38 @@
     <select id="searchFollowerByUid" resultType="User">
         select * from user where uid in
             (
-                select * from #(uid)_follower
+                select * from #{uid}_follower
             )
     </select>
 
+<!--    <resultMap id="map1" type="User">-->
+<!--        <id column="id" property="id"/>-->
+<!--        <association property="id" column="id" select="edu.dwlx.mapper.UserMapper.findFollowingUid"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <result property="password" column="password"/>-->
+<!--        <result property="gender" column="gender"/>-->
+<!--        <result property="career" column="career"/>-->
+<!--        <result property="introduction" column="introduction"/>-->
+<!--        <result property="address" column="address"/>-->
+<!--        <result property="registerDate" column="registerDate"/>-->
+<!--        <result property="email" column="email"/>-->
+<!--        <result property="following" column="following"/>-->
+<!--        <result property="follower" column="follower"/>-->
+<!--        <result property="collect_article" column="collect_article"/>-->
+<!--        <result property="collect_answer" column="collect_answer"/>-->
+<!--        <result property="question" column="question"/>-->
+<!--        <result property="answer" column="answer"/>-->
+<!--        <result property="like_count" column="like_count"/>-->
+<!--    </resultMap>-->
+
+    <select id="findFollowingUid" resultType="Integer">
+        select * from #{uid}_following
+    </select>
+
     <select id="searchFollowingByUid" resultType="User">
-        select * from user where uid in
+        select * from user where uid IN
             (
-                select * from #(uid)_following
+                select * from #{uid}_following
             )
     </select>
 

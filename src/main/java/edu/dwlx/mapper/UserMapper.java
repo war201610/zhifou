@@ -51,6 +51,8 @@ public interface UserMapper {
     void deleteFollower(@Param("uid")Integer uid, @Param("followerId") Integer followerId);
 
     void insertFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
+/*********************/
+//    List<Integer> findFollowingUid(@Param("uid")Integer uid);
 
     void deleteFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
 
