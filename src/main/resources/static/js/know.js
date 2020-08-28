@@ -32,12 +32,5 @@ $("#btn-confirm-put").click(function () {
 
 
 $(document).ready(function () {
-    // const Alltag = console.log(document.getElementsByName("gridCheck1"));
-    const Alltag = document.getElementsByName("gridCheck1")
-    for (var j = 0; j < Alltag.length; j++) {
-        var ck = Alltag[j];
-        if (ck.checked) {
-            console.log(ck.value)
-        }
-    }
+    // console.log(localStorage.getItem("u"));
 })

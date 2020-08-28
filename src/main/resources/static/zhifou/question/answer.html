@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/header.css">
     <link rel="stylesheet" type="text/css" href="../../css/answerAgree.css">
     <link rel="stylesheet" type="text/css" href="../../css/answer.css">
+    <link rel="stylesheet" type="text/css" href="../../css/rightSide.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -74,7 +75,7 @@
                 <!-- 赞同评论收藏 -->
                 <div class="container-footer">
                     <button type="button" class="btn btn-outline-primary agree"><img src="../../img/icons8-smiling-face-with-heart-17.png" alt="">好问题 <span id="agree_count">1234</span></button>
-                    <div class="footer-comment"><img src="../../img/icons8-topic-30.png" alt=""><span id="viewCount">66 </span>&nbsp;我要回答</div>
+                    <div class="footer-comment" data-toggle="modal" data-target="#answer-modal"><img src="../../img/icons8-topic-30.png" alt=""><span id="viewCount">66 </span>&nbsp;我要回答</div>
                     <div class="footer-star"><img src="../../img/icons8-star-25.png" alt="" class="footer-icon"><span id="collectCount">55 </span>收藏</div>
                 </div>
             </div>
@@ -128,7 +129,7 @@
                             </div>
                             <div class="container-footer2">
                                 <button type="button" class="btn btn-outline-primary agree2"><img src="../../img/icons8-smiling-face-with-heart-17.png" alt="">赞同 <span>1234</span></button>
-                                <div class="footer-comment2"><img src="../../img/icons8-topic-30.png" alt=""><span>66 </span>&nbsp;条评论</div>
+                                <div class="footer-comment2" data-toggle="modal" data-target="#comment-modal"><img src="../../img/icons8-topic-30.png" alt=""><span>66 </span>&nbsp;条评论</div>
                                 <div class="footer-star2"><img src="../../img/icons8-star-25.png" alt="" class="footer-icon2"><span>&nbsp;收藏</span></div>
                             </div>
                         </div>
@@ -140,14 +141,13 @@
                         <div class="card-body">
                             <!-- 右侧卡片小组件 -->
                             <div class="SideBar">
-                                <div class="tittle1"><p class="card-text">Lorem</p></div>
-                                <div>
-                                    <img src="https://img.icons8.com/color/50/000000/star--v1.png"/>
-                                    <span>收藏</span>
-                                </div>
-                                <div>
-                                    <img src="https://img.icons8.com/color/50/000000/help--v1.png"/>
+                                <div id="area-question" data-toggle="modal" data-target="#staticBackdrop1">
+                                    <img src="../../img/icons8-help-48.png"/>
                                     <span>提问</span>
+                                </div>
+                                <div id="area-article" data-toggle="modal" data-target="#staticBackdrop2">
+                                    <img src="../../img/icons8-translate-text-48.png"/>
+                                    <span>文章</span>
                                 </div>
                             </div>
                         </div>
@@ -288,17 +288,45 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="text" class="comment-input form-control" placeholder="写下您的评论">
+                    <input type="text" class="comment-input form-control" placeholder="写下您的评论" id="answer-comment-content">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">发表评论</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirm-comment">发表评论</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回答弹窗 -->
+    <!-- Scrollable modal -->
+    <div class="modal fade" id="answer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">回答</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- 评论内容区块 -->
+                <div class="modal-body">
+                    <!-- 写入回答 -->
+                    <div class="form-group">
+                        <label for="answer-textarea">写入回答：</label>
+                        <textarea class="form-control" id="answer-textarea" rows="15"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirm-answer">发表回答</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-
 </div>
+
+<input type="hidden" th:value="${session.user.uid}" class="session-user">
 
 <script src="../../js/answer.js"></script>
 

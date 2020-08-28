@@ -1,8 +1,18 @@
+// 保存当前页面的问题id
+var qid
+
+// 保存当前登陆用户的id
+var uid
+
+// 保存当前要评论的回答者id
+var towho
+
 function getQuestion() {
     /* /zhifou/question/问题id/info */
     const pathName = window.location.pathname.concat("/info")
     // const commentAdress = pathName.substring(0, )
     $.get(pathName, function (question) {
+        qid = question.id
         /* todo 在各组件中打印问题信息 */
         // 标签
         for (i=0; i<question.tag.length; i++) {
@@ -20,7 +30,7 @@ function getQuestion() {
         $("#collectCount").text(question.collectCount)
 
         /* todo 回答列表 */
-        $.get("zhifou/answer/".concat(question.answer), function (answer) {
+        $.get("zhifou/answer/get/".concat(question.answer), function (answer) {
             // $("#answer-content").text(answer.content)
             for (i=0; i<answer.length; i++) {
                 // 请求用户头像、名称等信息
@@ -45,8 +55,9 @@ function getQuestion() {
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\">\n" +
                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\"><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
-                            "                                <input type='hidden' value='"+ answer[i].comment +"'>\n" +
+                            "                                <input type=\"hidden\" value=\""+ answer[i].comment +"\">\n" +
                             "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
+                            "                                <input type=\"hiden\" value=\""+ user.uid +"\">\n" +
                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answer[i].collection +"</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
                             "                        </div>")
@@ -59,6 +70,7 @@ function getQuestion() {
 
 /* 点击事件-获取回答的评论内容 */
 $(".footer-comment2").click(function () {
+    towho = $(this).next().val()
     const commentValue = $(this).prev().val()
     const comment = { "comment": commentValue }
     $.post("/zhifou/comment", comment, function (commentList) {
@@ -95,7 +107,36 @@ $(".footer-comment2").click(function () {
 //
 // }
 
+// 点击事件-发表评论
+$("#btn-confirm-comment").click(function () {
+    const content = $("#answer-comment-content").val()
+    const comment = {
+        "uid": uid,
+        "towho": towho,
+        "content": content
+    }
+    $.post("zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
+        console.log("发起了评论：", result)
+    })
+})
+
+// 点击事件-发表回答
+$("#btn-confirm-answer").click(function () {
+    const content = $("#answer-textarea").val()
+    const answer = {
+        "uid": uid,
+        "qid": qid,
+        "content": content
+    }
+    $.post("zhifou/answer/put", answer, function (result) {
+        console.log("发表回答请求", result)
+    })
+})
+
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     getQuestion()
+    // localStorage.setItem("u", "nihao")
+    // localStorage.setItem("u", "hello")
+    uid = $("session-user").val()
 })
