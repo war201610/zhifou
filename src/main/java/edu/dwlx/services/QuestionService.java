@@ -51,4 +51,12 @@ public class QuestionService {
     public List<User> searchQuestionFollower(Question question){
         return questionMapper.searchQuestionFollower(question);
     }
+
+    public void insertQuestionFollower(int questionId, int uid){
+        questionMapper.insertQuestionFollower(questionId, uid);
+    }
+
+    public void deleteQuestionFollower(int questionId, int uid){
+        questionMapper.deleteQuestionFollower(questionId, uid);
+    }
 }

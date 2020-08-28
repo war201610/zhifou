@@ -119,4 +119,7 @@
         delete from #{uid}_answer where id=#{id} and questionId=#{questionId}
     </delete>
 
+    <update id="getAgree">
+        update user set like_count = like_count+1 where uid=#{uid}
+    </update>
 </mapper>
