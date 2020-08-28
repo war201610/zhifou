@@ -91,7 +91,6 @@ public class PeopleController {
         user.setFollower(user1.getFollower());
         user.setCollect_article(user1.getCollect_article());
         user.setCollect_answer(user1.getCollect_answer());
-        user.setQuestion(user1.getQuestion());
         user.setAnswer(user1.getAnswer());
         user.setLike_count(user1.getLike_count());
         userService.updateUser(user);
