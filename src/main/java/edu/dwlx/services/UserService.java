@@ -136,4 +136,8 @@ public class UserService implements UserDetailsService {
     public void deleteUserAnswer(Answer answer){
         userMapper.deleteUserAnswer(answer);
     }
+
+    public void getAgree(int uid){
+        userMapper.getAgree(uid);
+    }
 }

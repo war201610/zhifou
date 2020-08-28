@@ -61,4 +61,6 @@ public interface UserMapper {
     void insertUserAnswer(Answer answer);
 
     void deleteUserAnswer(Answer answer);
+
+    void getAgree(@Param("uid")int uid);
 }

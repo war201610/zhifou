@@ -63,4 +63,20 @@
         )
     </select>
 
+<!--    <insert id="insertQuestionComment">-->
+<!--        insert into #{questionId}_question_comment(uid, content, agree, toWho, createDate)-->
+<!--            values(#{uid}, #{content}, #{agree}, #{toWho}, #{createDate})-->
+<!--    </insert>-->
+<!--    -->
+<!--    <delete id="deleteQuestionComment">-->
+<!--        delete from #{questionId}_question_comment where id=#{id}-->
+<!--    </delete>-->
+
+    <insert id="insertQuestionFollower">
+        insert into #{questionId}_question_follower values(#{uid})
+    </insert>
+
+    <delete id="deleteQuestionFollower">
+        delete from #{questionId}_question_follower where uid=#{uid}
+    </delete>
 </mapper>
