@@ -13,7 +13,7 @@ public class User implements UserDetails
     private int uid;                    //主键
     private String name;                //用户名
     private String password;            //密码
-    private String nickName;            //昵称
+    private String nickname;            //昵称
     private int gender;                 //性别
     private String career;              //职业
     private String introduction;        //个人简介
@@ -29,7 +29,7 @@ public class User implements UserDetails
 
     public User(){
         this.registerDate = new Date(System.currentTimeMillis());
-        this.nickName = name;
+        this.nickname = name;
         this.following = "default";
         this.follower = "default";
         this.collect_article = "default";
@@ -50,7 +50,7 @@ public class User implements UserDetails
                 "uid=" + uid +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", gender=" + gender +
                 ", career='" + career + '\'' +
                 ", introduction='" + introduction + '\'' +
@@ -205,12 +205,12 @@ public class User implements UserDetails
         this.collect_answer = collect_answer;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getAnswer() {
