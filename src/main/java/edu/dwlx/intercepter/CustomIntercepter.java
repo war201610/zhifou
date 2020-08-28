@@ -17,7 +17,6 @@ public class CustomIntercepter implements HandlerInterceptor {
     UserService userService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("intercepter");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         StringBuffer url = request.getRequestURL();
@@ -30,20 +29,25 @@ public class CustomIntercepter implements HandlerInterceptor {
             if(content[1].equals("people")&&content[3].equals("edit")) {
                 int uid = Integer.parseInt(content[2]);
                 User user = userService.searchUserById(uid);
-                if(user.getName().equals(name))
+                if(user.getName().equals(name)){
+                    System.out.println("intercepter: pass");
                     return true;
+                }
                 else
                     response.sendError(403, "禁止访问");
             }
         } else if(content[1].equals("people")){
             int uid = Integer.parseInt(content[2]);
             User user = userService.searchUserById(uid);
-            if(user.getName().equals(name))
+            if(user.getName().equals(name)) {
+                System.out.println("intercepter: pass");
                 return true;
+            }
             else
                 response.sendError(403, "禁止访问");
 //            return user.getName().equals(name);
         }
+        System.out.println("intercepter: fail");
         return false;
     }
 }

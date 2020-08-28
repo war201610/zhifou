@@ -38,9 +38,9 @@ public interface UserMapper {
 
 //    List<Question> searchQuestionByUid(Integer uid);
 
-    List<User> searchFollowerByUid(Integer uid);
+    List<User> searchFollowerByUid(@Param("uid")Integer uid);
 
-    List<User> searchFollowingByUid(Integer uid);
+    List<User> searchFollowingByUid(@Param("uid")Integer uid);
 
     User searchUserById(Integer uid);
 

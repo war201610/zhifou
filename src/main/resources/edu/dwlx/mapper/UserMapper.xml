@@ -58,14 +58,14 @@
 <!--            )-->
 <!--    </select>-->
 
-    <select id="searchFollowerByUid" parameterType="Integer" resultType="User">
+    <select id="searchFollowerByUid" resultType="User">
         select * from user where uid in
             (
                 select * from #(uid)_follower
             )
     </select>
 
-    <select id="searchFollowingByUid" parameterType="Integer" resultType="User">
+    <select id="searchFollowingByUid" resultType="User">
         select * from user where uid in
             (
                 select * from #(uid)_following

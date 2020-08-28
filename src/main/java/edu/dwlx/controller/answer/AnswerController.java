@@ -17,10 +17,22 @@ public class AnswerController {
     @Autowired
     AnswerService answerService;
 
-    @RequestMapping("/{table}")
+    //获得回答
+    @RequestMapping("/get/{table}")
     @ResponseBody
     public List<Answer> getQuestionAnswer(@PathVariable("table") String table) {
         return answerService.searchAnswerByTableName(table);
+    }
+    //添加回答
+    @RequestMapping("/put")
+    @ResponseBody
+    public boolean getQuestionAnswer(int uid, int id, String content) {
+        Answer answer = new Answer();
+        answer.setUid(uid);
+        answer.setId(id);
+        answer.setContent(content);
+        answerService.insertAnswer(answer);
+        return true;
     }
 
 }

@@ -17,6 +17,6 @@ public class IntercepterConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/zhifou/people/**")
                 .excludePathPatterns("/zhifou/people/**/info", "/zhifou/people/**/collections",
                         "/zhifou/people/**/asks", "/zhifou/people/**/answers", "/zhifou/people/**/questions",
-                        "/zhifou/people/**/following", "/zhifou/people/**/follower");
+                        "/zhifou/people/**/following", "/zhifou/people/**/followers");
     }
 }
