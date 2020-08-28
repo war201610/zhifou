@@ -40,7 +40,6 @@ public class UserService implements UserDetailsService {
         userMapper.createFollowingTable(user1);
         userMapper.createCollectArticleTable(user1);
         userMapper.createCollectAnswerTable(user1);
-        userMapper.createUserQuestionTable(user1);
         userMapper.createUserAnswerTable(user1);
 
         return flag;
