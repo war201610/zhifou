@@ -51,39 +51,15 @@
         select * from #{uid}_answer
     </select>
 
-<!--    <select id="searchQuestionByUid" parameterType="Integer" resultType="Question">-->
-<!--        select * from question where id in-->
-<!--            (-->
-<!--                select question_id from #{uid}_question-->
-<!--            )-->
-<!--    </select>-->
-
     <select id="searchFollowerByUid" resultType="User">
+
+    <select id="searchFollowerByUid" parameterType="Integer" resultType="User">
+
         select * from user where uid in
             (
                 select * from #{uid}_follower
             )
     </select>
-
-<!--    <resultMap id="map1" type="User">-->
-<!--        <id column="id" property="id"/>-->
-<!--        <association property="id" column="id" select="edu.dwlx.mapper.UserMapper.findFollowingUid"/>-->
-<!--        <result property="name" column="name"/>-->
-<!--        <result property="password" column="password"/>-->
-<!--        <result property="gender" column="gender"/>-->
-<!--        <result property="career" column="career"/>-->
-<!--        <result property="introduction" column="introduction"/>-->
-<!--        <result property="address" column="address"/>-->
-<!--        <result property="registerDate" column="registerDate"/>-->
-<!--        <result property="email" column="email"/>-->
-<!--        <result property="following" column="following"/>-->
-<!--        <result property="follower" column="follower"/>-->
-<!--        <result property="collect_article" column="collect_article"/>-->
-<!--        <result property="collect_answer" column="collect_answer"/>-->
-<!--        <result property="question" column="question"/>-->
-<!--        <result property="answer" column="answer"/>-->
-<!--        <result property="like_count" column="like_count"/>-->
-<!--    </resultMap>-->
 
     <select id="findFollowingUid" resultType="Integer">
         select * from #{uid}_following
