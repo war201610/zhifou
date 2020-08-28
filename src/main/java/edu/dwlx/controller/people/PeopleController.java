@@ -49,7 +49,7 @@ public class PeopleController {
         return collection;
     }
     //提出的问题
-    @RequestMapping("/{id}/asks")
+    @RequestMapping("/{uid}/asks")
     @ResponseBody
     public List<Question> getAskedQuestions(@PathVariable("uid") int uid) {
         return questionService.searchQuestionByUid(uid);

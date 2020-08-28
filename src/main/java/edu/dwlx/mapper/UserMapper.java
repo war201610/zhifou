@@ -38,9 +38,9 @@ public interface UserMapper {
 
 //    List<Question> searchQuestionByUid(Integer uid);
 
-    List<User> searchFollowerByUid(Integer uid);
+    List<User> searchFollowerByUid(@Param("uid")Integer uid);
 
-    List<User> searchFollowingByUid(Integer uid);
+    List<User> searchFollowingByUid(@Param("uid")Integer uid);
 
     User searchUserById(Integer uid);
 
@@ -51,6 +51,8 @@ public interface UserMapper {
     void deleteFollower(@Param("uid")Integer uid, @Param("followerId") Integer followerId);
 
     void insertFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
+/*********************/
+//    List<Integer> findFollowingUid(@Param("uid")Integer uid);
 
     void deleteFollowing(@Param("uid")Integer uid, @Param("followingId") Integer followingId);
 

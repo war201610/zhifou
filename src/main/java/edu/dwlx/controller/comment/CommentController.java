@@ -4,6 +4,7 @@ import edu.dwlx.entity.Comment;
 import edu.dwlx.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class CommentController {
         return commentMapper.searchCommentByTableName(comment);
     }
     //获取总评论的条数
-    @RequestMapping
-    public int getCommentNumber(String comment) {
+    @RequestMapping("/{table}/number")
+    public int getCommentNumber(@PathVariable("table") String comment) {
         return commentMapper.searchCommentByTableName(comment).size();
     }
 
