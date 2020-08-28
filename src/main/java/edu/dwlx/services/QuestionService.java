@@ -36,6 +36,10 @@ public class QuestionService {
         return questionMapper.searchQuestionByTag(tag);
     }
 
+    public List<Question> searchQuestionByContent(String content){
+        return questionMapper.searchQuestionByContent(content);
+    }
+
     public Question searchQuestionById(int id){
         return questionMapper.searchQuestionById(id);
     }

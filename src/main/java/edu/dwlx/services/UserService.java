@@ -2,9 +2,7 @@ package edu.dwlx.services;
 
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Article;
-import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
-import edu.dwlx.mapper.QuestionMapper;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -109,7 +107,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void insertCollectAnswer(Integer uid, Answer answer){
-        Map map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("uid", uid);                    //收藏者uid
         map.put("id", answer.getId());
         map.put("answerUid", answer.getUid());  //回答者uid
@@ -124,7 +122,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteCollectAnswer(Integer uid, Answer answer){
-        Map map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("uid", uid);
         map.put("id", answer.getId());
         map.put("questionId", answer.getQuestionId());

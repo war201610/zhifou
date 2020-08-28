@@ -25,6 +25,8 @@ public interface QuestionMapper {
 
     List<Question> searchQuestionByTag(@Param("tag") String tag);
 
+    List<Question> searchQuestionByContent(@Param("content") String content);
+
     Question searchQuestionById(@Param("id") Integer id);
 
     Question searchQuestionByContentAndUid(Question question);
