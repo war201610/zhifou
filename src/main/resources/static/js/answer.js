@@ -55,7 +55,8 @@ function getQuestion() {
                             "                                </pre>\n" +
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\">\n" +
-                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\"><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
+                            "                                <input type=\"hidden\" value=\""+ answer[i].id +"\">\n" +
+                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
                             "                                <input type=\"hidden\" value=\""+ answer[i].comment +"\">\n" +
                             "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
                             "                                <input type=\"hiden\" value=\""+ user.uid +"\">\n" +
@@ -134,10 +135,41 @@ $("#btn-confirm-answer").click(function () {
     })
 })
 
+// 给问题点赞
+function agreeQuestion() {
+    const agree = {
+        "kind": "question",
+        "uid": uid,
+        "qid": qid
+    }
+    $.post("/zhifou/agree", agree, function (result) {
+        console.log("给问题点赞：", result)
+    })
+}
+
+// 点击事件-好问题
+$("#btn-agree-question").click(function () {
+    agreeQuestion()
+})
+
+// 点击事件-给回答点赞
+$("#btn-agree-answer").click(function () {
+    const aid = $(this).prev().val()
+    const agree = {
+        "kind": "answer",
+        "uid": uid,
+        "qid": qid,
+        "aid": aid
+    }
+    $.post("/zhifou/agree", agree, function (result) {
+        console.log("点赞了评论：", result)
+    })
+})
+
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     getQuestion()
     // localStorage.setItem("u", "nihao")
     // localStorage.setItem("u", "hello")
-    uid = $("session-user").val()
+    uid = $(".session-user").val()
 })

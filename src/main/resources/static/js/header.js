@@ -1,5 +1,5 @@
 // 获取session中的uid
-const uid = $(".session-user").val()
+var uid
 
 // 点击事件-搜索
 $("#search-btn").click(function () {
@@ -14,4 +14,8 @@ $("#img-user-head").click(function () {
     // $(this).parent().attr("href", host.concat("/zhifou/people/").concat(uid))
     // window.location.href = host.concat("/zhifou/people/").concat(uid)
     window.location.href = "/zhifou/people/".concat(uid)
+})
+
+$(document).ready(function () {
+    uid = $(".session-user").val()
 })
