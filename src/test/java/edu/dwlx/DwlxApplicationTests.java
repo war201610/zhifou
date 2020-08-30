@@ -52,4 +52,11 @@ class DwlxApplicationTests {
                 .param("email","12"))
                 .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
+
+    @Test
+    public void agreeTest() {
+        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
+                .param("").content()
+        );
+    }
 }
