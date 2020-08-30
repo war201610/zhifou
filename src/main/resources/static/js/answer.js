@@ -15,8 +15,9 @@ function getQuestion() {
         qid = question.id
         /* todo 在各组件中打印问题信息 */
         // 标签
+        $("tag").empty()
         for (i=0; i<question.tag.length; i++) {
-            $("tag").html("<button type=\"button\" class=\"btn btn-outline-success btn-label\">" + question.tag[i] + "</button>")
+            $("tag").append("<button type=\"button\" class=\"btn btn-outline-success btn-label\">" + question.tag[i] + "</button>")
         }
         // 问题名
         $("#content").text(question.content)
