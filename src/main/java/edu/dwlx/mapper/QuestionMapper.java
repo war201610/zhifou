@@ -34,6 +34,12 @@ public interface QuestionMapper {
 
     List<User> searchQuestionFollower(Question question);
 
+    void getAgree(@Param("questionId")int questionId);              //问题的点赞数增加
+
+    void increasedTraffic(@Param("questionId")int questionId);      //问题的浏览量增加
+
+    void increasedCollection(@Param("questionId")int questionId);   //问题的收藏量增加
+
 //    void insertQuestionComment(@Param("questionId")Integer questionId, @Param("comment")Comment comment);
 //
 //    void deleteQuestionComment(@Param("questionId")Integer questionId, @Param("comment")Comment comment);

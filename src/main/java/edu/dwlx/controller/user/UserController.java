@@ -37,6 +37,9 @@ public class UserController {
                     new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword(), user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(token);
             page = "redirect:/zhifou/people/" + user.getUid();
+
+            /****************************/
+
             session.setAttribute("user", user);
         }
         else
