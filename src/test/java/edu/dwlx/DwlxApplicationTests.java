@@ -55,6 +55,8 @@ class DwlxApplicationTests {
 
     @Test
     public void agreeTest() {
-
+        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
+                .param("").content()
+        );
     }
 }
