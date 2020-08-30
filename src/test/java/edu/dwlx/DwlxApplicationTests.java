@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.result.ModelResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
@@ -60,12 +61,12 @@ class DwlxApplicationTests {
     }
 
     @Test
-    public void abc(HttpSession session) throws Exception {
+    public void abc() throws Exception {
         User user = userService.searchUserByName("zhou");
-        mockMvc.perform(MockMvcRequestBuilders.get("/zhifou/user/login")
+        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/user/login")
                 .param("username", "zhou")
                 .param("password", "123")
-        ).andExpect(MockMvcResultMatchers.model().attribute("user", user));
+        ).andExpect(MockMvcResultMatchers.view().name("redirect:/zhifou/know/know.html"));
     }
 
 //    @Test
@@ -78,4 +79,5 @@ class DwlxApplicationTests {
 //                .param("cid", "")
 //        );
 //    }
+
 }
