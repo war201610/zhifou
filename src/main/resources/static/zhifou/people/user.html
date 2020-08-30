@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/header.css">
@@ -21,7 +21,7 @@
     <title>个人主页</title>
 </head>
 <body>
-<p th:text="${session.user}"></p>
+
 <div class="root">
     <div class="HeaderBar shadow-sm">
         <div class="HeaderInner">
@@ -315,5 +315,6 @@
 <!-- 引入DOM操作，需要放在body底部 -->
 <script type="text/javascript" src="../../js/user.js"></script>
 <script src="../../js/header.js"></script>
+
 </body>
 </html>

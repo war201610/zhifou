@@ -1,8 +1,5 @@
 package edu.dwlx;
 
-import edu.dwlx.entity.User;
-import edu.dwlx.services.UserService;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -22,8 +19,6 @@ import org.springframework.test.web.servlet.result.ModelResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
 @SpringBootTest
@@ -33,8 +28,6 @@ class DwlxApplicationTests {
     private static final String user = "/zhifou/user";
     private static final String people = "/zhifou/people";
 
-    @Autowired
-    UserService userService;
     @Autowired
     private WebApplicationContext context;
     private MockMvc mockMvc;
@@ -61,23 +54,9 @@ class DwlxApplicationTests {
     }
 
     @Test
-    public void abc() throws Exception {
-        User user = userService.searchUserByName("zhou");
-        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/user/login")
-                .param("username", "zhou")
-                .param("password", "123")
-        ).andExpect(MockMvcResultMatchers.view().name("redirect:/zhifou/know/know.html"));
+    public void agreeTest() {
+        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
+                .param("").content()
+        );
     }
-
-//    @Test
-//    public void agreeTest() {
-//        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
-//                .param("kind", "answer")
-//                .param("qid", "")
-//                .param("uid", "13")
-//                .param("aid", "")
-//                .param("cid", "")
-//        );
-//    }
-
 }
