@@ -2,7 +2,7 @@
 // const uid = sessionStorage.getItem("user");
 
 // 获取主机地址和端口号 如localhost:8080
-const host = window.location.host
+// const host = window.location.host
 
 /* 当前url 即/zhifou/people/uid */
 const pathName = window.location.pathname
@@ -171,7 +171,7 @@ function getFollowing() {
                 "                                        <ul><li>\n" +
                 "                                            <div class=\"fiveBox\">\n" +
                 "                                                <div class=\"follow-head\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></div>\n" +
-                "                                                <a href=\""+ host.concat("/zhifou/people/").concat(followingList[i].uid) +"\">\n" +
+                "                                                <a href=\""+ "/zhifou/people/".concat(followingList[i].uid) +"\">\n" +
                 "                                                <div class=\"follow-info-area\">\n" +
                 "                                                    <div class=\"follow-info\">\n" +
                 "                                                        <div class=\"follow-name\">"+ followingList[i].name +"</div>\n" +
@@ -206,7 +206,7 @@ function getFollowers() {
                 "                                        <ul><li>\n" +
                 "                                            <div class=\"fiveBox\">\n" +
                 "                                                <div class=\"follow-head\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></div>\n" +
-                "                                                <a href=\""+ host.concat("/zhifou/people/").concat(followersList[i].uid) +"\">\n" +
+                "                                                <a href=\""+ "/zhifou/people/".concat(followersList[i].uid) +"\">\n" +
                 "                                                    <div class=\"follow-info-area\">\n" +
                 "                                                        <div class=\"follow-info\">\n" +
                 "                                                            <div class=\"follow-name\">"+ followersList[i].name +"</div>\n" +
@@ -252,7 +252,7 @@ $(".care-btn").click(function () {
 /* 打印（收藏、提出的问题、回答的问题、关注的问题）列表*/
 function printQuestionsList(qid, qContent) {
     var html = ""
-    html = "<a href=\""+ host.concat("/zhifou/question/").concat(qid) +"\"><p class=\"content-p\">"+ qContent +"</p></a>"
+    html = "<a href=\""+ "/zhifou/question/".concat(qid) +"\"><p class=\"content-p\">"+ qContent +"</p></a>"
     return html
 }
 

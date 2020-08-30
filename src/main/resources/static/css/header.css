@@ -34,8 +34,14 @@ body{
 .HeaderUserInfo{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 330px;
     height: 50px;
+}
+.HeaderUserInfo img{
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
 }
 
 /*首页主要内容*/
