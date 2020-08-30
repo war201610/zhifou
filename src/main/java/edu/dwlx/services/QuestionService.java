@@ -52,18 +52,6 @@ public class QuestionService {
         return questionMapper.searchQuestionFollower(question);
     }
 
-    public void getAgree(int questionId){
-        questionMapper.getAgree(questionId);
-    }
-
-    public void increasedTraffic(int questionId){
-        questionMapper.increasedTraffic(questionId);
-    }
-
-    public void increasedCollection(int questionId){
-        questionMapper.increasedCollection(questionId);
-    }
-
     public void insertQuestionFollower(int questionId, int uid){
         questionMapper.insertQuestionFollower(questionId, uid);
     }

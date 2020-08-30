@@ -11,6 +11,9 @@ public class IntercepterConfigurer implements WebMvcConfigurer {
     @Autowired
     CustomIntercepter customIntercepter;
 
+    @Autowired
+    SessionIntercepter sessionIntercepter;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(customIntercepter)
@@ -18,5 +21,8 @@ public class IntercepterConfigurer implements WebMvcConfigurer {
                 .excludePathPatterns("/zhifou/people/**/info", "/zhifou/people/**/collections",
                         "/zhifou/people/**/asks", "/zhifou/people/**/answers", "/zhifou/people/**/questions",
                         "/zhifou/people/**/following", "/zhifou/people/**/followers");
+        registry.addInterceptor(sessionIntercepter)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/zhifou/user/**", "/");
     }
 }
