@@ -464,6 +464,94 @@
         </div>
     </div>
 
+    <!-- 提问题Modal -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">提问</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- 写入问题 -->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">写入问题：</label>
+                        <textarea class="form-control is-invalid" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    </div>
+                    <!-- 问题描述 -->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">问题描述：</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                    </div>
+                    <!-- 问题标签 -->
+                    <label>问题标签:</label>
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="饭圈">
+                                <label class="form-check-label">
+                                    饭圈
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="电竞">
+                                <label class="form-check-label">
+                                    电竞
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="电影">
+                                <label class="form-check-label">
+                                    电影
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="明星">
+                                <label class="form-check-label">
+                                    明星
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="动画">
+                                <label class="form-check-label">
+                                    动画
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="gridCheck1" value="热点">
+                                <label class="form-check-label">
+                                    热点
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="btn-confirm-put" data-dismiss="modal">发表</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
