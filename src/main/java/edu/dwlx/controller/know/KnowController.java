@@ -29,8 +29,7 @@ public class KnowController {
     @RequestMapping("/info")
     @ResponseBody
     //没写推荐
-    public List<Question> getRecommendList(HttpServletResponse response, HttpServletRequest request, Model model) {
-        model.addAttribute(request.getSession().getAttribute("user"));
+    public List<Question> getRecommendList() {
         return new ArrayList<>();
     }
 }
