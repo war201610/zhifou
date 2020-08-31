@@ -40,7 +40,10 @@ public class AnswerController {
         answer.setQuestionId(qid);
         answer.setContent(content);
         answerService.insertAnswer(answer);
-        userService.insertUserAnswer(answer);
+        Answer answer1 = answerService.searchAnswerByContentAndUid(answer);
+
+        System.out.println(answer1.toString());
+        userService.insertUserAnswer(answer1);
         return true;
     }
 }

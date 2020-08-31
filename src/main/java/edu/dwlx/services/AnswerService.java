@@ -43,4 +43,9 @@ public class AnswerService {
     public List<Answer> searchAnswerByTableName(String tableName){
         return answerMapper.searchAnswerByTableName(tableName);
     }
+
+    public Answer searchAnswerByContentAndUid(Answer answer){
+        return answerMapper.searchAnswerByContentAndUid(answer);
+    }
+
 }
