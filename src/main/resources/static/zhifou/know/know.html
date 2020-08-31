@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<p th:text="${session.user}"></p>
+<p th:text="${user}"></p>
 <div class="root">
     <div class="HeaderBar shadow-sm">
         <div class="HeaderInner">
@@ -217,7 +217,6 @@
 
 </div>
 <input type="hidden" th:value="${session.user.uid}" class="session-user">
-
 <script src="../../js/know.js"></script>
 <script src="../../js/header.js"></script>
 

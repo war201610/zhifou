@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +27,9 @@ public class PeopleController {
     QuestionService questionService;
     //个人首页
     @RequestMapping("/{uid}")
-    public String personalHomepage(@PathVariable("uid") int uid, Model model) {
+    public String personalHomepage(@PathVariable("uid") int uid, HttpSession session) {
         User user = userService.searchUserById(uid);
-        model.addAttribute("user", user);
+        session.setAttribute("user", user);
         return "/zhifou/people/user.html";
     }
     //查看个人信息

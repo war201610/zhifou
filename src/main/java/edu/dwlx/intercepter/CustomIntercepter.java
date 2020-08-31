@@ -37,14 +37,18 @@ public class CustomIntercepter implements HandlerInterceptor {
                     response.sendError(403, "禁止访问");
             }
         } else if(content[1].equals("people")){
-            int uid = Integer.parseInt(content[2]);
-            User user = userService.searchUserById(uid);
-            if(user.getName().equals(name)) {
-                System.out.println("intercepter: pass");
-                return true;
+            try {
+                int uid = Integer.parseInt(content[2]);
+                User user = userService.searchUserById(uid);
+                if(user.getName().equals(name)) {
+                    System.out.println("intercepter: pass");
+                    return true;
+                }
+                else
+                    response.sendError(403, "禁止访问");
+            } catch (Exception e) {
+                response.sendError(403, "参数错误");
             }
-            else
-                response.sendError(403, "禁止访问");
 //            return user.getName().equals(name);
         }
         System.out.println("intercepter: fail");

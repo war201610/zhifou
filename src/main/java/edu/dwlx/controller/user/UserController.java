@@ -46,9 +46,9 @@ public class UserController {
 //            page = "redirect:/zhifou/people/" + user.getUid();
             page = "redirect:/zhifou/know/know.html";
             session.setAttribute("user", user);
+            model.addAttribute("user", user);
             mySessionContext.addSession(session);
-            Cookie cookie = new Cookie("sessionId", session.getId());
-            response.addCookie(cookie);
+            Cookie cookie = new Cookie("user", user.toString());
         }
         else
             model.addAttribute("message", "密码错误");
