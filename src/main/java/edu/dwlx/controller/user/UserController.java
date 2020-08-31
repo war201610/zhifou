@@ -1,6 +1,5 @@
 package edu.dwlx.controller.user;
 
-import edu.dwlx.Session.MySessionContext;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
 import edu.dwlx.services.UserService;
@@ -12,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -26,12 +22,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private MySessionContext mySessionContext;
     //登陆处理
     @RequestMapping("/login")
-    public String userLogin(String username, String password, Model model, HttpSession session,
-                            HttpServletRequest request, HttpServletResponse response) {
+    public String userLogin(String username, String password, Model model, HttpSession session) {
         User user = userService.searchUserByName(username);
         if(user==null){
             System.out.println("null");
@@ -46,9 +39,6 @@ public class UserController {
 //            page = "redirect:/zhifou/people/" + user.getUid();
             page = "redirect:/zhifou/know/know.html";
             session.setAttribute("user", user);
-            model.addAttribute("user", user);
-            mySessionContext.addSession(session);
-            Cookie cookie = new Cookie("user", user.toString());
         }
         else
             model.addAttribute("message", "密码错误");

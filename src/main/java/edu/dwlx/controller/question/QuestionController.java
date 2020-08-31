@@ -5,7 +5,6 @@ import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,8 +23,7 @@ public class QuestionController {
 
     //问题页
     @RequestMapping("/{id}")
-    public String questionPage(@PathVariable("id") int id, HttpServletRequest request, Model model) {
-        model.addAttribute("user", request.getSession().getAttribute("user"));
+    public String questionPage(@PathVariable("id") int id) {
         return "/zhifou/question/answer.html";
     }
     //返回问题数据
