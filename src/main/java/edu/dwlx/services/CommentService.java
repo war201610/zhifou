@@ -31,6 +31,6 @@ public class CommentService {
     }
 
     public int getCollectCount(String tableName){
-        return commentMapper.getCollectCount(tableName);
+        return commentMapper.getCommentCount(tableName);
     }
 }

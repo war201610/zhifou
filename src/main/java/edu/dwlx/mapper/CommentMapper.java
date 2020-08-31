@@ -18,5 +18,5 @@ public interface CommentMapper {
 
     void updateComment(@Param("comment")Comment comment, @Param("tableName")String tableName);
 
-    int getCollectCount(@Param("tableName")String tableName);
+    int getCommentCount(@Param("tableName")String tableName);
 }
