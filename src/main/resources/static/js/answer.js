@@ -7,6 +7,9 @@ var uid
 // 保存当前要评论的回答者id
 var towho
 
+// 问题的评论表名
+var answerComment
+
 //打印问题
 function showQuestion(question) {
     for (i=0; i<question.tag.length; i++) {
@@ -56,12 +59,14 @@ function getQuestion() {
             // $("#answer-content").text(answer.content)
             for (i=0; i<answer.length; i++) {
                 // 请求用户头像、名称等信息
+                // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
+                answerComment = answer[i].comment
                 $.get("/zhifou/people/".concat(answer[i].uid).concat("/info"), function (user) {
                     // var qid = answer[i].qid
                     // var uid = answer[i].uid
                     // var comment = {"id": qid, "uid": uid}
                     // 请求评论数量
-                    $.get("/zhifou/comment/".concat(answer[i].comment).concat("/number"), function (commentNumber) {
+                    $.get("/zhifou/comment/".concat(answerComment).concat("/number"), function (commentNumber) {
                         $("answer-area").append("<div class=\"answer card-body\">\n" +
                             "                            <!-- 回答者头像和信息区域 -->\n" +
                             "                            <div class=\"user\">\n" +
