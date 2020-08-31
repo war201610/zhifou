@@ -39,16 +39,8 @@ public class QuestionController {
     @RequestMapping("/search")
     @ResponseBody
     public List<Question> searchQuestionByContent(String content, HttpServletRequest request) {
-//这里想按照空格分隔关键词, 根据不同的关键词查找所有的问题, 再合并到一起, 这样就需要剔除所有重复的问题
-//        String[] keyword = content.split(" ");
-//        int size = keyword.length;
-//        List<Question> result = new ArrayList<>();
-//        for(int i = 0; i < size; i++) {
-//
-//        }
         //没指定跳转的页面
         request.getRequestDispatcher("/zhifou/question/answer.html");
         return new ArrayList<>();
-//        return questionService.searchQuestionByContent(content);
     }
 }

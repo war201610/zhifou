@@ -52,42 +52,42 @@ public class CommentController {
     public int getCommentNumber(@PathVariable("table") String comment) {
         return commentMapper.searchCommentByTableName(comment).size();
     }
-/*
-* 3. 发表评论(分问题, 文章, 回答)
-请求url: /zhifou/comment/question/问题id/add
-/zhifou/comment/article/文章id/add
-请求方式: post
-请求参数: int uid; 用户id
-         int towho; 评论是回答谁的, 如果是评论文章, 问题或回答的就	                                         		         填-1, 如果是回复另一个人评论的就填用户id
-         String comment; 评论内容
-返回参数: Comment comment; 从数据库中查询的评论
-*/
+    //添加评论, 问题和文章
     @RequestMapping("/{kind}/{id}/add")
     @ResponseBody
-    public Comment commitComment(@PathVariable("kind") String kind,
+    public boolean commitComment(@PathVariable("kind") String kind,
                                  @PathVariable("id") int id, int uid,
-                                 int towho, String comment) {
+                                 String comment) {
         Comment comment1 = new Comment();
         comment1.setContent(comment);
         comment1.setUid(uid);
         comment1.setAgree(0);
         Date date = new Date(System.currentTimeMillis());
-        comment1.setToWho(towho);
+        comment1.setToWho(-1);
         comment1.setCreateDate(date);
-        Question question;
-        Article article;
-        Answer answer;
 
-        switch (kind) {
-            case "question" : {
-                question = questionService.searchQuestionById(id);
-                commentService.insertComment(comment1, question.getComment());
-                break;
-            }
-//            case "article" : {
-//                articleService
-//            }
-        }
+        if(kind.equals("question"))
+            commentService.insertComment(comment1, id + "_question_comment");
+        else if(kind.equals("article"))
+            commentService.insertComment(comment1, id + "_article_comment");
+        else
+            return false;
+        return true;
     }
-
+    //添加评论, 回答
+    @RequestMapping("/answer/{qid}/{aid}")
+    @ResponseBody
+    public boolean commitAnswerComment(@PathVariable("qid") int qid,
+                                       @PathVariable("aid") int aid,
+                                       int uid, String comment) {
+        Comment comment1 = new Comment();
+        comment1.setContent(comment);
+        comment1.setUid(uid);
+        comment1.setAgree(0);
+        Date date = new Date(System.currentTimeMillis());
+        comment1.setToWho(-1);
+        comment1.setCreateDate(date);
+        commentService.insertComment(comment1, qid + "_" + aid + "_answer_comment");
+        return true;
+    }
 }

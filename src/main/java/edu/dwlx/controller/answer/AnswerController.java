@@ -29,12 +29,12 @@ public class AnswerController {
     //添加回答
     @RequestMapping("/put")
     @ResponseBody
-    public boolean getQuestionAnswer(int uid, int id, String content, HttpServletRequest request, Model model) {
+    public boolean getQuestionAnswer(int uid, Integer id, String content, HttpServletRequest request, Model model) {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         Answer answer = new Answer();
         answer.setUid(uid);
-        answer.setId(id);
         answer.setContent(content);
+        System.out.println(uid + " " + content);
         answerService.insertAnswer(answer);
         return true;
     }
