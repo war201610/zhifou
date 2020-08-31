@@ -13,6 +13,9 @@ public class ArticleService {
     ArticleMapper articleMapper;
 
     public void insertArticle(Article article){
+        if(articleMapper.searchArticleByContentAndUid(article) != null){
+            return;
+        }
         articleMapper.insertArticle(article);
         Article article1 = articleMapper.searchArticleByContentAndUid(article);
         article1.setComment(article1.getId() + "_article_comment");
