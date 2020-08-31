@@ -14,10 +14,6 @@
         delete from article where id=#{id}
     </delete>
 
-    <delete id="deleteArticleCommentTable">
-        drop table #{articleId}_article_comment
-    </delete>
-
     <update id="updateArticle" parameterType="Article">
         update article set uid=#{uid}, text=#{text}, agree=#{agree}, comment=#{comment}, createDate=#{createDate}, tag=#{tag}
         where id=#{id}

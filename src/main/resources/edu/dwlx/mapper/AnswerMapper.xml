@@ -16,12 +16,8 @@
         delete from #{questionId}_question_answer where id=#{id}
     </delete>
 
-    <delete id="deleteAnswerCommentTable" parameterType="Answer">
-        drop table #{questionId}_#{id}_answer_comment
-    </delete>
-
-    <update id="createAnswerCommentTable" parameterType="Answer">
-        create table #{questionId}_#{id}_answer_comment(id int(20) auto_increment primary key, uid int(20), content varchar(200), agree int(20), toWho int(20), createDate date)
+    <update id="createAnswerCommentTable">
+        create table #{id}_answer_comment(id int(20) auto_increment primary key, uid int(20), content varchar(200), agree int(20), toWho int(20), createDate date)
     </update>
 
     <select id="searchAnswerByQuestionId" resultType="Answer">

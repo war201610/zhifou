@@ -59,8 +59,4 @@ public class QuestionService {
     public void deleteQuestionFollower(int questionId, int uid){
         questionMapper.deleteQuestionFollower(questionId, uid);
     }
-
-    public List<Question> getAllQuestion(){
-        return questionMapper.getAllQuestion();
-    }
 }

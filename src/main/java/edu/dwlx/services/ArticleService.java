@@ -22,7 +22,6 @@ public class ArticleService {
 
     public void deleteArticle(Article article){
         articleMapper.deleteArticle(article);
-        articleMapper.deleteArticleCommentTable(article.getId());
     }
 
     public List<Article> searchArticleByUid(int uid){

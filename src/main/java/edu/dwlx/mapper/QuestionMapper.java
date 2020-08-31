@@ -45,6 +45,4 @@ public interface QuestionMapper {
     void insertQuestionFollower(@Param("questionId")int questionId, @Param("uid")int uid);
 
     void deleteQuestionFollower(@Param("questionId")int questionId, @Param("uid")int uid);
-
-    List<Question> getAllQuestion();
 }
