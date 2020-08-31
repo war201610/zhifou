@@ -31,4 +31,8 @@ public class ArticleService {
     public List<Article> searchArticleByTag(String tag){
         return articleMapper.searchArticleByTag(tag);
     }
+
+    public Article searchArticleById(int id){
+        return articleMapper.searchArticleById(id);
+    }
 }

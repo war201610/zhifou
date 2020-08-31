@@ -32,6 +32,10 @@
         </where>
     </select>
 
+    <select id="searchArticleById" resultType="Article">
+        select * from article where id=#{id}
+    </select>
+
     <select id="searchArticleByContentAndUid" parameterType="Article" resultType="Article">
         select * from article where uid=#{uid} and text=#{text}
     </select>
