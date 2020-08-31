@@ -135,7 +135,7 @@ $("#btn-confirm-comment").click(function () {
         "towho": towho,
         "content": content
     }
-    $.post("zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
+    $.post("/zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
         console.log("发起了评论：", result)
     })
 })
@@ -148,7 +148,7 @@ $("#btn-confirm-answer").click(function () {
         "qid": qid,
         "content": content
     }
-    $.post("zhifou/answer/put", answer, function (result) {
+    $.post("/zhifou/answer/put", answer, function (result) {
         console.log("发表回答请求", result)
     })
 })
