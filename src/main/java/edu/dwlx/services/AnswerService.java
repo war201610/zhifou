@@ -15,13 +15,13 @@ public class AnswerService {
     public void insertAnswer(Answer answer){
         answerMapper.insertAnswer(answer);
         Answer answer1 = answerMapper.searchAnswerByContentAndUid(answer);
-        answer1.setComment(answer1.getId() + "_answer_comment");
+        answer1.setComment(answer1.getQuestionId() + "_" + answer1.getId() + "_answer_comment");
         answerMapper.updateAnswer(answer1);
         createAnswerCommentTable(answer1);
     }
 
     public void createAnswerCommentTable(Answer answer){
-        answerMapper.createAnswerCommentTable(answer.getId());
+        answerMapper.createAnswerCommentTable(answer);
     }
 
     public void updateAnswer(Answer answer){
@@ -30,6 +30,7 @@ public class AnswerService {
 
     public void deleteAnswer(Answer answer){
         answerMapper.deleteAnswer(answer);
+        answerMapper.deleteAnswerCommentTable(answer);
     }
 
     public List<Answer> searchAnswerByQuestionId(int questionId) {

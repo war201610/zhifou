@@ -78,4 +78,8 @@
     <delete id="deleteQuestionFollower">
         delete from #{questionId}_question_follower where uid=#{uid}
     </delete>
+
+    <select id="getAllQuestion" resultType="Question">
+        select * from question
+    </select>
 </mapper>
