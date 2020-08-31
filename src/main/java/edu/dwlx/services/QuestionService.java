@@ -15,9 +15,6 @@ public class QuestionService {
     QuestionMapper questionMapper;
 
     public void insertQuestion(Question question){
-        if(questionMapper.searchQuestionByContentAndUid(question) != null){
-            return;
-        }
         questionMapper.insertQuestion(question);
 //        System.out.println(question);
         Question question1 = questionMapper.searchQuestionByContentAndUid(question);
