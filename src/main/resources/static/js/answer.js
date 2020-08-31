@@ -8,7 +8,7 @@ var uid
 var towho
 
 // 问题的评论表名
-var answerComment
+var answers
 
 //打印问题
 function showQuestion(question) {
@@ -60,13 +60,13 @@ function getQuestion() {
             for (i=0; i<answer.length; i++) {
                 // 请求用户头像、名称等信息
                 // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
-                answerComment = answer[i].comment
+                answers = answer[i]
                 $.get("/zhifou/people/".concat(answer[i].uid).concat("/info"), function (user) {
                     // var qid = answer[i].qid
                     // var uid = answer[i].uid
                     // var comment = {"id": qid, "uid": uid}
                     // 请求评论数量
-                    $.get("/zhifou/comment/".concat(answerComment).concat("/number"), function (commentNumber) {
+                    $.get("/zhifou/comment/".concat(answers.comment).concat("/number"), function (commentNumber) {
                         $("answer-area").append("<div class=\"answer card-body\">\n" +
                             "                            <!-- 回答者头像和信息区域 -->\n" +
                             "                            <div class=\"user\">\n" +
@@ -77,16 +77,16 @@ function getQuestion() {
                             "                            </div>\n" +
                             "                            <!-- 回答内容信息 -->\n" +
                             "                            <div class=\"answer-info\">\n" +
-                            "                                <pre>" + answer[i].content +
+                            "                                <pre>" + answers.content +
                             "                                </pre>\n" +
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\">\n" +
-                            "                                <input type=\"hidden\" value=\""+ answer[i].id +"\">\n" +
+                            "                                <input type=\"hidden\" value=\""+ answers.id +"\">\n" +
                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
-                            "                                <input type=\"hidden\" value=\""+ answer[i].comment +"\">\n" +
+                            "                                <input type=\"hidden\" value=\""+ answers.comment +"\">\n" +
                             "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
                             "                                <input type=\"hiden\" value=\""+ user.uid +"\">\n" +
-                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answer[i].collection +"</span>&nbsp;收藏</div>\n" +
+                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answers.collection +"</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
                             "                        </div>")
                     })

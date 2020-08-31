@@ -47,4 +47,5 @@ public class AnswerService {
     public Answer searchAnswerByContentAndUid(Answer answer){
         return answerMapper.searchAnswerByContentAndUid(answer);
     }
+
 }
