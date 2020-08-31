@@ -115,7 +115,7 @@
         delete from #{uid}_collect_answer where id=#{id} and questionId=#{questionId}
     </delete>
 
-    <insert id="insertUserAnswer" parameterType="Answer">
+    <insert id="insertUserAnswer">
         insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
             values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
     </insert>

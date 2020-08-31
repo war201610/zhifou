@@ -18,7 +18,7 @@ public class AnswerService {
         }
         answerMapper.insertAnswer(answer);
         Answer answer1 = answerMapper.searchAnswerByContentAndUid(answer);
-        answer1.setComment(answer1.getId() + "_answer_comment");
+        answer1.setComment(answer1.getQuestionId() + "_" + answer1.getId() + "_answer_comment");
         answerMapper.updateAnswer(answer1);
         createAnswerCommentTable(answer1);
         return true;
