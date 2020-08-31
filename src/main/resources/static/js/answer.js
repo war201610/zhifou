@@ -51,6 +51,7 @@ function getQuestion() {
 
         /* todo 回答列表 */
         $("answer-area").empty()
+
         $.get("/zhifou/answer/get/".concat(question.answer), function (answer) {
             // $("#answer-content").text(answer.content)
             for (i=0; i<answer.length; i++) {
