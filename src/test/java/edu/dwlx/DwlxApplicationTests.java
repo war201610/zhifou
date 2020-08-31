@@ -53,10 +53,10 @@ class DwlxApplicationTests {
                 .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
-    @Test
-    public void agreeTest() {
-        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
-                .param("").content()
-        );
-    }
+//    @Test
+//    public void agreeTest() {
+//        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
+//                .param("").content()
+//        );
+//    }
 }

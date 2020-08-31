@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/know.css">
@@ -217,10 +218,13 @@
 
 </div>
 
-<input type="hidden" th:value="${session.user.uid}" class="session-user">
+<!--<input type="hidden" th:value="${session.user.uid}" class="session-user">-->
+<!--<input type="hidden" th:value="${session.user.uid}" class="session-user">-->
+<p th:text="${session.user}" class="session-user"></p>
+<div th:text="${session.user}"></div>
 
-<script src="../../js/know.js"></script>
 <script src="../../js/header.js"></script>
+<script src="../../js/know.js"></script>
 
 </body>
 </html>
