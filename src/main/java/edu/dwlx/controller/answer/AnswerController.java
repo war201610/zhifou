@@ -41,22 +41,4 @@ public class AnswerController {
         answerService.insertAnswer(answer);
         return true;
     }
-
-    @RequestMapping("/collectAnswer")
-    @ResponseBody
-    public Map<String, Object> getCollectAnswer(Answer answer){
-        int questionId = answer.getQuestionId();
-        int answerId = answer.getId();
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        Question question = questionService.searchQuestionById(questionId);
-        map.put("question", question);
-        List<Answer> list = answerService.searchAnswerByQuestionId(questionId);
-        Answer answer1 = list.get(answerId);
-        Answer answer2 = list.get(0);
-        list.set(0, answer1);
-        list.set(answerId, answer2);
-        map.put("list", list);
-        return map;
-    }
 }

@@ -17,6 +17,8 @@ public interface ArticleMapper {
 
     void deleteArticle(Article article);
 
+    void deleteArticleCommentTable(@Param("articleId") Integer articleId);
+
     void updateArticle(Article article);
 
     List<Article> searchArticleByUid(@Param("uid") Integer uid);
