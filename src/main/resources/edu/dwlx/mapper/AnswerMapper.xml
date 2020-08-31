@@ -17,7 +17,7 @@
     </delete>
 
     <update id="createAnswerCommentTable">
-        create table #{id}_answer_comment(id int(20) auto_increment primary key, uid int(20), content varchar(200), agree int(20), toWho int(20), createDate date)
+        create table #{questionId}_#{id}_answer_comment(id int(20) auto_increment primary key, uid int(20), content varchar(200), agree int(20), toWho int(20), createDate date)
     </update>
 
     <select id="searchAnswerByQuestionId" resultType="Answer">
@@ -33,6 +33,6 @@
     </select>
 
     <select id="searchAnswerByTableName" resultType="Answer">
-        select * from #{tableName}
+        select * from ${tableName}
     </select>
 </mapper>

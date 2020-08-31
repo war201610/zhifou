@@ -12,15 +12,16 @@ public class ArticleService {
     @Autowired
     ArticleMapper articleMapper;
 
-    public void insertArticle(Article article){
+    public boolean insertArticle(Article article){
         if(articleMapper.searchArticleByContentAndUid(article) != null){
-            return;
+            return false;
         }
         articleMapper.insertArticle(article);
         Article article1 = articleMapper.searchArticleByContentAndUid(article);
         article1.setComment(article1.getId() + "_article_comment");
         articleMapper.updateArticle(article1);
         articleMapper.createArticleCommentTable(article1.getId());
+        return true;
     }
 
     public void deleteArticle(Article article){

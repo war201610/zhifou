@@ -14,7 +14,10 @@ public class QuestionService {
     @Autowired
     QuestionMapper questionMapper;
 
-    public void insertQuestion(Question question){
+    public boolean insertQuestion(Question question){
+        if(questionMapper.searchQuestionByContentAndUid(question) != null){
+            return false;
+        }
         questionMapper.insertQuestion(question);
 //        System.out.println(question);
         Question question1 = questionMapper.searchQuestionByContentAndUid(question);
@@ -24,6 +27,8 @@ public class QuestionService {
         questionMapper.createQuestionAnswerTable(question1);
         questionMapper.createQuestionCommentTable(question1);
         questionMapper.createQuestionFollowerTable(question1);
+
+        return true;
     }
 
     public void updateQuestion(Question question){
