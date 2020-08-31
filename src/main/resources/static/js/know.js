@@ -32,5 +32,8 @@ $("#btn-confirm-put").click(function () {
 
 
 $(document).ready(function () {
+    console.log($(".session-user").val())
+    uid = $(".session-user").val()
+    console.log("给uid赋值know:", $(".session-user").val())
     // console.log(localStorage.getItem("u"));
 })
