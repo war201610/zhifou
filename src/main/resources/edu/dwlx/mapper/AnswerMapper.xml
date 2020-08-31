@@ -37,6 +37,6 @@
     </select>
 
     <select id="searchAnswerByTableName" resultType="Answer">
-        select * from #{tableName}
+        select * from ${tableName}
     </select>
 </mapper>
