@@ -21,7 +21,8 @@
     </update>
 
     <update id="updateQuestion" parameterType="Question">
-        update question set(uid=#{uid}, content=#{content}, introduction=#{introduction}, tag=#{tag}, agree_count=#{agree_count}, comment=#{comment}, answer=#{answer}, follower=#{follower}, viewCount=#{viewCount}, collectCount=#{collectCount}, createDate=#{createDate})
+        update question set uid=#{uid}, content=#{content}, introduction=#{introduction}, tag=#{tag}, agree_count=#{agree_count},
+            comment=#{comment}, answer=#{answer}, follower=#{follower}, viewCount=#{viewCount}, collectCount=#{collectCount}, createDate=#{createDate}
         where id = #{id}
     </update>
 
@@ -78,4 +79,8 @@
     <delete id="deleteQuestionFollower">
         delete from #{questionId}_question_follower where uid=#{uid}
     </delete>
+
+    <select id="getAllQuestion" resultType="Question">
+        select * from question
+    </select>
 </mapper>

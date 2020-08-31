@@ -22,6 +22,19 @@ public class Article {
         this.text = text;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", text='" + text + '\'' +
+                ", agree=" + agree +
+                ", comment='" + comment + '\'' +
+                ", createDate=" + createDate +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

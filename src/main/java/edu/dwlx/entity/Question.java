@@ -32,6 +32,24 @@ public class Question {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", content='" + content + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", tag='" + tag + '\'' +
+                ", agree_count=" + agree_count +
+                ", comment='" + comment + '\'' +
+                ", answer='" + answer + '\'' +
+                ", follower='" + follower + '\'' +
+                ", viewCount=" + viewCount +
+                ", collectCount=" + collectCount +
+                ", createDate=" + createDate +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

@@ -22,6 +22,18 @@ public class Comment {
         this.toWho = toWho;
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", content='" + content + '\'' +
+                ", agree=" + agree +
+                ", toWho=" + toWho +
+                ", createDate=" + createDate +
+                '}';
+    }
+
     public int getId() {
         return id;
     }
