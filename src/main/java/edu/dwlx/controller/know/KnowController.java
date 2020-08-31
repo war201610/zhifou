@@ -24,8 +24,7 @@ public class KnowController {
 
     //首页显示推荐
     @RequestMapping
-    public String toKnow(HttpSession session) throws Exception {
-        session.setAttribute("user", "usersjkf");
+    public String toKnow() throws Exception {
         return "/zhifou/know/know.html";
     }
     @RequestMapping("/info")

@@ -189,5 +189,5 @@ $(document).ready(function () {
     getQuestion()
     // localStorage.setItem("u", "nihao")
     // localStorage.setItem("u", "hello")
-    uid = $(".session-user").val()
+    // uid = $(".session-user").val()
 })

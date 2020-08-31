@@ -8,10 +8,10 @@
 const pathName = window.location.pathname
 
 // 字符串分隔获取uid
-const uid = pathName.substring(15)
+// const uid = pathName.substring(15)
 
 // 从session中获取登陆用户的uid
-const suid = $(".session-user").val()
+const suid = uid
 
 /* 个人信息请求，加载页面 */
 function getUser() {
