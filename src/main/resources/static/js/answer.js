@@ -49,16 +49,16 @@ function getQuestion() {
 
         /* todo 回答列表 */
         $("answer-area").empty()
-        $.get("zhifou/answer/get/".concat(question.answer), function (answer) {
+        $.get("/zhifou/answer/get/".concat(question.answer), function (answer) {
             // $("#answer-content").text(answer.content)
             for (i=0; i<answer.length; i++) {
                 // 请求用户头像、名称等信息
-                $.get("zhifou/people/".concat(answer[i].uid).concat("/info"), function (user) {
+                $.get("/zhifou/people/".concat(answer[i].uid).concat("/info"), function (user) {
                     // var qid = answer[i].qid
                     // var uid = answer[i].uid
                     // var comment = {"id": qid, "uid": uid}
                     // 请求评论数量
-                    $.get("zhifou/comment/".concat(answer[i].comment).concat("/number"), function (commentNumber) {
+                    $.get("/zhifou/comment/".concat(answer[i].comment).concat("/number"), function (commentNumber) {
                         $("answer-area").append("<div class=\"answer card-body\">\n" +
                             "                            <!-- 回答者头像和信息区域 -->\n" +
                             "                            <div class=\"user\">\n" +

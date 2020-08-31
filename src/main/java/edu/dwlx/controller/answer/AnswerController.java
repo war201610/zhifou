@@ -33,10 +33,10 @@ public class AnswerController {
     //添加回答
     @RequestMapping("/put")
     @ResponseBody
-    public boolean getQuestionAnswer(int uid, int id, String content) {
+    public boolean getQuestionAnswer(int uid, int qid, String content) {
         Answer answer = new Answer();
         answer.setUid(uid);
-        answer.setId(id);
+        answer.setQuestionId(qid);
         answer.setContent(content);
         answerService.insertAnswer(answer);
         return true;
