@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class KnowController {
 
     //首页显示推荐
     @RequestMapping
-    public String toKnow() throws Exception {
+    public String toKnow(HttpSession session) throws Exception {
+        session.setAttribute("user", "usersjkf");
         return "/zhifou/know/know.html";
     }
     @RequestMapping("/info")

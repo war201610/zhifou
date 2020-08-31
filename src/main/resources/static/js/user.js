@@ -85,10 +85,14 @@ function getCollections() {
         console.log(collectionList)
         $(".q1").empty()
         var html = ""
-        for (i=0; i<collectionList.length; i++) {
-            html = printQuestionsList(collectionList[i].id, collectionList[i].content)
+        // 收藏的回答
+        const answers = collectionList.answers
+        for (i=0; i<answers.length; i++) {
+            html = printAnswerList(answers[i].qid, answers[i].id, answers[i].content)
             $(".q1").append(html)
         }
+        // 收藏的问题
+        // 收藏的文章
     })
 }
 
@@ -256,6 +260,13 @@ function printQuestionsList(qid, qContent) {
     return html
 }
 
+// 打印（回答）
+function printAnswerList(qid, aid, aContent) {
+    var html = ""
+    html = "<a href=\""+ "/zhifou/question/".concat(qid).concat("/answer/").concat(aid) +"\"><p class=\"content-p\">"+ aContent +"</p></a>"
+    return html
+}
+
 /* 访问他人主页时，去除修改按钮 */
 function visitOther() {
     if (suid !== uid) {
@@ -265,7 +276,7 @@ function visitOther() {
 
 $(document).ready(function () {
     // 获取个人主页数据
-    getUser()
+    // getUser()
     // 若非自己的主页，去除修改按钮
     visitOther()
 });
