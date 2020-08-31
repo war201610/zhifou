@@ -14,6 +14,7 @@ public class CommentService {
     CommentMapper commentMapper;
 
     public void insertComment(Comment comment, String tableName){
+
         commentMapper.insertComment(comment, tableName);
     }
 

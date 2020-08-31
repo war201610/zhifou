@@ -26,12 +26,12 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public int insertUser(User user){
+    public boolean insertUser(User user){
         if(userMapper.searchUserByName(user.getName()) != null){
-            return -1;
+            return false;
         }
 
-        int flag = userMapper.insertUser(user);
+        userMapper.insertUser(user);
         User user1 = userMapper.searchUserByName(user.getName());
         user1.setUid(user1.getUid());
         userMapper.updateUser(user1);
@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
         userMapper.createCollectAnswerTable(user1);
         userMapper.createUserAnswerTable(user1);
 
-        return flag;
+        return true;
     }
 
     public int updateUser(User user){

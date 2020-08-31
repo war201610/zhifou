@@ -12,12 +12,16 @@ public class AnswerService {
     @Autowired
     private AnswerMapper answerMapper;
 
-    public void insertAnswer(Answer answer){
+    public boolean insertAnswer(Answer answer){
+        if(answerMapper.searchAnswerByContentAndUid(answer) != null){
+            return false;
+        }
         answerMapper.insertAnswer(answer);
         Answer answer1 = answerMapper.searchAnswerByContentAndUid(answer);
         answer1.setComment(answer1.getId() + "_answer_comment");
         answerMapper.updateAnswer(answer1);
         createAnswerCommentTable(answer1);
+        return true;
     }
 
     public void createAnswerCommentTable(Answer answer){
