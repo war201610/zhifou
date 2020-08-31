@@ -22,6 +22,8 @@ function showQuestion(question) {
     $("#viewCount").text(question.viewCount)
     // 收藏数
     $("#collectCount").text(question.collectCount)
+    // 隐藏的问题的评论表名
+    $("#hidden-commentValue").val(question.comment)
 }
 
 // 回答页
@@ -88,10 +90,8 @@ function getQuestion() {
     })
 }
 
-/* 点击事件-获取回答的评论内容 */
-$(".footer-comment2").click(function () {
-    towho = $(this).next().val()
-    const commentValue = $(this).prev().val()
+// 根据 评论表名 和 打印区域 打印评论
+function showComment(commentValue, allComment) {
     const comment = { "comment": commentValue }
     $.post("/zhifou/comment", comment, function (commentList) {
         $(".all-comment").empty()
@@ -116,10 +116,25 @@ $(".footer-comment2").click(function () {
                     "                                </div>\n" +
                     "                            </div></li>\n" +
                     "                        </ul>"
-                $(".all-comment").append(html)
+                allComment.append(html)
             })
         }
     })
+}
+
+/* 点击事件-获取回答的评论内容 */
+$(".footer-comment2").click(function () {
+    towho = $(this).next().val()
+    // 获取评论表名
+    const commentValue = $(this).prev().val()
+    showComment(commentValue, $(".all-comment"))
+})
+
+// 点击事件-获取问题的评论内容
+$("#question-comment").click(function () {
+    // towho = $(this).next().val()
+    const commentValue = $(this).prev().val()
+    showComment(commentValue, $(".all-comment2"))
 })
 
 // /* 获取对应评论内容 */
@@ -127,16 +142,27 @@ $(".footer-comment2").click(function () {
 //
 // }
 
-// 点击事件-发表评论
+// 点击事件-发表对回答的评论
 $("#btn-confirm-comment").click(function () {
     const content = $("#answer-comment-content").val()
     const comment = {
         "uid": uid,
-        "towho": towho,
         "content": content
     }
-    $.post("/zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
-        console.log("发起了评论：", result)
+    $.post("/zhifou/comment/question/".concat(qid).concat("/").concat(towho).concat("/add"), comment, function (result) {
+        console.log("发起了对回答的评论：", result)
+    })
+})
+
+// 点击事件-发表对问题的评论
+$("#btn-confirm-comment2").click(function () {
+    const content = $("#answer-comment-content2").val()
+    const comment = {
+        "uid": uid,
+        "content": content
+    }
+    $.post("/zhifou/comment/question/".concat(qid).concat("/add"), comment, function (result) {
+        console.log("发起了对问题的评论：", result)
     })
 })
 

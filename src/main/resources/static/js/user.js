@@ -88,7 +88,7 @@ function getCollections() {
         // 收藏的回答
         const answers = collectionList.answers
         for (i=0; i<answers.length; i++) {
-            html = printAnswerList(answers[i].qid, answers[i].id, answers[i].content)
+            html = printAnswerList(answers[i].questionId, answers[i].id, answers[i].content)
             $(".q1").append(html)
         }
         // 收藏的问题
