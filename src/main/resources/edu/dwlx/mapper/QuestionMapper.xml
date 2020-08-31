@@ -63,6 +63,18 @@
         )
     </select>
 
+    <update id="getAgree">
+        update question set agree_count=agree_count+1 where id=#{questionId}
+    </update>
+
+    <update id="increasedTraffic">
+        update question set viewCount=viewCount+1 where id=#{questionId}
+    </update>
+
+    <update id="increasedCollection">
+        update question set collectCount=collectCount+1 where id=#{questionId}
+    </update>
+
 <!--    <insert id="insertQuestionComment">-->
 <!--        insert into #{questionId}_question_comment(uid, content, agree, toWho, createDate)-->
 <!--            values(#{uid}, #{content}, #{agree}, #{toWho}, #{createDate})-->
