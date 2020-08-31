@@ -29,9 +29,9 @@ function showQuestion(question) {
 // 回答页
 function getAnswer() {
     const pathName = window.location.pathname
-    $.get(pathName, function (resultList) {
-        const question = resultList.question
-        const answers = resultList.answers
+    $.get(pathName, function (resultMap) {
+        const question = resultMap.question
+        const answers = resultMap.List
         qid = question.id
         showQuestion(question)
 

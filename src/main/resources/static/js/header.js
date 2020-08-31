@@ -1,6 +1,8 @@
 // 获取session中的uid
 var uid
 
+var qid
+
 $(document).ready(function () {
     getUser()
     console.log(uid)
