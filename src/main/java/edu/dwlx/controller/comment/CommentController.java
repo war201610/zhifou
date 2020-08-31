@@ -50,7 +50,7 @@ public class CommentController {
     //获取总评论的条数
     @RequestMapping("/{table}/number")
     public int getCommentNumber(@PathVariable("table") String comment) {
-        return commentMapper.searchCommentByTableName(comment).size();
+        return commentMapper.getCollectCount(comment);
     }
     //添加评论, 问题和文章
     @RequestMapping("/{kind}/{id}/add")
