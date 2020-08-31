@@ -1,36 +1,47 @@
 // 获取session中的uid
-const uid = $(".session-user").val()
+// var uid
 
 // 获取提问标签
 function getTag() {
     const allTag = document.getElementsByName("gridCheck1")
     var i = 0;
-    var tagArray
+    var tagArray = []
+    var tagStr = ""
     for (var j=0; j<allTag.length; j++) {
         if(allTag[j].checked) {
             tagArray[i++] = allTag[j].value
         }
     }
-    return tagArray
+    tagStr = tagArray.join(",")
+    console.log(tagStr);
+    return tagStr
 }
 
 // 点击事件-提交问题
 $("#btn-confirm-put").click(function () {
     const content = $("#exampleFormControlTextarea1").val()
     const introduction = $("#exampleFormControlTextarea2").val()
-    var tagArray = getTag()
+    var tagStr = getTag()
     const ask = {
         "uid": uid,
         "content": content,
         "introduction": introduction,
-        "tag": tagArray
+        "tag": tagStr
     }
     $.post("/zhifou/ask", ask, function (result) {
         console.log("发出提问请求：", result)
     })
 })
 
+// 获取推荐（首页）列表
+function getKnowList() {
+    $.get("/zhifou/know/info", function (resultList) {
+        // console.log("推荐页数据：", resultList)
+    })
+}
+
 
 $(document).ready(function () {
-    // console.log(localStorage.getItem("u"));
+    // console.log("know:", uid)
+    getKnowList()
 })

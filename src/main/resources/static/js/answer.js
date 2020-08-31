@@ -7,27 +7,45 @@ var uid
 // 保存当前要评论的回答者id
 var towho
 
+//打印问题
+function showQuestion(question) {
+    for (i=0; i<question.tag.length; i++) {
+        $("tag").html("<button type=\"button\" class=\"btn btn-outline-success btn-label\">" + question.tag[i] + "</button>")
+    }
+    // 问题名
+    $("#content").text(question.content)
+    // 问题描述
+    $("#introduction").text(question.introduction)
+    // 点赞数
+    $("#agree_count").text(question.agree_count)
+    // 浏览数（回答数）
+    $("#viewCount").text(question.viewCount)
+    // 收藏数
+    $("#collectCount").text(question.collectCount)
+}
+
+// 回答页
+function getAnswer() {
+    const pathName = window.location.pathname
+    $.get(pathName, function (resultList) {
+        const question = resultList.question
+        const answers = resultList.answers
+        qid = question.id
+        showQuestion(question)
+
+    })
+}
+
+
+// 问题页
 function getQuestion() {
     /* /zhifou/question/问题id/info */
-    const pathName = window.location.pathname.concat("/info")
-    // const commentAdress = pathName.substring(0, )
-    $.get(pathName, function (question) {
+    const pathName = window.location.pathname
+    $.get(pathName.concat("/info"), function (question) {
         qid = question.id
         /* todo 在各组件中打印问题信息 */
-        // 标签
-        for (i=0; i<question.tag.length; i++) {
-            $("tag").html("<button type=\"button\" class=\"btn btn-outline-success btn-label\">" + question.tag[i] + "</button>")
-        }
-        // 问题名
-        $("#content").text(question.content)
-        // 问题描述
-        $("#introduction").text(question.introduction)
-        // 点赞数
-        $("#agree_count").text(question.agree_count)
-        // 浏览数（回答数）
-        $("#viewCount").text(question.viewCount)
-        // 收藏数
-        $("#collectCount").text(question.collectCount)
+        // 问题和标签
+        showQuestion(question)
 
         /* todo 回答列表 */
         $("answer-area").empty()
@@ -117,7 +135,7 @@ $("#btn-confirm-comment").click(function () {
         "towho": towho,
         "content": content
     }
-    $.post("zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
+    $.post("/zhifou/comment/question/".concat(qid).concat("/add"), content, function (result) {
         console.log("发起了评论：", result)
     })
 })
@@ -130,7 +148,7 @@ $("#btn-confirm-answer").click(function () {
         "qid": qid,
         "content": content
     }
-    $.post("zhifou/answer/put", answer, function (result) {
+    $.post("/zhifou/answer/put", answer, function (result) {
         console.log("发表回答请求", result)
     })
 })
@@ -171,5 +189,5 @@ $(document).ready(function () {
     getQuestion()
     // localStorage.setItem("u", "nihao")
     // localStorage.setItem("u", "hello")
-    uid = $(".session-user").val()
+    // uid = $(".session-user").val()
 })
