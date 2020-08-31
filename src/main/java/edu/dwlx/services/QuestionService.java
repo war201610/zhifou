@@ -16,10 +16,10 @@ public class QuestionService {
 
     public void insertQuestion(Question question){
         questionMapper.insertQuestion(question);
-        System.out.println(question);
+//        System.out.println(question);
         Question question1 = questionMapper.searchQuestionByContentAndUid(question);
         question1.setId(question1.getId());
-        System.out.println(question1);
+//        System.out.println(question1);
         questionMapper.updateQuestion(question1);
         questionMapper.createQuestionAnswerTable(question1);
         questionMapper.createQuestionCommentTable(question1);

@@ -26,6 +26,20 @@ public class Answer {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", questionId=" + questionId +
+                ", content='" + content + '\'' +
+                ", agree=" + agree +
+                ", comment='" + comment + '\'' +
+                ", collection=" + collection +
+                ", createDate=" + createDate +
+                '}';
+    }
+
     public int getId() {
         return id;
     }
