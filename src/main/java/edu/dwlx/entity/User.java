@@ -4,11 +4,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class User implements UserDetails
+public class User implements UserDetails, Serializable
 {
     private int uid;                    //主键
     private String name;                //用户名
@@ -46,24 +47,22 @@ public class User implements UserDetails
 
     @Override
     public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", gender=" + gender +
-                ", career='" + career + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", address='" + address + '\'' +
-                ", registerDate=" + registerDate +
-                ", email='" + email + '\'' +
-                ", following='" + following + '\'' +
-                ", follower='" + follower + '\'' +
-                ", collect_article='" + collect_article + '\'' +
-                ", collect_answer='" + collect_answer + '\'' +
-                ", answer='" + answer + '\'' +
-                ", like_count=" + like_count +
-                '}';
+        return  "uid#" + uid +
+                "#name#" + name +
+                "#password#" + password +
+                "#nickname#" + nickname +
+                "#gender#" + gender +
+                "#career#" + career +
+                "#introduction#" + introduction +
+                "#address#" + address +
+                "#registerDate#" + registerDate +
+                "#email#" + email +
+                "#following#" + following +
+                "#follower#" + follower +
+                "#collect_article#" + collect_article +
+                "#collect_answer#" + collect_answer +
+                "#answer#" + answer +
+                "#like_count#" + like_count;
     }
 
     @Override

@@ -17,5 +17,5 @@ $("#img-user-head").click(function () {
 })
 
 $(document).ready(function () {
-    uid = $(".session-user").val()
+    // uid = $(".session-user").val()
 })

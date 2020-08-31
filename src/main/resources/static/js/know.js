@@ -1,5 +1,5 @@
 // 获取session中的uid
-const uid = $(".session-user").val()
+var uid
 
 // 获取提问标签
 function getTag() {

@@ -10,6 +10,7 @@ import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,8 @@ public class AgreeController {
     //回答点赞更新需要更新回答的点赞和用户的赞同
     //问题点赞更新需要更新问题的点赞和用户的赞同
     //评论点赞更新需要更新评论的点赞
-    public boolean agree(String kind, int uid, int qid, int cid, int aid, HttpServletRequest request) {
+    public boolean agree(String kind, int uid, int qid, int cid, int aid, HttpServletRequest request, Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
         String exceptionName;
         String exceptionContent;
         Question question = questionService.searchQuestionById(qid);
