@@ -4,6 +4,7 @@ import edu.dwlx.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public interface ArticleMapper {
     List<Article> searchArticleByUid(@Param("uid") Integer uid);
 
     List<Article> searchArticleByTag(@Param("tag")String tag);
+
+    Article searchArticleById(@Param("id")int id);
 
     Article searchArticleByContentAndUid(Article article);
 }
