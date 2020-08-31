@@ -25,7 +25,7 @@ public class AnswerService {
     }
 
     public void createAnswerCommentTable(Answer answer){
-        answerMapper.createAnswerCommentTable(answer.getId());
+        answerMapper.createAnswerCommentTable(answer);
     }
 
     public void updateAnswer(Answer answer){
