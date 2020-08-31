@@ -17,9 +17,7 @@ public interface AnswerMapper {
 
     void deleteAnswer(Answer answer);
 
-    void deleteAnswerCommentTable(Answer answer);
-
-    void createAnswerCommentTable(Answer answer);
+    void createAnswerCommentTable(@Param("id") Integer id);
 
     List<Answer> searchAnswerByQuestionId(@Param("questionId") Integer questionId);
 
