@@ -14,9 +14,9 @@ public class IntercepterConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(customIntercepter)
-                .addPathPatterns("/zhifou/people/**")
-                .excludePathPatterns("/zhifou/people/**/info", "/zhifou/people/**/collections",
-                        "/zhifou/people/**/asks", "/zhifou/people/**/answers", "/zhifou/people/**/questions",
-                        "/zhifou/people/**/following", "/zhifou/people/**/followers");
+                .addPathPatterns("/zhifou/people/**/edit");
+//                .excludePathPatterns("/zhifou/people/**/info", "/zhifou/people/**/collections",
+//                        "/zhifou/people/**/asks", "/zhifou/people/**/answers", "/zhifou/people/**/questions",
+//                        "/zhifou/people/**/following", "/zhifou/people/**/followers");
     }
 }
