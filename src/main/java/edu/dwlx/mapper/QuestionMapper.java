@@ -1,17 +1,15 @@
 package edu.dwlx.mapper;
 
-import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
-//@Repository
+@Repository
 public interface QuestionMapper {
     void insertQuestion(Question question);
 
@@ -41,16 +39,9 @@ public interface QuestionMapper {
 
     void increasedCollection(@Param("questionId")int questionId);   //问题的收藏量增加
 
-
-//    void insertQuestionComment(@Param("questionId")Integer questionId, @Param("comment")Comment comment);
-//
-//    void deleteQuestionComment(@Param("questionId")Integer questionId, @Param("comment")Comment comment);
-//
-//    void insertQuestionAnswer();
-//
-//    void deleteQuestionAnswer();
-
     void insertQuestionFollower(@Param("questionId")int questionId, @Param("uid")int uid);
 
     void deleteQuestionFollower(@Param("questionId")int questionId, @Param("uid")int uid);
+
+    List<Question> getAllQuestion();
 }
