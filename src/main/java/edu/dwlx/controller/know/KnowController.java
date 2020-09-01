@@ -58,10 +58,11 @@ public class KnowController {
         int limit = (size - size%10)/10;
         double compare = 1.0/limit;
         for(Question q : questionList) {
-            if(Math.random() < compare)
+            double temp = Math.random();
+            if(temp < compare)
                 resultList.add(q);
         }
-        map.put("questionList", questionList);
+        map.put("questionList", resultList);
         List<Integer> sizeList = new ArrayList<>();
         for(Question q : resultList)
             sizeList.add(answerService.getAnswerCount(q.getAnswer()));
