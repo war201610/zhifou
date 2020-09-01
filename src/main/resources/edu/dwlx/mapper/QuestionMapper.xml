@@ -48,7 +48,7 @@
         </where>
     </select>
 
-    <select id="searchQuestionById" parameterType="Integer" resultType="Question">
+    <select id="searchQuestionById" parameterType="Integer" resultType="question">
         select * from question where id = #{id}
     </select>
 

@@ -73,10 +73,11 @@ class DwlxApplicationTests {
 //    public void agreeTest() {
 //        mockMvc.perform(MockMvcRequestBuilders.post("/zhifou/agree")
 //                .param("kind", "answer")
-//                .param("qid", "")
+//                .param("qid", "52")
 //                .param("uid", "13")
-//                .param("aid", "")
-//                .param("cid", "")
+//                .param("aid", "1")
+//                .param("cid", "0"))
+//                .andExpect()
 //        );
 //    }
 
