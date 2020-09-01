@@ -1,5 +1,6 @@
 package edu.dwlx.controller.agree;
 
+import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
@@ -52,7 +53,7 @@ public class AgreeController {
         switch (kind) {
             case "answer": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = searchAnswer(aid, answerList);
+                answer = SearchFromList.searchAnswer(aid, answerList);
                 try {
                     int answerAgreenum = answer.getAgree() + 1;
                     answer.setAgree(answerAgreenum);
@@ -86,46 +87,13 @@ public class AgreeController {
             }
             case "comment": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = searchAnswer(aid, answerList);
+                answer = SearchFromList.searchAnswer(aid, answerList);
                 List<Comment> commentList = commentService.searchCommentByTableName(answer.getComment());
-                comment = searchComment(cid, commentList);
+                comment = SearchFromList.searchComment(cid, commentList);
                 comment.setAgree(comment.getAgree());
                 commentService.updateComment(comment, answer.getComment());
             }
         }
         return true;
-    }
-    public Comment searchComment(int id, List<Comment> commentList) {
-        int size = commentList.size();
-        int left = 0;
-        int right = size - 1;
-        int mid;
-        while(left <= right) {
-            mid = left + (right - left)/2;
-            if(commentList.get(mid).getId() == id)
-                return commentList.get(mid);
-            else if(commentList.get(mid).getId() > id)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-        return null;
-    }
-
-    public Answer searchAnswer(int id, List<Answer> answerList) {
-        int size = answerList.size();
-        int left = 0;
-        int right = size - 1;
-        int mid;
-        while(left <= right) {
-            mid = left + (right - left)/2;
-            if(answerList.get(mid).getId() == id)
-                return answerList.get(mid);
-            else if(answerList.get(mid).getId() > id)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-        return null;
     }
 }

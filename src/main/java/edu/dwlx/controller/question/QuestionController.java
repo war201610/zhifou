@@ -1,5 +1,7 @@
 package edu.dwlx.controller.question;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
+import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Question;
 import edu.dwlx.services.AnswerService;
@@ -37,9 +39,11 @@ public class QuestionController {
     //返回问题数据
     @RequestMapping("/{id}/info")
     @ResponseBody
-    public Map<String, Object> questionDate(@PathVariable("id") int id) {
+    public Map<String, Object> questionData(@PathVariable("id") int id) {
         Map<String, Object> map = new HashMap<>();
         Question question = questionService.searchQuestionById(id);
+        if(question == null)
+            return null;
         map.put("question", question);
         map.put("answerCount", answerService.getAnswerCount(question.getAnswer()));
         return map;
@@ -53,27 +57,11 @@ public class QuestionController {
         for(String k : keyword) {
             List<Question> temp = questionService.searchQuestionByContent(k);
             for(Question q : temp) {
-                if(!searchQuestion(q.getId(), questionList))
+                if(SearchFromList.searchQuestion(q.getId(), questionList)==null)
                     questionList.add(q);
             }
         }
         return questionList;
-    }
-    public Boolean searchQuestion(int id, List<Question> questionList) {
-        int size = questionList.size();
-        int left = 0;
-        int right = size - 1;
-        int mid;
-        while(left <= right) {
-            mid = left + (right - left)/2;
-            if(questionList.get(mid).getId() == id)
-                return true;
-            else if(questionList.get(mid).getId() > id)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-        return false;
     }
 
     @RequestMapping("/{questionId}/answer/{answerId}")
@@ -83,10 +71,10 @@ public class QuestionController {
         Question question = questionService.searchQuestionById(questionId);
         map.put("question", question);
         List<Answer> list = answerService.searchAnswerByQuestionId(questionId);
-        Answer answer1 = list.get(answerId);
+        Answer answer1 = list.get(answerId-1);
         Answer answer2 = list.get(0);
         list.set(0, answer1);
-        list.set(answerId, answer2);
+        list.set(answerId-1, answer2);
         map.put("list", list);
         return map;
     }
