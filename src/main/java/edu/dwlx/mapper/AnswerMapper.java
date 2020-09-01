@@ -26,4 +26,6 @@ public interface AnswerMapper {
     Answer searchAnswerByContentAndUid(Answer answer);
 
     List<Answer> searchAnswerByTableName(@Param("tableName") String tableName);
+
+    int getAnswerCount(@Param("tableName")String tableName);
 }

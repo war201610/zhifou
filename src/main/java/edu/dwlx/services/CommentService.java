@@ -30,8 +30,7 @@ public class CommentService {
     }
 
     public void insertComment(Comment comment, String tableName){
-
-        commentMapper.insertComment(comment, tableName);
+        commentMapper.insertComment(getMap(comment, tableName));
     }
 
     public void deleteComment(Comment comment, String tableName){

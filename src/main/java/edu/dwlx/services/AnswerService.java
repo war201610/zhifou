@@ -1,6 +1,7 @@
 package edu.dwlx.services;
 
 import edu.dwlx.entity.Answer;
+import edu.dwlx.entity.Question;
 import edu.dwlx.mapper.AnswerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,4 +49,7 @@ public class AnswerService {
         return answerMapper.searchAnswerByContentAndUid(answer);
     }
 
+    public int getAnswerCount(String tableName){
+        return answerMapper.getAnswerCount(tableName);
+    }
 }
