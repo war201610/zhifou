@@ -185,7 +185,7 @@ function showComment(commentValue, allComment) {
                     "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
                     "                                        </div>\n" +
                     "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
-                    "                                        <div class=\"comment-time\">"+ commentList[i].date +"</div>\n" +
+                    "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
                     "                                    </div>\n" +
                     "                                    <!-- 评论的内容 -->\n" +
                     "                                    <div class=\"comment-container\">\n" +
