@@ -44,7 +44,7 @@ public class CommentController {
     AnswerService answerService;
     //评论表内容
     @RequestMapping
-
+    @ResponseBody
     public List<Comment> getCommentList(String comment) {
         return commentMapper.searchCommentByTableName(comment);
     }
