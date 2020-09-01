@@ -8,7 +8,6 @@ import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,10 +89,10 @@ public class PeopleController {
         user.setRegisterDate(user1.getRegisterDate());
         user.setFollowing(user1.getFollowing());
         user.setFollower(user1.getFollower());
-        user.setCollect_article(user1.getCollect_article());
-        user.setCollect_answer(user1.getCollect_answer());
+        user.setCollectArticle(user1.getCollectArticle());
+        user.setCollectAnswer(user1.getCollectAnswer());
         user.setAnswer(user1.getAnswer());
-        user.setLike_count(user1.getLike_count());
+        user.setLikeCount(user1.getLikeCount());
         userService.updateUser(user);
         return true;
     }

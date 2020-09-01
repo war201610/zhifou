@@ -23,18 +23,18 @@ public class User implements UserDetails, Serializable
     private String email;               //邮箱
     private String following;           //关注了谁的表名
     private String follower;            //谁关注了我的表名
-    private String collect_article;     //收藏的文章的表名
-    private String collect_answer;      //收藏的问题的表名
+    private String collectArticle;     //收藏的文章的表名
+    private String collectAnswer;      //收藏的问题的表名
     private String answer;              //做出的回答的表名
-    private int like_count;             //获得的点赞数量
+    private int likeCount;             //获得的点赞数量
 
     public User(){
         this.registerDate = new Date(System.currentTimeMillis());
         this.nickname = name;
         this.following = "default";
         this.follower = "default";
-        this.collect_article = "default";
-        this.collect_answer = "default";
+        this.collectArticle = "default";
+        this.collectAnswer = "default";
         this.answer = "default";
     }
 
@@ -58,10 +58,10 @@ public class User implements UserDetails, Serializable
                 "#email#" + email +
                 "#following#" + following +
                 "#follower#" + follower +
-                "#collect_article#" + collect_article +
-                "#collect_answer#" + collect_answer +
+                "#collect_article#" + collectArticle +
+                "#collect_answer#" + collectAnswer +
                 "#answer#" + answer +
-                "#like_count#" + like_count;
+                "#like_count#" + likeCount;
     }
 
     @Override
@@ -102,8 +102,8 @@ public class User implements UserDetails, Serializable
         this.uid = uid;
         this.following = uid+"_following";
         this.follower = uid+"_follower";
-        this.collect_article = uid+"_collect_article";
-        this.collect_answer = uid+"_collect_answer";
+        this.collectArticle = uid+"_collect_article";
+        this.collectAnswer = uid+"_collect_answer";
         this.answer = uid+"_answer";
     }
 
@@ -187,20 +187,20 @@ public class User implements UserDetails, Serializable
         this.follower = follower;
     }
 
-    public String getCollect_article() {
-        return collect_article;
+    public String getCollectArticle() {
+        return collectArticle;
     }
 
-    public void setCollect_article(String collect_article) {
-        this.collect_article = collect_article;
+    public void setCollectArticle(String collectArticle) {
+        this.collectArticle = collectArticle;
     }
 
-    public String getCollect_answer() {
-        return collect_answer;
+    public String getCollectAnswer() {
+        return collectAnswer;
     }
 
-    public void setCollect_answer(String collect_answer) {
-        this.collect_answer = collect_answer;
+    public void setCollectAnswer(String collectAnswer) {
+        this.collectAnswer = collectAnswer;
     }
 
     public String getNickname() {
@@ -219,12 +219,12 @@ public class User implements UserDetails, Serializable
         this.answer = answer;
     }
 
-    public int getLike_count() {
-        return like_count;
+    public int getLikeCount() {
+        return likeCount;
     }
 
-    public void setLike_count(int like_count) {
-        this.like_count = like_count;
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
     public void setRegisterDate(java.sql.Date date) {
