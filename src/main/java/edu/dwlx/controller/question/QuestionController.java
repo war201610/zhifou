@@ -25,6 +25,7 @@ public class QuestionController {
 
     @Autowired
     QuestionService questionService;
+    @Autowired
     AnswerService answerService;
 
     //问题页
@@ -36,8 +37,12 @@ public class QuestionController {
     //返回问题数据
     @RequestMapping("/{id}/info")
     @ResponseBody
-    public Question questionDate(@PathVariable("id") int id) {
-        return questionService.searchQuestionById(id);
+    public Map questionDate(@PathVariable("id") int id) {
+        Map<String, Object> map = new HashMap<>();
+        Question question = questionService.searchQuestionById(id);
+        map.put("question", question);
+        map.put("answerCount", answerService.getAnswerCount(question.getAnswer()));
+        return map;
     }
     //搜索问题(未完成)
     @RequestMapping("/search")
