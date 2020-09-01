@@ -4,7 +4,7 @@ var qid
 // 保存当前登陆用户的id
 var uid
 
-// 保存当前要评论的回答者id
+// 回答id，非回答者id
 var towho
 
 // 问题的评论表名
@@ -250,9 +250,10 @@ function showComment(commentValue, allComment) {
 //     showComment(commentValue, $(".all-comment"))
 // })
 
-// 为未来的元素设置点击事件，selector必须为已有。
+// 点击事件-对回答的评论 为未来的元素设置点击事件，selector必须为已有。
 $("#answer-area").delegate("#footer-comment3", "click", function () {
-    towho = $(this).next().val()
+    // 回答id
+    towho = $(this).prev().prev().prev().val()
     // 获取评论表名
     const commentValue = $(this).prev().val()
     showComment(commentValue, $(".all-comment"))
@@ -304,6 +305,7 @@ $("#btn-confirm-answer").click(function () {
     }
     $.post("/zhifou/answer/put", answer, function (result) {
         console.log("发表回答请求", result)
+        getQuestion()
     })
 })
 
@@ -325,7 +327,7 @@ $("#btn-agree-question").click(function () {
 })
 
 // 点击事件-给回答点赞
-$("#btn-agree-answer").click(function () {
+$("#answer-area").delegate("#btn-agree-answer", "click", function () {
     const aid = $(this).prev().val()
     const agree = {
         "kind": "answer",
