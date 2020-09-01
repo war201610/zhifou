@@ -17,6 +17,7 @@ public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+    @Autowired
     UserService userService;
 
     //获得回答
