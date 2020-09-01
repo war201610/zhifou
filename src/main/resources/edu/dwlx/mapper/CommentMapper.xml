@@ -15,7 +15,8 @@
     </select>
 
     <update id="updateComment" parameterType="java.util.Map">
-        update ${tableName} set(uid=#{uid}, content=#{content}, agree=#{agree}, toWho=#{toWho}, createDate=#{createDate})
+        update ${tableName} set uid=#{uid}, content=#{content}, agree=#{agree}, toWho=#{toWho}, createDate=#{createDate}
+        where id=#{id}
     </update>
 
     <select id="getCommentCount" resultType="int">

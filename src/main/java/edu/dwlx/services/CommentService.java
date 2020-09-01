@@ -35,7 +35,7 @@ public class CommentService {
     }
 
     public void deleteComment(Comment comment, String tableName){
-        commentMapper.deleteComment(comment, tableName);
+        commentMapper.deleteComment(comment.getId(), tableName);
     }
 
     public List<Comment>searchCommentByTableName(String tableName){

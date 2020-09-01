@@ -13,7 +13,7 @@ import java.util.Map;
 public interface CommentMapper {
     void insertComment(@Param("comment")Comment comment, @Param("tableName")String tableName);
 
-    void deleteComment(@Param("comment")Comment comment, @Param("tableName")String tableName);
+    void deleteComment(@Param("id")int id, @Param("tableName")String tableName);
 
     List<Comment> searchCommentByTableName(@Param("tableName") String tableName);
 
