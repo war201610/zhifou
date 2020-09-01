@@ -10,11 +10,13 @@ var towho
 // 问题的评论表名
 var answers
 
+// 问题的评论表名
+var commentValue
+
 //打印问题
 function showQuestion(questionMap) {
     const question = questionMap.question
     var tagArr = question.tag.split("#")
-    console.log("tag", tagArr);
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
         $("#tag").append("<button type=\"button\" class=\"btn btn-outline-success btn-label\">" + tagArr[i] + "</button>")
@@ -24,7 +26,7 @@ function showQuestion(questionMap) {
     // 问题描述
     $("#introduction").text(question.introduction)
     // 点赞数
-    $("#agree_count").text(question.agree_count)
+    $("#agree_count").text(question.agreeCount)
     // 浏览数（回答数）
     $("#viewCount").text(questionMap.answerCount)
     // 收藏数
@@ -113,7 +115,6 @@ function getQuestion() {
             qid = question.id
             /* todo 在各组件中打印问题信息 */
             // 问题和标签
-            console.log(questionMap)
             showQuestion(questionMap)
 
             /* todo 回答列表 */
@@ -127,17 +128,14 @@ function getQuestion() {
                         // 请求用户头像、名称等信息
                         // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
                         answers = answer[i]
-                        console.log(answers.comment);
                         $.ajax({
                             url: "/zhifou/people/".concat(answer[i].uid).concat("/info"),
                             async: false,
                             success: function (user) {
-                                console.log(answers.comment);
                                 $.ajax({
                                     url: "/zhifou/comment/".concat(answers.comment).concat("/number"),
                                     async: false,
                                     success: function (commentNumber) {
-                                        console.log(user.name);
                                         html = "<div class=\"card shadow-sm\">\n" +
                                             "                           <div class='answer card-body'>\n" +
                                             "                            <!-- 回答者头像和信息区域 -->\n" +
@@ -261,14 +259,14 @@ $("#answer-area").delegate("#footer-comment3", "click", function () {
     // 回答id
     towho = $(this).prev().prev().prev().val()
     // 获取评论表名
-    const commentValue = $(this).prev().val()
+    commentValue = $(this).prev().val()
     showComment(commentValue, $(".all-comment"))
 })
 
 // 点击事件-获取问题的评论内容
 $("#question-comment").click(function () {
     // towho = $(this).next().val()
-    const commentValue = $(this).prev().val()
+    commentValue = $(this).prev().val()
     showComment(commentValue, $(".all-comment2"))
 })
 
@@ -286,6 +284,8 @@ $("#btn-confirm-comment").click(function () {
     }
     $.post("/zhifou/comment/answer/".concat(qid).concat("/").concat(towho).concat("/add"), comment, function (result) {
         console.log("发起了对回答的评论：", result)
+        getQuestion()
+        showComment(commentValue, $(".all-comment"))
     })
 })
 
@@ -298,6 +298,8 @@ $("#btn-confirm-comment2").click(function () {
     }
     $.post("/zhifou/comment/question/".concat(qid).concat("/add"), comment, function (result) {
         console.log("发起了对问题的评论：", result)
+        getQuestion()
+        showComment(commentValue, $(".all-comment2"))
     })
 })
 
@@ -311,8 +313,8 @@ $("#btn-confirm-answer").click(function () {
     }
     $.post("/zhifou/answer/put", answer, function (result) {
         console.log("发表回答请求", result)
+        getQuestion()
     })
-    getQuestion()
 })
 
 // 给问题点赞
@@ -324,13 +326,13 @@ function agreeQuestion() {
     }
     $.post("/zhifou/agree", agree, function (result) {
         console.log("给问题点赞：", result)
+        getQuestion()
     })
 }
 
 // 点击事件-好问题
 $("#btn-agree-question").click(function () {
     agreeQuestion()
-    getQuestion()
 })
 
 // 点击事件-给回答点赞
@@ -343,9 +345,9 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
         "aid": aid
     }
     $.post("/zhifou/agree", agree, function (result) {
-        console.log("点赞了评论：", result)
+        console.log("点赞了回答：", result)
+        getQuestion()
     })
-    getQuestion()
 })
 
 /* 页面dom加载完成后执行 */
