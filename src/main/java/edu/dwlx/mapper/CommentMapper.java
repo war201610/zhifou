@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 @Repository
 public interface CommentMapper {
-    void insertComment(@Param("comment")Comment comment, @Param("tableName")String tableName);
+    void insertComment(Map map);
 
     void deleteComment(@Param("id")int id, @Param("tableName")String tableName);
 
