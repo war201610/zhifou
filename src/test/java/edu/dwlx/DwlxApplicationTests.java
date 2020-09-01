@@ -26,6 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootTest
 @WebAppConfiguration
@@ -84,7 +85,14 @@ class DwlxApplicationTests {
 
     @Test
     public void insertTest(){
-        userService.insertUserAnswer(new Answer(12,9,"123"));
+        Answer answer = new Answer(12,9,"123");
+        answer.setId(6);
+        answer.setAgree(0);
+        answer.setComment("50_6_answer_comment");
+        answer.setCollection(0);
+        answer.setCreateDateDate(new Date());
+
+        userService.insertUserAnswer(answer);
     }
 
 }
