@@ -8,7 +8,7 @@ public class Question {
     private String content;             //内容
     private String introduction;        //简介
     private String tag;                 //标签
-    private int agree_count;            //点赞数量
+    private int agreeCount;            //点赞数量
     private String comment;             //对问题的评论表的名字
     private String answer;              //回答表的名字
     private String follower;            //关注者表的名字
@@ -17,12 +17,12 @@ public class Question {
     private Date createDate;            //创建日期
 
     public Question(){
-        agree_count = 0;
+//        agree_count = 0;
         comment = "default";
         answer = "default";
         follower = "default";
-        viewCount = 0;
-        collectCount = 0;
+//        viewCount = 0;
+//        collectCount = 0;
         createDate = new Date(System.currentTimeMillis());
     }
 
@@ -40,7 +40,7 @@ public class Question {
                 ", content='" + content + '\'' +
                 ", introduction='" + introduction + '\'' +
                 ", tag='" + tag + '\'' +
-                ", agree_count=" + agree_count +
+                ", agree_count=" + agreeCount +
                 ", comment='" + comment + '\'' +
                 ", answer='" + answer + '\'' +
                 ", follower='" + follower + '\'' +
@@ -93,12 +93,12 @@ public class Question {
         this.tag = tag;
     }
 
-    public int getAgree_count() {
-        return agree_count;
+    public int getAgreeCount() {
+        return agreeCount;
     }
 
-    public void setAgree_count(int agree_count) {
-        this.agree_count = agree_count;
+    public void setAgreeCount(int agreeCount) {
+        this.agreeCount = agreeCount;
     }
 
     public String getComment() {

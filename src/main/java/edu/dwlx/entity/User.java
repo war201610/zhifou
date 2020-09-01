@@ -36,7 +36,6 @@ public class User implements UserDetails, Serializable
         this.collect_article = "default";
         this.collect_answer = "default";
         this.answer = "default";
-        this.like_count = 0;
     }
 
     public User(String username, String password) {

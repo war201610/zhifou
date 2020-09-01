@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dwlx.mapper.QuestionMapper">
     <insert id="insertQuestion" parameterType="Question">
-        insert into question(uid, content, introduction, tag, agree_count, comment, answer, follower, viewCount, collectCount, createDate)
-        values(#{uid}, #{content}, #{introduction}, #{tag}, #{agree_count}, #{comment}, #{answer}, #{follower}, #{viewCount}, #{collectCount}, #{createDate})
+        insert into question(uid, content, introduction, tag, agreeCount, comment, answer, follower, viewCount, collectCount, createDate)
+        values(#{uid}, #{content}, #{introduction}, #{tag}, #{agreeCount}, #{comment}, #{answer}, #{follower}, #{viewCount}, #{collectCount}, #{createDate})
     </insert>
 
     <update id="createQuestionCommentTable" parameterType="Question">
@@ -21,7 +21,7 @@
     </update>
 
     <update id="updateQuestion" parameterType="Question">
-        update question set uid=#{uid}, content=#{content}, introduction=#{introduction}, tag=#{tag}, agree_count=#{agree_count},
+        update question set uid=#{uid}, content=#{content}, introduction=#{introduction}, tag=#{tag}, agreeCount=#{agreeCount},
             comment=#{comment}, answer=#{answer}, follower=#{follower}, viewCount=#{viewCount}, collectCount=#{collectCount}, createDate=#{createDate}
         where id = #{id}
     </update>
@@ -48,7 +48,7 @@
         </where>
     </select>
 
-    <select id="searchQuestionById" parameterType="Integer" resultType="Question">
+    <select id="searchQuestionById" parameterType="Integer" resultType="question">
         select * from question where id = #{id}
     </select>
 

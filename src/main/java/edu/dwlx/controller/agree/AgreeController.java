@@ -59,16 +59,15 @@ public class AgreeController {
                     return false;
                 }
                 int idAgree = answer.getUid();//回答对应的用户id
-                User userAgree = userService.searchUserById(idAgree);//回答对应的用户
-                userAgree.setLike_count(userAgree.getLike_count() + 1);
+                userService.getAgree(idAgree);
                 //更新数据库
                 answerService.updateAnswer(answer);
-                userService.updateUser(userAgree);
                 break;
             }
             case "question": {
                 try {
-                    question.setAgree_count(question.getAgree_count());
+                    int questionAgree = question.getAgreeCount();
+                    question.setAgreeCount(questionAgree + 1);
                 } catch (Exception e) {
                     exceptionName = "空指针异常";
                     exceptionContent = "找不到问题";
@@ -76,9 +75,8 @@ public class AgreeController {
                             exceptionName + "&exceptionContent=" + exceptionContent);
                     return false;
                 }
-                user.setLike_count(user.getLike_count() + 1);
+                userService.getAgree(uid);
                 questionService.updateQuestion(question);
-                userService.updateUser(user);
                 break;
             }
             case "comment": {
