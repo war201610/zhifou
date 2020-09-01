@@ -22,7 +22,7 @@ public class HotController {
     @Autowired
     AnswerService answerService;
 
-    public class Node implements Comparable<Node>{
+    private class Node implements Comparable<Node>{
         public int hotDegree;
         public int index;
         public Node(int hotDegree,int index){
@@ -36,7 +36,7 @@ public class HotController {
         }
     }
 
-    @RequestMapping
+    @RequestMapping("/getHot")
     @ResponseBody
     public List getHot(){
         List<Question> questionList = questionService.getAllQuestion();
@@ -60,5 +60,10 @@ public class HotController {
         }
         System.out.println(list.toString());
         return list;
+    }
+
+    @RequestMapping
+    public String hot(){
+        return "/zhifou/know/hot.html";
     }
 }
