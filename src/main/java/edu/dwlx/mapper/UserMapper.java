@@ -58,7 +58,7 @@ public interface UserMapper {
 
     void deleteCollectAnswer(Map<String, Object> map);  //稍微有点疑问，等待检验
 
-    void insertUserAnswer(@Param("answer") Answer answer);
+    void insertUserAnswer(Answer answer);
 
     void deleteUserAnswer(Answer answer);
 

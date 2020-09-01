@@ -111,7 +111,7 @@ function getQuestion() {
             showQuestion(question)
 
             /* todo 回答列表 */
-            $("answer-area").empty()
+            $("#answer-area").empty()
             $.ajax({
                 url: "/zhifou/answer/get/".concat(question.answer),
                 async: false,
@@ -150,7 +150,7 @@ function getQuestion() {
                                             "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
                                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
                                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                                            "                                <div class=\"footer-comment2\" data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
                                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                                             "                            </div>\n" +
@@ -201,7 +201,16 @@ function showComment(commentValue, allComment) {
 }
 
 /* 点击事件-获取回答的评论内容 */
-$(".footer-comment2").click(function () {
+// $("#footer-comment3").click(function () {
+//     towho = $(this).next().val()
+//     console.log("towho:", towho);
+//     // 获取评论表名
+//     const commentValue = $(this).prev().val()
+//     showComment(commentValue, $(".all-comment"))
+// })
+
+// 为未来的元素设置点击事件，selector必须为已有。
+$("#answer-area").delegate("#footer-comment3", "click", function () {
     towho = $(this).next().val()
     // 获取评论表名
     const commentValue = $(this).prev().val()
@@ -227,7 +236,7 @@ $("#btn-confirm-comment").click(function () {
         "uid": uid,
         "content": content
     }
-    $.post("/zhifou/comment/question/".concat(qid).concat("/").concat(towho).concat("/add"), comment, function (result) {
+    $.post("/zhifou/comment/answer/".concat(qid).concat("/").concat(towho).concat("/add"), comment, function (result) {
         console.log("发起了对回答的评论：", result)
     })
 })
