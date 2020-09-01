@@ -49,6 +49,7 @@ public class KnowController {
         if(size <= 10){
             map.put("questionList", questionList);
             List<Integer> sizeList = new ArrayList<>();
+//            System.out.println(questionList.toString());
             for(Question q : questionList)
                 sizeList.add(answerService.getAnswerCount(q.getAnswer()));
             map.put("answerCountList", sizeList);
