@@ -21,7 +21,7 @@
     </update>
 
     <update id="createCollectArticleTable" parameterType="User">
-        create table #{uid}_collect_article (article_id int(20) primary key)
+        create table #{uid}_collect_article (articleId int(20) primary key)
     </update>
 
     <update id="createUserAnswerTable" parameterType="User">
@@ -44,7 +44,7 @@
     <select id="searchCollectArticleByUid" parameterType="Integer" resultType="Article">
         select * from article where id in
             (
-                select article_id from #{uid}_collect_article
+                select articleId from #{uid}_collect_article
             )
     </select>
 
@@ -99,7 +99,7 @@
     </insert>
 
     <delete id="deleteCollectArticle">
-        delete from #{uid}_collect_article where article_id=#{articleId}
+        delete from #{uid}_collect_article where articleId=#{articleId}
     </delete>
 
     <insert id="insertCollectAnswer" parameterType="java.util.Map">
