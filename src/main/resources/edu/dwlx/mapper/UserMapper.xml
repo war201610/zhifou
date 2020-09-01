@@ -3,8 +3,8 @@
 <mapper namespace="edu.dwlx.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="User">
-        insert into user(name, password, nickname, registerDate, following, follower, collect_article, collect_answer, answer, like_count)
-            values(#{name}, #{password}, #{nickname}, #{registerDate}, #{following}, #{follower}, #{collect_article}, #{collect_answer}, #{answer}, #{like_count})
+        insert into user(name, password, nickname, registerDate, following, follower, collectArticle, collectAnswer, answer, likeCount)
+            values(#{name}, #{password}, #{nickname}, #{registerDate}, #{following}, #{follower}, #{collectArticle}, #{collectAnswer}, #{answer}, #{likeCount})
     </insert>
 
     <update id="createFollowerTable" parameterType="User">
@@ -17,7 +17,7 @@
 
     <update id="createCollectAnswerTable" parameterType="User">
         create table #{uid}_collect_answer
-            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collection_count int(20), createDate date )
+            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collectCount int(20), createDate date )
     </update>
 
     <update id="createCollectArticleTable" parameterType="User">
@@ -27,17 +27,13 @@
     <update id="createUserAnswerTable" parameterType="User">
         create table #{uid}_answer
             (id int(20) primary key, uid int(20), questionId int(20), content varchar(200),
-             agree int(20), comment varchar(20), collection_count int(20), createDate date )
-
-
-                     insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
-            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
+             agree int(20), comment varchar(20), collectCount int(20), createDate date )
     </update>
 
     <update id="updateUser" parameterType="User">
         update user
             set name=#{name},password=#{password},nickname=#{nickname},gender=#{gender},career=#{career},introduction=#{introduction},address=#{address},registerDate=#{registerDate},
-            email=#{email},following=#{following},follower=#{follower},collect_article=#{collect_article},collect_answer=#{collect_answer},answer=#{answer},like_count=#{like_count}
+            email=#{email},following=#{following},follower=#{follower},collectArticle=#{collectArticle},collectAnswer=#{collectAnswer},answer=#{answer},likeCount=#{likeCount}
         where uid=#{uid}
     </update>
 
@@ -107,8 +103,8 @@
     </delete>
 
     <insert id="insertCollectAnswer" parameterType="java.util.Map">
-        insert into #{uid}_collect_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
-            values(#{id}, #{answerUid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
+        insert into #{uid}_collect_answer(id, uid, questionId, content, agree, comment, collectCount, createDate)
+            values(#{id}, #{answerUid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collectCount}, #{createDate})
     </insert>
 
     <delete id="deleteCollectAnswer" parameterType="java.util.Map">
@@ -116,8 +112,8 @@
     </delete>
 
     <insert id="insertUserAnswer">
-        insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collection_count, createDate)
-            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection_count}, #{createDate})
+        insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collectCount, createDate)
+            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collectCount}, #{createDate})
     </insert>
 
     <delete id="deleteUserAnswer" parameterType="Answer">
@@ -125,6 +121,6 @@
     </delete>
 
     <update id="getAgree">
-        update user set like_count = like_count+1 where uid=#{uid}
+        update user set likeCount = likeCount+1 where uid=#{uid}
     </update>
 </mapper>
