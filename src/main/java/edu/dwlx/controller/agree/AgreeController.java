@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,11 @@ public class AgreeController {
     //回答点赞更新需要更新回答的点赞和用户的赞同
     //问题点赞更新需要更新问题的点赞和用户的赞同
     //评论点赞更新需要更新评论的点赞
-    public boolean agree(String kind, int uid, int qid, int cid, int aid, HttpServletRequest request, Model model) {
+
+    public boolean agree(String kind, int uid, int qid,
+                         @RequestParam(value="cid", defaultValue = "0", required=true) int cid,
+                         @RequestParam(value="aid", defaultValue = "0", required=true)int aid,
+                         HttpServletRequest request, Model model) {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         String exceptionName;
         String exceptionContent;
@@ -100,9 +105,9 @@ public class AgreeController {
             if(commentList.get(mid).getId() == id)
                 return commentList.get(mid);
             else if(commentList.get(mid).getId() > id)
-                left = mid + 1;
-            else
                 right = mid - 1;
+            else
+                left = mid + 1;
         }
         return null;
     }
@@ -117,9 +122,9 @@ public class AgreeController {
             if(answerList.get(mid).getId() == id)
                 return answerList.get(mid);
             else if(answerList.get(mid).getId() > id)
-                left = mid + 1;
-            else
                 right = mid - 1;
+            else
+                left = mid + 1;
         }
         return null;
     }

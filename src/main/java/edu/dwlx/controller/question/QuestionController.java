@@ -47,10 +47,33 @@ public class QuestionController {
     //搜索问题(未完成)
     @RequestMapping("/search")
     @ResponseBody
-    public List<Question> searchQuestionByContent(String content, HttpServletRequest request) {
-        //没指定跳转的页面
-        request.getRequestDispatcher("/zhifou/question/answer.html");
-        return new ArrayList<>();
+    public List<Question> searchQuestionByContent(String content) {
+        String[] keyword = content.split(" ");
+        List<Question> questionList = new ArrayList<>();
+        for(String k : keyword) {
+            List<Question> temp = questionService.searchQuestionByContent(k);
+            for(Question q : temp) {
+                if(!searchQuestion(q.getId(), questionList))
+                    questionList.add(q);
+            }
+        }
+        return questionList;
+    }
+    public Boolean searchQuestion(int id, List<Question> questionList) {
+        int size = questionList.size();
+        int left = 0;
+        int right = size - 1;
+        int mid;
+        while(left <= right) {
+            mid = left + (right - left)/2;
+            if(questionList.get(mid).getId() == id)
+                return true;
+            else if(questionList.get(mid).getId() > id)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        return false;
     }
 
     @RequestMapping("/{questionId}/answer/{answerId}")
