@@ -7,6 +7,7 @@ function getHot(url) {
             console.log("length:", questionList.length);
             console.log("list:", questionList);
             for (i=0; i<questionList.length; i++) {
+                var hotText = i+1
                 html = "<div class=\"hot-card card shadow-sm\">\n" +
                     "                            <!-- 卡片导航头 -->\n" +
                     "                            <!-- 第一个模块内容区 -->\n" +
@@ -16,11 +17,11 @@ function getHot(url) {
                     "                                    <!-- 左 -->\n" +
                     "                                    <div class=\"order-left\">\n" +
                     "                                        <!-- 热榜排序数字 -->\n" +
-                    "                                        <div class=\"order-text\">"+ i+1 +"</div>\n" +
+                    "                                        <div class=\"order-text\">"+ hotText +"</div>\n" +
                     "                                    </div>\n" +
                     "                                    <!-- 右 -->\n" +
                     "                                    <div class=\"container-right\">\n" +
-                    "                                        <a href=\"#\">\n" +
+                    "                                        <a href=\""+ "/zhifou/question/".concat(questionList[i].id) +"\">\n" +
                     "                                            <!-- 标题 -->\n" +
                     "                                            <h2 class=\"container-tittle-style\">"+ questionList[i].content +"</h2>\n" +
                     "                                            <!-- 热榜话题描述 -->\n" +
