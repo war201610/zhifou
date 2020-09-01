@@ -1,7 +1,9 @@
 package edu.dwlx.controller.answer;
 
 import edu.dwlx.entity.Answer;
+import edu.dwlx.entity.Question;
 import edu.dwlx.services.AnswerService;
+import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
