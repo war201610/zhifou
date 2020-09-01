@@ -170,35 +170,76 @@ function getQuestion() {
 
 // 根据 评论表名 和 打印区域 打印评论
 function showComment(commentValue, allComment) {
-    const comment = { "comment": commentValue }
-    $.post("/zhifou/comment", comment, function (commentList) {
-        $(".all-comment").empty()
-        var html = ""
-        for (i=0; i<commentList.length; i++) {
-            $.get("/zhifou/people/".concat(commentList[i].uid).concat("/info"), function (user) {
-                html = "<ul>\n" +
-                    "                            <li><div class=\"comment-item\">\n" +
-                    "                                <div class=\"comment-area\">\n" +
-                    "                                    <!-- 评论者头像、账户、时间 -->\n" +
-                    "                                    <div class=\"comment-info\">\n" +
-                    "                                        <div class=\"comment-head\">\n" +
-                    "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
-                    "                                        </div>\n" +
-                    "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
-                    "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
-                    "                                    </div>\n" +
-                    "                                    <!-- 评论的内容 -->\n" +
-                    "                                    <div class=\"comment-container\">\n" +
-                    "                                        <div class=\"comment-text\">"+ commentList[i].content +"</div>\n" +
-                    "                                    </div>\n" +
-                    "                                </div>\n" +
-                    "                            </div></li>\n" +
-                    "                        </ul>"
-                allComment.append(html)
-            })
+    const comment = {"comment": commentValue}
+    $.ajax({
+        type: "post",
+        url: "/zhifou/comment",
+        data: comment,
+        async: false,
+        success: function (commentList) {
+            $(".all-comment").empty()
+            var html = ""
+            for (i=0; i<commentList.length; i++) {
+                $.ajax({
+                    url: "/zhifou/people/".concat(commentList[i].uid).concat("/info"),
+                    async: false,
+                    success: function (user) {
+                        html = "<ul>\n" +
+                            "                            <li><div class=\"comment-item\">\n" +
+                            "                                <div class=\"comment-area\">\n" +
+                            "                                    <!-- 评论者头像、账户、时间 -->\n" +
+                            "                                    <div class=\"comment-info\">\n" +
+                            "                                        <div class=\"comment-head\">\n" +
+                            "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+                            "                                        </div>\n" +
+                            "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
+                            "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
+                            "                                    </div>\n" +
+                            "                                    <!-- 评论的内容 -->\n" +
+                            "                                    <div class=\"comment-container\">\n" +
+                            "                                        <div class=\"comment-text\">"+ commentList[i].content +"</div>\n" +
+                            "                                    </div>\n" +
+                            "                                </div>\n" +
+                            "                            </div></li>\n" +
+                            "                        </ul>"
+                        allComment.append(html)
+                    }
+                })
+            }
         }
     })
 }
+
+// function showComment(commentValue, allComment) {
+//     const comment = { "comment": commentValue }
+//     $.post("/zhifou/comment", comment, function (commentList) {
+//         $(".all-comment").empty()
+//         var html = ""
+//         for (i=0; i<commentList.length; i++) {
+//             $.get("/zhifou/people/".concat(commentList[i].uid).concat("/info"), function (user) {
+//                 html = "<ul>\n" +
+//                     "                            <li><div class=\"comment-item\">\n" +
+//                     "                                <div class=\"comment-area\">\n" +
+//                     "                                    <!-- 评论者头像、账户、时间 -->\n" +
+//                     "                                    <div class=\"comment-info\">\n" +
+//                     "                                        <div class=\"comment-head\">\n" +
+//                     "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+//                     "                                        </div>\n" +
+//                     "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
+//                     "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
+//                     "                                    </div>\n" +
+//                     "                                    <!-- 评论的内容 -->\n" +
+//                     "                                    <div class=\"comment-container\">\n" +
+//                     "                                        <div class=\"comment-text\">"+ commentList[i].content +"</div>\n" +
+//                     "                                    </div>\n" +
+//                     "                                </div>\n" +
+//                     "                            </div></li>\n" +
+//                     "                        </ul>"
+//                 allComment.append(html)
+//             })
+//         }
+//     })
+// }
 
 /* 点击事件-获取回答的评论内容 */
 // $("#footer-comment3").click(function () {
