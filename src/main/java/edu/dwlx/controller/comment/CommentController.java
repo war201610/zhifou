@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -46,7 +46,10 @@ public class CommentController {
     @RequestMapping
     @ResponseBody
     public List<Comment> getCommentList(String comment) {
-        return commentMapper.searchCommentByTableName(comment);
+        List<Comment> commentList = commentMapper.searchCommentByTableName(comment);
+        for(Comment c:commentList)
+            System.out.println(c.toString());
+        return commentList;
     }
     //获取总评论的条数
     @RequestMapping("/{table}/number")
