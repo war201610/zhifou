@@ -38,6 +38,7 @@ function getHot(url) {
                     "                                </div>\n" +
                     "                            </div>\n" +
                     "                        </div>"
+                $(".hot-area").append(html)
             }
         }
     })
