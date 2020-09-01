@@ -14,7 +14,7 @@
         select * from ${tableName}
     </select>
 
-    <update id="updateComment">
+    <update id="updateComment" parameterType="java.util.Map">
         update ${tableName} set(uid=#{uid}, content=#{content}, agree=#{agree}, toWho=#{toWho}, createDate=#{createDate})
     </update>
 
