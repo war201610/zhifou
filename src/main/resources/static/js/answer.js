@@ -116,6 +116,7 @@ function getQuestion() {
                 url: "/zhifou/answer/get/".concat(question.answer),
                 async: false,
                 success: function (answer) {
+                    var html = ""
                     for (i = 0; i < answer.length; i++) {
                         // 请求用户头像、名称等信息
                         // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
@@ -130,7 +131,9 @@ function getQuestion() {
                                     url: "/zhifou/comment/".concat(answers.comment).concat("/number"),
                                     async: false,
                                     success: function (commentNumber) {
-                                        $("answer-area").append("<div class=\"answer card-body\">\n" +
+                                        console.log(user.name);
+                                        html = "<div class=\"card shadow-sm\">\n" +
+                                            "                           <div class='answer card-body'>\n" +
                                             "                            <!-- 回答者头像和信息区域 -->\n" +
                                             "                            <div class=\"user\">\n" +
                                             "                                <!-- 头像 -->\n" +
@@ -144,14 +147,16 @@ function getQuestion() {
                                             "                                </pre>\n" +
                                             "                            </div>\n" +
                                             "                            <div class=\"container-footer2\">\n" +
-                                            "                                <input type=\"hidden\" value=\"" + answers.id + "\">\n" +
+                                            "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
                                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
-                                            "                                <input type=\"hidden\" value=\"" + answers.comment + "\">\n" +
-                                            "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
-                                            "                                <input type=\"hiden\" value=\"" + user.uid + "\">\n" +
+                                            "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
+                                            "                                <div class=\"footer-comment2\" data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                                            "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
                                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                                             "                            </div>\n" +
-                                            "                        </div>")
+                                            "                        </div>\n" +
+                                            "                       </div>"
+                                        $("#answer-area").append(html)
                                     }
                                 })
                             }
