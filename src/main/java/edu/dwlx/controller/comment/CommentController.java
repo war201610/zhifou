@@ -78,7 +78,7 @@ public class CommentController {
         return true;
     }
     //添加评论, 回答
-    @RequestMapping("/answer/{qid}/{aid}")
+    @RequestMapping("/answer/{qid}/{aid}/add")
     @ResponseBody
     public boolean commitAnswerComment(@PathVariable("qid") int qid,
                                        @PathVariable("aid") int aid,
