@@ -67,10 +67,16 @@
                     <div class="user-head-area"><div class="user-head"></div></div>
                     <!-- 个人信息 -->
                     <div class="user-name" id="name">切格瓦拉</div>
+                    <div class="user-follow-btn">
+                        <button type="button" class="btn btn-outline-info btn-sm" id="btn-follow-user" data-toggle="modal" data-target="#staticBackdrop">
+                            关注Ta
+                        </button>
+                    </div>
                     <div class="user-edit-btn">
                         <button type="button" class="btn btn-outline-info btn-sm" id="btn-edit-user" data-toggle="modal" data-target="#staticBackdrop">
                         修改
-                        </button></div>
+                        </button>
+                    </div>
                     <div class="user-info">
                         <table class="table">
                             <tbody>
@@ -309,7 +315,6 @@
     </div>
 </div>
 
-<input type="hidden" th:value="${session.user.uid}" class="session-user">
 
 <!-- 引入DOM操作，需要放在body底部 -->
 <script src="../../js/header.js"></script>

@@ -1,9 +1,6 @@
 // 保存当前页面的问题id
 var qid
 
-// 保存当前登陆用户的id
-var uid
-
 // 回答id，非回答者id
 var towho
 

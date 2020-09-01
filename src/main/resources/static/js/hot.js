@@ -84,4 +84,5 @@ function showFile() {
 
 $(document).ready(function () {
     showMain()
+    console.log("hot uid:", uid)
 })

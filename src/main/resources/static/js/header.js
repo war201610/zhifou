@@ -2,9 +2,10 @@
 var uid
 
 var qid
-
+getUser()
 $(document).ready(function () {
-    getUser()
+    // 发起请求较晚，user页无法获取uid
+    // getUser()
 })
 
 // 点击事件-搜索

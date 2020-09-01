@@ -50,7 +50,13 @@
     width: 80px;
     height: 80px;
     position: absolute;
-    right: 10px;
+    right: 50px;
+}
+.user-follow-btn{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    right: 150px;
 }
 .user-info{
     width: 800px;
