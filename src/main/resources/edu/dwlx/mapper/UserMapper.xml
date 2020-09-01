@@ -17,7 +17,7 @@
 
     <update id="createCollectAnswerTable" parameterType="User">
         create table #{uid}_collect_answer
-            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collectCount int(20), createDate date )
+            (id int(20) primary key, uid int(20), questionId int(20), content varchar(200), agree int(20), comment varchar(20), collection int(20), createDate date )
     </update>
 
     <update id="createCollectArticleTable" parameterType="User">
@@ -27,7 +27,7 @@
     <update id="createUserAnswerTable" parameterType="User">
         create table #{uid}_answer
             (id int(20) primary key, uid int(20), questionId int(20), content varchar(200),
-             agree int(20), comment varchar(20), collectCount int(20), createDate date )
+             agree int(20), comment varchar(20), collection int(20), createDate date )
     </update>
 
     <update id="updateUser" parameterType="User">
@@ -111,9 +111,9 @@
         delete from #{uid}_collect_answer where id=#{id} and questionId=#{questionId}
     </delete>
 
-    <insert id="insertUserAnswer">
-        insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collectCount, createDate)
-            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collectCount}, #{createDate})
+    <insert id="insertUserAnswer" parameterType="Answer">
+        insert into #{uid}_answer(id, uid, questionId, content, agree, comment, collection, createDate)
+            values(#{id}, #{uid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection}, #{createDate})
     </insert>
 
     <delete id="deleteUserAnswer" parameterType="Answer">

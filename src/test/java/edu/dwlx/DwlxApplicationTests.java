@@ -1,5 +1,6 @@
 package edu.dwlx;
 
+import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.User;
 import edu.dwlx.services.UserService;
 import org.checkerframework.checker.units.qual.A;
@@ -80,5 +81,10 @@ class DwlxApplicationTests {
 //                .andExpect()
 //        );
 //    }
+
+    @Test
+    public void insertTest(){
+        userService.insertUserAnswer(new Answer(12,9,"123"));
+    }
 
 }
