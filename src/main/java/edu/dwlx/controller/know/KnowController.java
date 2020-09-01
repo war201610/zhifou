@@ -71,21 +71,4 @@ public class KnowController {
         return map;
 
     }
-    public Boolean searchQuestion(int id, List<Question> questionList) {
-        int size = questionList.size();
-        int left = 0;
-        int right = size - 1;
-        int mid;
-        while(left <= right) {
-            mid = left + (right - left)/2;
-            if(questionList.get(mid).getId() == id)
-                return true;
-            else if(questionList.get(mid).getId() > id)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-        return false;
-    }
-
 }
