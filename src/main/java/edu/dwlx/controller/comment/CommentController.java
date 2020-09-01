@@ -60,9 +60,9 @@ public class CommentController {
     @ResponseBody
     public boolean commitComment(@PathVariable("kind") String kind,
                                  @PathVariable("id") int id, int uid,
-                                 String comment) {
+                                 String content) {
         Comment comment1 = new Comment();
-        comment1.setContent(comment);
+        comment1.setContent(content);
         comment1.setUid(uid);
         comment1.setAgree(0);
         Date date = new Date(System.currentTimeMillis());
