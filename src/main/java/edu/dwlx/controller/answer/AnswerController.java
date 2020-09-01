@@ -23,7 +23,10 @@ public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+    @Autowired
     UserService userService;
+    @Autowired
+    QuestionService questionService;
 
     //获得回答
     @RequestMapping("/get/{table}")
@@ -41,6 +44,8 @@ public class AnswerController {
         answer.setContent(content);
         answerService.insertAnswer(answer);
         Answer answer1 = answerService.searchAnswerByContentAndUid(answer);
+        Question question = questionService.searchQuestionById(qid);
+        question.setViewCount(question.getViewCount() + 1);
 
         System.out.println(answer1.toString());
         userService.insertUserAnswer(answer1);
