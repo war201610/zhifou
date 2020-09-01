@@ -44,13 +44,16 @@ public class CommentController {
     AnswerService answerService;
     //评论表内容
     @RequestMapping
+
     public List<Comment> getCommentList(String comment) {
         return commentMapper.searchCommentByTableName(comment);
     }
     //获取总评论的条数
     @RequestMapping("/{table}/number")
+    @ResponseBody
     public int getCommentNumber(@PathVariable("table") String comment) {
-        return commentMapper.searchCommentByTableName(comment).size();
+        List<Comment> list = commentService.searchCommentByTableName(comment);
+        return commentService.getCollectCount(comment);
     }
     //添加评论, 问题和文章
     @RequestMapping("/{kind}/{id}/add")

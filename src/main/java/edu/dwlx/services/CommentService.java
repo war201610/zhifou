@@ -29,4 +29,8 @@ public class CommentService {
     public void updateComment(Comment comment, String tableName){
         commentMapper.updateComment(comment, tableName);
     }
+
+    public int getCollectCount(String tableName){
+        return commentMapper.getCommentCount(tableName);
+    }
 }

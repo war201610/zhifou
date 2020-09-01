@@ -17,4 +17,8 @@
     <update id="updateComment">
         update ${tableName} set(uid=#{uid}, content=#{content}, agree=#{agree}, toWho=#{toWho}, createDate=#{createDate})
     </update>
+
+    <select id="getCommentCount" resultType="int">
+        select count(id) from ${tableName}
+    </select>
 </mapper>
