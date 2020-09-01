@@ -5,7 +5,6 @@ var qid
 
 $(document).ready(function () {
     getUser()
-    console.log(uid)
 })
 
 // 点击事件-搜索
@@ -30,7 +29,6 @@ function getUser() {
         async: false,
         dataType: "json",
         success: function (user) {
-            console.log("1当前登陆用户", user)
             uid = user.uid
         }
     })
@@ -48,7 +46,6 @@ function getTag() {
         }
     }
     tagStr = tagArray.join(",")
-    console.log(tagStr);
     return tagStr
 }
 
