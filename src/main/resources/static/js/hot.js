@@ -4,6 +4,8 @@ function getHot(url) {
         async: false,
         success: function (questionList) {
             var html = ""
+            console.log("length:", questionList.length);
+            console.log("list:", questionList);
             for (i=0; i<questionList.length; i++) {
                 html = "<div class=\"hot-card card shadow-sm\">\n" +
                     "                            <!-- 卡片导航头 -->\n" +
@@ -14,7 +16,7 @@ function getHot(url) {
                     "                                    <!-- 左 -->\n" +
                     "                                    <div class=\"order-left\">\n" +
                     "                                        <!-- 热榜排序数字 -->\n" +
-                    "                                        <div class=\"order-text\">1</div>\n" +
+                    "                                        <div class=\"order-text\">"+ i+1 +"</div>\n" +
                     "                                    </div>\n" +
                     "                                    <!-- 右 -->\n" +
                     "                                    <div class=\"container-right\">\n" +
@@ -46,7 +48,7 @@ function getHot(url) {
 
 // 主站
 function showMain() {
-    getHot("/zhifou/hot")
+    getHot("/zhifou/hot/getHot")
 }
 
 // 视频
