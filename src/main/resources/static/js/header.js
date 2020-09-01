@@ -8,9 +8,10 @@ $(document).ready(function () {
 })
 
 // 点击事件-搜索
-$("#search-btn").click(function () {
+$(".search-btn").click(function () {
     const content = $("#search-content").val()
     sessionStorage.setItem("content", content)
+    console.log("点击了搜索")
     window.location.href = "/zhifou/search"
 })
 

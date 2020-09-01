@@ -3,7 +3,7 @@
 
 function getSearchContent() {
     var content = sessionStorage.getItem("content")
-    $.post("zhifou/question/search", {"content": content}, function (questionsList) {
+    $.post("/zhifou/question/search", {"content": content}, function (questionsList) {
         var html = ""
         $(".question-area").empty()
         for (i=0; i<questionsList.length; i++) {

@@ -188,6 +188,7 @@ function showComment(commentValue, allComment) {
                     url: "/zhifou/people/".concat(commentList[i].uid).concat("/info"),
                     async: false,
                     success: function (user) {
+                        console.log("commentList:", commentList[i])
                         html = "<ul>\n" +
                             "                            <li><div class=\"comment-item\">\n" +
                             "                                <div class=\"comment-area\">\n" +
