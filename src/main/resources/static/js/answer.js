@@ -311,8 +311,8 @@ $("#btn-confirm-answer").click(function () {
     }
     $.post("/zhifou/answer/put", answer, function (result) {
         console.log("发表回答请求", result)
-        getQuestion()
     })
+    getQuestion()
 })
 
 // 给问题点赞
@@ -330,6 +330,7 @@ function agreeQuestion() {
 // 点击事件-好问题
 $("#btn-agree-question").click(function () {
     agreeQuestion()
+    getQuestion()
 })
 
 // 点击事件-给回答点赞
@@ -344,6 +345,7 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
     $.post("/zhifou/agree", agree, function (result) {
         console.log("点赞了评论：", result)
     })
+    getQuestion()
 })
 
 /* 页面dom加载完成后执行 */
