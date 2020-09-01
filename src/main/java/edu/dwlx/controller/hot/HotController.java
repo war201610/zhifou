@@ -56,6 +56,7 @@ public class HotController {
         Iterator<Node> it = hotList.iterator();
         while(it.hasNext()){
             Node node = it.next();
+            questionList.get(node.index).setViewCount(node.hotDegree);
             list.add(questionList.get(node.index));
         }
         System.out.println(list.toString());
