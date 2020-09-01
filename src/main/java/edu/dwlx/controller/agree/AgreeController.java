@@ -105,9 +105,9 @@ public class AgreeController {
             if(commentList.get(mid).getId() == id)
                 return commentList.get(mid);
             else if(commentList.get(mid).getId() > id)
-                left = mid + 1;
-            else
                 right = mid - 1;
+            else
+                left = mid + 1;
         }
         return null;
     }
@@ -122,9 +122,9 @@ public class AgreeController {
             if(answerList.get(mid).getId() == id)
                 return answerList.get(mid);
             else if(answerList.get(mid).getId() > id)
-                left = mid + 1;
-            else
                 right = mid - 1;
+            else
+                left = mid + 1;
         }
         return null;
     }
