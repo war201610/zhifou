@@ -1,5 +1,6 @@
 package edu.dwlx;
 
+import edu.dwlx.controller.hot.HotController;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.User;
 import edu.dwlx.services.UserService;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 @WebAppConfiguration
@@ -84,15 +86,14 @@ class DwlxApplicationTests {
 //    }
 
     @Test
-    public void insertTest(){
-        Answer answer = new Answer(12,9,"123");
-        answer.setId(6);
-        answer.setAgree(0);
-        answer.setComment("50_6_answer_comment");
-        answer.setCollection(0);
-        answer.setCreateDateDate(new Date());
-
-        userService.insertUserAnswer(answer);
+    public void zswTest(){
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/zhifou/hot"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        List list = hotController.getHot();
+//        System.out.println(list.toString());
     }
 
 }

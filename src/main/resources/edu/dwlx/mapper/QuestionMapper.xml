@@ -80,10 +80,6 @@
         delete from #{questionId}_question_follower where uid=#{uid}
     </delete>
 
-    <select id="getAllQuestion" resultType="Question">
-        select * from question
-    </select>
-
     <update id="getAgree">
         update question set agree_count=agree_count+1 where id=#{questionId}
     </update>
@@ -96,4 +92,7 @@
         update question set collectCount=collectCount+1 where id=#{questionId}
     </update>
 
+    <select id="getAllQuestion" resultType="Question">
+        select * from question
+    </select>
 </mapper>

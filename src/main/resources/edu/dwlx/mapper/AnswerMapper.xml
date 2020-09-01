@@ -35,4 +35,8 @@
     <select id="searchAnswerByTableName" resultType="Answer">
         select * from ${tableName}
     </select>
+
+    <select id="getAnswerCount" resultType="int">
+        select count(id) from ${tableName}
+    </select>
 </mapper>
