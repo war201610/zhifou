@@ -48,7 +48,7 @@ function getHot(url) {
 
 // 主站
 function showMain() {
-    getHot("/zhifou/hot")
+    getHot("/zhifou/hot/getHot")
 }
 
 // 视频
