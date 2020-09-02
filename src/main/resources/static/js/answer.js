@@ -45,7 +45,7 @@ function showQuestion(questionMap) {
             $(".card-author").empty()
             var html = "<div class=\"author-area\">\n" +
                 "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
-                "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nikeName +"</h6></div>\n" +
+                "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
                 "                                <div class=\"author-follow\">\n" +
                 "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
                 "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">\n" +
@@ -55,7 +55,7 @@ function showQuestion(questionMap) {
                 "                            </div>\n" +
                 "                            <div class=\"author-info\">\n" +
                 "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
-                "                                <div class=\"industry\">所在行业：<span>"+ user.industry +"</span></div>\n" +
+                "                                <div class=\"industry\">职业：<span>"+ user.career +"</span></div>\n" +
                 "                            </div>"
             $(".card-author").append(html)
         }
@@ -65,13 +65,6 @@ function showQuestion(questionMap) {
 // 回答页
 function getAnswer() {
     const pathName = window.location.pathname
-    $.get(pathName.concat("/info"), function (resultMap) {
-        const question = resultMap.question
-        const answers = resultMap.List
-        qid = question.id
-        showQuestion(question)
-
-    })
     $.ajax({
         url: pathName.concat("/info"),
         async: false,
