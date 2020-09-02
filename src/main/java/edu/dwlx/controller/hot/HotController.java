@@ -47,7 +47,7 @@ public class HotController {
             Question question = questionIterator.next();
             int hotDegree = (int) ((question.getViewCount() + question.getAgreeCount()*3 +
                                 answerService.getAnswerCount(question.getAnswer())*5 + question.getCollectCount()*20 + 100)
-                    / ((current.getTime() - question.getCreateDate().getTime()) /1000/3600/24) + 1);
+                    / ((current.getTime() - question.getCreateDate().getTime() /1000/3600/24) + 1));
             hotList.add(new Node(hotDegree, questionList.indexOf(question)));
             System.out.println(hotDegree);
         }
