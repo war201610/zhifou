@@ -17,8 +17,10 @@ var commentValue
 
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
+    // console.log(questionMap)
     const question = questionMap.question
-    sessionStorage.setItem("suid", question.uid)
+    // var d = question.uid
+    // sessionStorage.setItem("suid", d)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -70,7 +72,9 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
-            showQuestion(question)
+            sessionStorage.setItem("suid", d)
+            console.log(resultMap)
+            showQuestion(resultMap)
             showAnswer(answer)
         }
     })
@@ -495,8 +499,10 @@ function jump() {
 $(document).ready(function () {
     suid = parseInt(sessionStorage.getItem("suid"))
     if (jump()) {
+        console.log("getQuestion")
         getQuestion()
     }else {
+        console.log("getAnswer")
         getAnswer()
     }
     // getQuestion()

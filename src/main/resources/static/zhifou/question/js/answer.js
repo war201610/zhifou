@@ -17,8 +17,10 @@ var commentValue
 
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
+    // console.log(questionMap)
     const question = questionMap.question
-    sessionStorage.setItem("suid", question.uid)
+    var d = question.uid
+    sessionStorage.setItem("suid", d)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -48,9 +50,7 @@ function showQuestion(questionMap) {
                 "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
                 "                                <div class=\"author-follow\">\n" +
                 "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
-                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">\n" +
-                "                                        关注Ta\n" +
-                "                                    </button>\n" +
+                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
                 "                                </div>\n" +
                 "                            </div>\n" +
                 "                            <div class=\"author-info\">\n" +
@@ -70,9 +70,11 @@ function getAnswer() {
         async: false,
         success: function (resultMap) {
             const question = resultMap.question
-            const answer = resultMap.List
+            const answer = resultMap.list
             qid = question.id
-            showQuestion(question)
+            // sessionStorage.setItem("suid", d)
+            console.log(resultMap)
+            showQuestion(resultMap)
             showAnswer(answer)
         }
     })
@@ -490,12 +492,17 @@ function jump() {
     }
 }
 
+// 问题页的关注Ta
+
+
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     suid = parseInt(sessionStorage.getItem("suid"))
     if (jump()) {
+        console.log("getQuestion")
         getQuestion()
     }else {
+        console.log("getAnswer")
         getAnswer()
     }
     // getQuestion()

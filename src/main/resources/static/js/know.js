@@ -1,5 +1,5 @@
 // 获取cookie中的uid
- uid = parseInt(sessionStorage.getItem("uuid"))
+uid = parseInt(sessionStorage.getItem("uuid"))
 
 // getUser()
 
