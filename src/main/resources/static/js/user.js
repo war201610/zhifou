@@ -294,7 +294,8 @@ function visitOther() {
 
 // 点击事件-进入他人主页关注Ta
 $("#btn-follow-user").click(function () {
-    if($("#btn-follow-user").val()==="关注Ta") {
+    console.log("btn-val:", $("#btn-follow-user").text());
+    if($("#btn-follow-user").text()==="关注Ta") {
         $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
             console.log("发起了关注Ta：", result)
             toggleCare($("#btn-follow-user"), "已关注")
@@ -313,7 +314,7 @@ $("#btn-follow-user").click(function () {
 
 // 关注后显示已关注
 function toggleCare(element, wether) {
-    element.val(wether)
+    element.text(wether)
 }
 
 // visitOther()
