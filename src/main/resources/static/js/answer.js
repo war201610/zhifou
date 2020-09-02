@@ -18,7 +18,7 @@ var commentValue
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
     const question = questionMap.question
-    suid = question.uid
+    sessionStorage.setItem("suid", question.uid)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -85,6 +85,7 @@ function getAnswer() {
     })
 }
 
+// 显示回答列表
 function showAnswer(answer) {
     var html = ""
     for (i = 0; i < answer.length; i++) {
@@ -197,7 +198,7 @@ function getQuestion() {
         async: false,
         success: function (questionMap) {
             const question = questionMap.question
-            console.log(question);
+            console.log("问题信息获取请求:", question);
             qid = question.id
             /* todo 在各组件中打印问题信息 */
             // 问题和标签
@@ -481,10 +482,7 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
 
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
+    suid = parseInt(sessionStorage.getItem("suid"))
     getQuestion()
     wetherFollowAuthor(suid)
-    console.log("answer uid:", uid)
-    // localStorage.setItem("u", "nihao")
-    // localStorage.setItem("u", "hello")
-    // uid = $(".session-user").val()
 })
