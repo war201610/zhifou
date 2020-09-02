@@ -19,8 +19,8 @@ var commentValue
 function showQuestion(questionMap) {
     // console.log(questionMap)
     const question = questionMap.question
-    // var d = question.uid
-    // sessionStorage.setItem("suid", d)
+    var d = question.uid
+    sessionStorage.setItem("suid", d)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -72,7 +72,7 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
-            sessionStorage.setItem("suid", d)
+            // sessionStorage.setItem("suid", d)
             console.log(resultMap)
             showQuestion(resultMap)
             showAnswer(answer)
