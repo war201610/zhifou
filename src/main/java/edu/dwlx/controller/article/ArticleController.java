@@ -39,6 +39,12 @@ public class ArticleController {
         return articleService.getAllArticle();
     }
 
+    @RequestMapping("/show")
+    public String getArticle(Model model){
+        model.addAttribute("article", articleService.searchArticleById(5));
+        return "/zhifou/article/showArticle.html";
+    }
+
     @RequestMapping("/save")
     @ResponseBody
     public int save(Article article, String[] checkbox){
