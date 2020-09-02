@@ -75,7 +75,7 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
-            sessionStorage.setItem("suid", d)
+            // sessionStorage.setItem("suid", d)
             console.log(resultMap)
             showQuestion(resultMap)
             showAnswer(answer)
@@ -103,7 +103,7 @@ function showAnswer(answer) {
                             "                            <!-- 回答者头像和信息区域 -->\n" +
                             "                            <div class=\"user\">\n" +
                             "                                <!-- 头像 -->\n" +
-                            "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                            "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
                             "                                <!-- 个人id和简介 -->\n" +
                             "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
                             "                            </div>\n" +
@@ -114,9 +114,9 @@ function showAnswer(answer) {
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\" id=\"container-footer3\">\n" +
                             "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
+                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
                             "                                <div class=\"footer-star2\" id=\"footer-star3\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span id=\"collect-id\">" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
@@ -163,7 +163,7 @@ function showAnswer(answer) {
 //                             "                            <!-- 回答者头像和信息区域 -->\n" +
 //                             "                            <div class=\"user\">\n" +
 //                             "                                <!-- 头像 -->\n" +
-//                             "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+//                             "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
 //                             "                                <!-- 个人id和简介 -->\n" +
 //                             "                                <div class=\"user-info\">"+ user.name + "<span class=\"user-intro\">"+ user.introduction +"</span></div>\n" +
 //                             "                            </div>\n" +
@@ -174,11 +174,11 @@ function showAnswer(answer) {
 //                             "                            </div>\n" +
 //                             "                            <div class=\"container-footer2\">\n" +
 //                             "                                <input type=\"hidden\" value=\""+ answers.id +"\">\n" +
-//                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
+//                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
 //                             "                                <input type=\"hidden\" value=\""+ answers.comment +"\">\n" +
-//                             "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
+//                             "                                <div class=\"footer-comment2\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
 //                             "                                <input type=\"hiden\" value=\""+ user.uid +"\">\n" +
-//                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answers.collection +"</span>&nbsp;收藏</div>\n" +
+//                             "                                <div class=\"footer-star2\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answers.collection +"</span>&nbsp;收藏</div>\n" +
 //                             "                            </div>\n" +
 //                             "                        </div>")
 //                     })
@@ -228,7 +228,7 @@ function getQuestion() {
                     //                         "                            <!-- 回答者头像和信息区域 -->\n" +
                     //                         "                            <div class=\"user\">\n" +
                     //                         "                                <!-- 头像 -->\n" +
-                    //                         "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                    //                         "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
                     //                         "                                <!-- 个人id和简介 -->\n" +
                     //                         "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
                     //                         "                            </div>\n" +
@@ -239,11 +239,11 @@ function getQuestion() {
                     //                         "                            </div>\n" +
                     //                         "                            <div class=\"container-footer2\">\n" +
                     //                         "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                    //                         "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
+                    //                         "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
                     //                         "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                    //                         "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                    //                         "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                     //                         "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
-                    //                         "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                    //                         "                                <div class=\"footer-star2\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                     //                         "                            </div>\n" +
                     //                         "                        </div>\n" +
                     //                         "                       </div>"
@@ -282,7 +282,7 @@ function showComment(commentValue, allComment) {
                             "                                    <!-- 评论者头像、账户、时间 -->\n" +
                             "                                    <div class=\"comment-info\">\n" +
                             "                                        <div class=\"comment-head\">\n" +
-                            "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+                            "                                            <img src=\"/img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
                             "                                        </div>\n" +
                             "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
                             "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
@@ -315,7 +315,7 @@ function showComment(commentValue, allComment) {
 //                     "                                    <!-- 评论者头像、账户、时间 -->\n" +
 //                     "                                    <div class=\"comment-info\">\n" +
 //                     "                                        <div class=\"comment-head\">\n" +
-//                     "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+//                     "                                            <img src=\"/img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
 //                     "                                        </div>\n" +
 //                     "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
 //                     "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +

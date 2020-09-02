@@ -6,17 +6,16 @@
     <title>嘤嘤嘤</title>
     <link rel="stylesheet" href="/editormd/examples/css/style.css" />
     <link rel="stylesheet" href="/editormd/css/editormd.css" />
-<!--    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />-->
+    <!--    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />-->
 
     <script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
-    <div id="test-editormd-view">
-        <p>sdlkfjaslkdfj</p>
-<!--        <textarea style="display:none; font-size: 100px" name="text" id="text1" th:text="${articleList}"></textarea>-->
-    </div>
-    <input type="hidden" th:value="${articleList}" id="article-list">
+<div id="test-editormd-view">
+    <textarea style="display:none; font-size: 100px" name="text" id="text1" th:text="${article.text}"></textarea>
+</div>
+<input type="hidden" th:value="${articleList}" id="article-list">
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/editormd/editormd.min.js"></script>
@@ -40,35 +39,6 @@
             sequenceDiagram : true,  // 默认不解析
         });
     });
-
-    $(document).ready(function () {
-
-        // const articleList = $("#article-list").val()
-        // console.log(articleList)
-        // var html = "";
-        // for(i = 0; articleList.length; i++) {
-        //     html = "<textarea style=\"display:none; font-size: 100px\" name=\"text\" id=\"text1\"\">"+ articleList[i].text +"</textarea>"
-        //     $("#test-editormd-view").append(html)
-        // }
-
-        $.ajax({
-            url: "/zhifou/article",
-            async: false,
-            success: function (articleList) {
-                console.log(articleList)
-                var html = "";
-                for(i = 0; i<articleList.length; i++) {
-                    console.log(articleList[i])
-                    // console.log(articleList[i].text)
-                    // html = "<textarea style=\"display:none; font-size: 100px\" name=\"text\" th:text=\" "+ articleList[i].text +"\"></textarea>"
-                    html = "<p>"+ articleList[i].text +"</p>"
-                    $("#test-editormd-view").append(html)
-                }
-            }
-        })
-    })
-
-
 </script>
 </body>
 </html>
