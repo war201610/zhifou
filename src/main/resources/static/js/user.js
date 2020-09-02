@@ -14,7 +14,7 @@ uid = parseInt(sessionStorage.getItem("uuid"))
 var suid = parseInt(pathName.substring(15))
 
 /* 个人信息请求，加载页面 */
-function getUser() {
+function getUserInfo() {
     $.get(pathName.concat("/info"), function (user) {
         console.log(user);
         console.log("向", pathName.concat("/info"), "发起了get请求")
@@ -317,7 +317,7 @@ function toggleCare(element, wether) {
 // visitOther()
 $(document).ready(function () {
     // 获取个人主页数据
-    // getUser()
+    getUserInfo()
     // 若非自己的主页，去除修改按钮
     visitOther()
 });
