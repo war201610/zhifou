@@ -60,7 +60,7 @@ public class HotController {
             questionList.get(node.index).setViewCount(node.hotDegree);
             list.add(questionList.get(node.index));
         }
-        System.out.println(list.toString());
+//        System.out.println(list.toString());
         return list;
     }
 
