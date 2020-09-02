@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/header.css">
@@ -21,19 +21,20 @@
     <title>个人主页</title>
 </head>
 <body>
+
 <div class="root">
     <div class="HeaderBar shadow-sm">
         <div class="HeaderInner">
             <div class="HeaderTabs">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/zhifou/know">知否</a>
+                        <a class="nav-link active" href="#">知否</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/zhifou/know">首页</a>
+                        <a class="nav-link" href="#">首页</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/zhifou/find">发现</a>
+                        <a class="nav-link" href="/zhifou/topic/topicList">发现</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -44,11 +45,11 @@
                 <input type="text" class="form-control" placeholder="忘了他吧，我偷电瓶养你！" aria-label="Recipient's username"
                        aria-describedby="button-addon2" id="search-content">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary search-btn" type="button" id="button-addon2">搜索</button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2 search-btn">搜索</button>
                 </div>
             </div>
             <div class="HeaderUserInfo">
-                <img src="../../img/icons8-online-support-38.png" alt="" id="img-user-head">
+                <img src="https://img.icons8.com/clouds/50/000000/super-mario.png" class="float-right" alt="">
             </div>
         </div>
     </div>
@@ -67,16 +68,10 @@
                     <div class="user-head-area"><div class="user-head"></div></div>
                     <!-- 个人信息 -->
                     <div class="user-name" id="name">切格瓦拉</div>
-                    <div class="user-follow-btn">
-                        <button type="button" class="btn btn-outline-info btn-sm" id="btn-follow-user">
-                            关注Ta
-                        </button>
-                    </div>
                     <div class="user-edit-btn">
                         <button type="button" class="btn btn-outline-info btn-sm" id="btn-edit-user" data-toggle="modal" data-target="#staticBackdrop">
                         修改
-                        </button>
-                    </div>
+                        </button></div>
                     <div class="user-info">
                         <table class="table">
                             <tbody>
@@ -315,10 +310,11 @@
     </div>
 </div>
 
+<input type="hidden" th:value="${session.user.uid}" class="session-user">
 
 <!-- 引入DOM操作，需要放在body底部 -->
+<script type="text/javascript" src="../../js/user.js"></script>
 <script src="../../js/header.js"></script>
-<script src="../../js/user.js"></script>
 
 </body>
 </html>

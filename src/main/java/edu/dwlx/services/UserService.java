@@ -2,6 +2,7 @@ package edu.dwlx.services;
 
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Article;
+import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,9 @@ public class UserService implements UserDetailsService {
     public List<User> searchFollowingByUid(Integer uid){
         return userMapper.searchFollowingByUid(uid);
     }
+//    public List<Question> searchQuestionByTag(String tag){
+//        return userMapper.searchQuestionByTag(tag);
+//    }
 
     public void insertFollower(Integer uid, Integer followerId){
         userMapper.insertFollower(uid, followerId);
