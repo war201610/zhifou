@@ -43,7 +43,7 @@ public class AnswerController {
         Question question = questionService.searchQuestionById(qid);
         question.setViewCount(question.getViewCount() + 1);
 
-        System.out.println(answer1.toString());
+//        System.out.println(answer1.toString());
         userService.insertUserAnswer(answer1);
         return true;
     }
