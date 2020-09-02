@@ -1,4 +1,4 @@
-function getSearchContent() {
+function getTopicContent() {
     const pathName = window.location.pathname
     $.get(pathName.concat("/info"), function (questionsList) {
         var html = ""
@@ -16,3 +16,7 @@ function getSearchContent() {
         }
     })
 }
+
+$(document).ready(function () {
+    getTopicContent()
+})
