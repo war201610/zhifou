@@ -1,0 +1,85 @@
+.hot-card{
+    height: 153px;
+    padding: 16px 16px 16px 0;
+}
+.hot-card-body{
+    padding: 0!important;
+}
+.hot-section{
+    height: 121px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order-left{
+    width: 40px;
+}
+.order-text{
+    color: #ff9607;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: center;
+}
+.container-right{
+    width: 415px;
+}
+.container-tittle-style{
+    width: 415px;
+    max-height: 56px;
+    min-height: 56px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28px;
+
+    /*-webkit-line-clamp 多行文字溢出...*/
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.container-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.container-right p{
+    margin-bottom: 0!important;
+}
+.container-right a{
+    text-decoration: none!important;
+    /* <a> 的默认颜色为蓝色，inherit使该<a>颜色除外 */
+    color: inherit;
+}
+.hot-img{
+    width: 190px;
+    height: 103px;
+    margin-left: 30px;
+    border-radius: 4px;
+    overflow: hidden;
+    /*background-color: #b3d4fc;*/
+}
+.hot-img img{
+    width: 190px;
+    height: 103px;
+    object-fit: cover;
+}
+.hot-footer{
+    width: 720px;
+    height: 16px;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    /*font-size: 12px;*/
+}
+.hot-value{
+    padding-left: 5px;
+    font-size: .8rem;
+}
+.fire-img{
+    width: 16px;
+    height: 16px;
+    background: url("../img/icons8-fire-16.png");
+}
