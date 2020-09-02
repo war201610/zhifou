@@ -118,7 +118,6 @@ function showAnswer(answer) {
                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
                             "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
-                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                             "                                <div class=\"footer-star2\" id=\"footer-star3\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span id=\"collect-id\">" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
                             "                        </div>\n" +
