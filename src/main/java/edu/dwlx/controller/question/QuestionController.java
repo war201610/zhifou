@@ -1,12 +1,10 @@
 package edu.dwlx.controller.question;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
 import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Question;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.QuestionService;
-import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +22,14 @@ import java.util.Map;
 @RequestMapping("/zhifou/question")
 public class QuestionController {
 
-    @Autowired
     QuestionService questionService;
-    @Autowired
     AnswerService answerService;
+
+    @Autowired//直接在字段上面添加@Autowired是不推荐的
+    public QuestionController(QuestionService questionService, AnswerService answerService) {
+        this.questionService = questionService;
+        this.answerService = answerService;
+    }
 
     //问题页
     @RequestMapping("/{id}")
