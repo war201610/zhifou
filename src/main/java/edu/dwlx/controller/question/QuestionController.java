@@ -32,11 +32,11 @@ public class QuestionController {
     }
 
     //问题页
-//    @RequestMapping("/{id}")
-//    public String questionPage(@PathVariable("id") int id, HttpServletRequest request, Model model) {
-//        model.addAttribute("user", request.getSession().getAttribute("user"));
-//        return "/zhifou/question/answer.html";
-//    }
+    @RequestMapping("/{id}")
+    public String questionPage(@PathVariable("id") int id, HttpServletRequest request, Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
+        return "/zhifou/question/answer.html";
+    }
     //回答页
 //    @RequestMapping("/{questionId}/answer/{answerId}")
     @RequestMapping("/b/a")

@@ -48,9 +48,7 @@ function showQuestion(questionMap) {
                 "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
                 "                                <div class=\"author-follow\">\n" +
                 "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
-                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">\n" +
-                "                                        关注Ta\n" +
-                "                                    </button>\n" +
+                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
                 "                                </div>\n" +
                 "                            </div>\n" +
                 "                            <div class=\"author-info\">\n" +
@@ -489,6 +487,9 @@ function jump() {
         return false
     }
 }
+
+// 问题页的关注Ta
+
 
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
