@@ -6,7 +6,7 @@
 #spring.datasource.password=root
 #spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 server:
-  port: 8082
+  port: 8080
 spring:
   jpa:
     open-in-view: off
@@ -14,7 +14,7 @@ spring:
     #    driver-class-name: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: root
+    password: 123456
     url: jdbc:mysql://localhost:3306/zhifou?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
   mvc:
     #    static-path-pattern: /**

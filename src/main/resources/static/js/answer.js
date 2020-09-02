@@ -197,6 +197,7 @@ function getQuestion() {
         async: false,
         success: function (questionMap) {
             const question = questionMap.question
+            console.log(question);
             qid = question.id
             /* todo 在各组件中打印问题信息 */
             // 问题和标签
