@@ -130,7 +130,7 @@ function getAnswers() {
         $(".q3").empty()
         var html = ""
         for (i=0; i<answersList.length; i++) {
-            html = printQuestionsList(answersList[i].id, answersList[i].content)
+            html = printQuestionsList(answersList[i].questionId, answersList[i].content)
             $(".q3").append(html)
         }
     })
@@ -301,7 +301,7 @@ $("#btn-follow-user").click(function () {
         })
     }else {
         $.ajax({
-            url: "/zhifou/people/".concat(uid).concat("following").concat(suid),
+            url: "/zhifou/people/".concat(uid).concat("/following/").concat(suid),
             async: false,
             success: function (result) {
                 console.log("发起了取消关注：", result)

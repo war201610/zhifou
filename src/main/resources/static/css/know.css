@@ -70,3 +70,7 @@
 /*    align-items: center;*/
 /*    cursor: pointer;*/
 /*}*/
+.question-list a{
+    text-decoration: none!important;
+    color: inherit;
+}

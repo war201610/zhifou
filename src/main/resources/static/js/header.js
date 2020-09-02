@@ -1,8 +1,8 @@
 // 获取session中的uid
-var uid
+var uid = sessionStorage.getItem("uuid")
 
 var qid
-getUser()
+// getUser()
 $(document).ready(function () {
 
 })
