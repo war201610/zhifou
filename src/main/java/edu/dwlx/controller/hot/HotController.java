@@ -1,6 +1,5 @@
 package edu.dwlx.controller.hot;
 
-import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.ArticleService;
@@ -22,7 +21,7 @@ public class HotController {
     @Autowired
     AnswerService answerService;
 
-    private class Node implements Comparable<Node>{
+    static private class Node implements Comparable<Node>{
         public int hotDegree;
         public int index;
         public Node(int hotDegree,int index){
@@ -38,18 +37,21 @@ public class HotController {
 
     @RequestMapping("/getHot")
     @ResponseBody
-    public List getHot(){
+    public List<Question> getHot(){
         List<Question> questionList = questionService.getAllQuestion();
         List<Node> hotList = new LinkedList<>();
         Iterator<Question> questionIterator = questionList.iterator();
         Date current = new Date(System.currentTimeMillis());
         while(questionIterator.hasNext()){
             Question question = questionIterator.next();
+//            System.out.println(question.getViewCount() + "_" + question.getAgreeCount() + "_" +
+//                    answerService.getAnswerCount(question.getAnswer()) + "_" + question.getCollectCount());
+
             int hotDegree = (int) ((question.getViewCount() + question.getAgreeCount()*3 +
                                 answerService.getAnswerCount(question.getAnswer())*5 + question.getCollectCount()*20 + 100)
-                    / ((current.getTime() - question.getCreateDate().getTime() /1000/3600/24) + 1));
+                    / ((current.getTime() - question.getCreateDate().getTime()) /1000/3600/24 + 1));
             hotList.add(new Node(hotDegree, questionList.indexOf(question)));
-            System.out.println(hotDegree);
+//            System.out.println(hotDegree);
         }
 
         Collections.sort(hotList);
