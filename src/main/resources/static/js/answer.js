@@ -112,13 +112,14 @@ function showAnswer(answer) {
                             "                                <pre>" + answers.content +
                             "                                </pre>\n" +
                             "                            </div>\n" +
-                            "                            <div class=\"container-footer2\">\n" +
+                            "                            <div class=\"container-footer2\" id=\"container-footer3\">\n" +
                             "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
                             "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                            "                                <div class=\"footer-star2\" id=\"footer-star3\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span id=\"collect-id\">" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
                             "                        </div>\n" +
                             "                       </div>"
@@ -187,6 +188,7 @@ function showAnswer(answer) {
 //         })
 //     })
 // }
+
 
 function getQuestion() {
     /* /zhifou/question/问题id/info */
@@ -496,6 +498,29 @@ function jump() {
 }
 
 // 问题页的关注Ta
+
+// 点击事件-收藏
+$("#answer-area").delegate("#footer-star3", "click", function () {
+    const id = $(this).prev().prev().prev().prev().prev().val()
+    putCollection(id, qid, uid)
+    var collectId = $(this).children("#collect-id").text()
+    $(this).children("#collect-id").text(parseInt(collectId)+1)
+})
+
+// 收藏回答请求
+function putCollection(id, qid, uid) {
+    $.ajax({
+        url: "/zhifou/collection/answer/put",
+        async: false,
+        type: "post",
+        data: { "id": id,
+            "qid": qid,
+            "uid": uid },
+        success: function (result) {
+            console.log("发起了收藏请求：", result)
+        }
+    })
+}
 
 
 /* 页面dom加载完成后执行 */
