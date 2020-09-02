@@ -19,6 +19,8 @@ public interface ArticleMapper {
 
     void updateArticle(Article article);
 
+    List<Article> getAllArticle();
+
     List<Article> searchArticleByUid(@Param("uid") Integer uid);
 
     List<Article> searchArticleByTag(@Param("tag")String tag);
