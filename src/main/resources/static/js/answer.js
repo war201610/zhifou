@@ -44,22 +44,25 @@ function showQuestion(questionMap) {
         url: "/zhifou/people/".concat(question.uid).concat("/info"),
         async: false,
         success: function (user) {
-            $(".card-author").empty()
-            var html = "<div class=\"author-area\">\n" +
-                "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
-                "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
-                "                                <div class=\"author-follow\">\n" +
-                "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
-                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                            <div class=\"author-info\">\n" +
-                "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
-                "                                <div class=\"industry\">职业：<span>"+ user.career +"</span></div>\n" +
-                "                            </div>"
-            $(".card-author").append(html)
-        }
-    })
+            $(".author-name").text(user.nickname)
+            $("#hide-qid").val(user.uid)
+            $("#introduction-id").text(user.introduction)
+            $("#career-id").text(user.career)
+            // $(".card-author").empty()
+            // var html = "<div class=\"author-area\">\n" +
+            //     "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"/img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
+            //     "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
+            //     "                                <div class=\"author-follow\" id=\"author-follow-id\">\n" +
+            //     "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
+            //     "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
+            //     "                                </div>\n" +
+            //     "                            </div>\n" +
+            //     "                            <div class=\"author-info\">\n" +
+            //     "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
+            //     "                                <div class=\"industry\">职业：<span>"+ user.career +"</span></div>\n" +
+            //     "                            </div>"
+            // $(".card-author").append(html)        }
+    }})
 }
 
 // 回答页
