@@ -1,0 +1,44 @@
+<!DOCTYPE html >
+<!--PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>嘤嘤嘤</title>
+    <link rel="stylesheet" href="../../editormd/examples/css/style.css" />
+    <link rel="stylesheet" href="../../editormd/css/editormd.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="test-editormd-view">
+    <textarea style="display:none; font-size: 100px" name="text" id="text1" th:text="${article.text}">
+    </textarea>
+</div>
+<script src="../../js/jquery-3.1.1.min.js"></script>
+<script src="../../editormd/editormd.min.js"></script>
+<script src="../../editormd/lib/marked.min.js"></script>
+<script src="../../editormd/lib/prettify.min.js"></script>
+<script src="../../editormd/lib/raphael.min.js"></script>
+<script src="../../editormd/lib/underscore.min.js"></script>
+<script src="../../editormd/lib/flowchart.min.js"></script>
+<script src="../../editormd/lib/sequence-diagram.min.js"></script>
+<script src="../../editormd/lib/jquery.flowchart.min.js"></script>
+<script src="../../editormd/editormd.js"></script>
+<script type="text/javascript">
+    var testEditormdView;
+    $(function() {
+        testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+
+    // document.getElementById("text1").value = ${article.text}
+</script>
+</body>
+</html>

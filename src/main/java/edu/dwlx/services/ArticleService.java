@@ -5,6 +5,7 @@ import edu.dwlx.mapper.ArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class ArticleService {
         if(articleMapper.searchArticleByContentAndUid(article) != null){
             return false;
         }
+        article.setCreateDate(new Date());
         articleMapper.insertArticle(article);
         Article article1 = articleMapper.searchArticleByContentAndUid(article);
         article1.setComment(article1.getId() + "_article_comment");
@@ -38,5 +40,9 @@ public class ArticleService {
 
     public Article searchArticleById(int id){
         return articleMapper.searchArticleById(id);
+    }
+
+    public void updateArticle(Article article){
+        articleMapper.updateArticle(article);
     }
 }
