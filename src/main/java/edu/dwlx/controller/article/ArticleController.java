@@ -53,6 +53,5 @@ public class ArticleController {
             articleService.updateArticle(article);
             return 1;
         }
-        return -1;
     }
 }
