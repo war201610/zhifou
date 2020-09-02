@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,7 @@ public class TopicController {
 
     @RequestMapping("/zhifou/find")
     public String toTopicList() {
-        return "/zhifou/topic/topicList.html";
+        return "/zhifou/topicHtml/topicList.html";
     }
 
     /**
@@ -34,12 +35,12 @@ public class TopicController {
      * 6. 科学: /science
      */
     @RequestMapping("/zhifou/topic/{kind}")
-    public String topic(@PathVariable("kind") String kind, Model model,
+    public String topic(@PathVariable("kind") String kind,
                         HttpServletResponse response) throws Exception {
         List<Question> questionList = null;
         switch (kind) {
             case "movie":
-                questionList = questionService.searchQuestionByTag("影视");
+                questionList = questionService.searchQuestionByTag("电影");
                 break;
             case "video":
                 questionList = questionService.searchQuestionByTag("视频");
@@ -59,7 +60,6 @@ public class TopicController {
             default:
                 response.sendError(403, "参数错误");
         }
-        model.addAttribute("questionList", questionList);
-        return "forward:/zhifou/topic/topicQuestions.html";
+        return "/zhifou/topicHtml/topicQuestions.html";
     }
 }
