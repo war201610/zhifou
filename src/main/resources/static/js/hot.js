@@ -1,3 +1,5 @@
+uid = parseInt(sessionStorage.getItem("uuid"))
+
 function getHot(url) {
     $.ajax({
         url: url,
@@ -84,5 +86,4 @@ function showFile() {
 
 $(document).ready(function () {
     showMain()
-    console.log("hot uid:", uid)
 })

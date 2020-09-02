@@ -1,8 +1,8 @@
 // 获取session中的uid
-var uid
+var uid = parseInt(sessionStorage.getItem("uuid"))
 
 var qid
-getUser()
+// getUser()
 $(document).ready(function () {
     // 发起请求较晚，user页无法获取uid
     // getUser()
@@ -24,17 +24,6 @@ $("#img-user-head").click(function () {
     window.location.href = "/zhifou/people/".concat(uid)
 })
 
-function getUser() {
-    $.ajax({
-        url: "/getUser",
-        type: "post",
-        async: false,
-        dataType: "json",
-        success: function (user) {
-            uid = user.uid
-        }
-    })
-}
 
 // 获取提问标签
 function getTag() {
