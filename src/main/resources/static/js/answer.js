@@ -48,6 +48,7 @@ function showQuestion(questionMap) {
             $("#hide-qid").val(user.uid)
             $("#introduction-id").text(user.introduction)
             $("#career-id").text(user.career)
+            $("#author-href").attr("href", "/zhifou/people/".concat(user.uid))
             // $(".card-author").empty()
             // var html = "<div class=\"author-area\">\n" +
             //     "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"/img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
