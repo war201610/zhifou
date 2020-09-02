@@ -114,7 +114,7 @@ public class UserService implements UserDetailsService {
         map.put("content", answer.getContent());
         map.put("agree", answer.getAgree());
         map.put("comment", answer.getComment());
-        map.put("collection_count", answer.getCollection());
+        map.put("collectCount", answer.getCollection());
         map.put("createDate", answer.getCreateDateDate());
 
         userMapper.insertCollectAnswer(map);

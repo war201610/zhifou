@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Simple example - Editor.md examples</title>
+    <link rel="stylesheet" href="../../editormd/examples/css/style.css" />
+    <link rel="stylesheet" href="../../editormd/css/editormd.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="layout">
+    <header>
+        <h1>Simple example</h1>
+    </header>
+    <form action="/zhifou/article/save" method="post">
+        <div id="test-editormd">
+        <textarea style="display:none;" name="text">
+            请在此处编辑你的文章
+        </textarea>
+        </div>
+        <div class="a"></div>
+        <input type="submit" value="提交">
+    </form>
+
+</div>
+<script src="../../js/jquery-3.1.1.min.js"></script>
+<script src="../../editormd/editormd.min.js"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function() {
+        testEditor = editormd("test-editormd", {
+            width   : "90%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "/editormd/lib/"
+        });
+
+        /*
+        // or
+        testEditor = editormd({
+            id      : "test-editormd",
+            width   : "90%",
+            height  : 640,
+            path    : "../lib/"
+        });
+        */
+    });
+</script>
+
+<script src="../../js/header.js"></script>
+<script src="../../js/article.js"></script>
+</body>
+</html>

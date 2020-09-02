@@ -2,9 +2,9 @@
 var uid
 
 var qid
-
+getUser()
 $(document).ready(function () {
-    getUser()
+
 })
 
 // 点击事件-搜索

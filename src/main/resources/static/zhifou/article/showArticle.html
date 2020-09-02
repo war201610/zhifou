@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嘤嘤嘤</title>
+</head>
+<body>
+<div id="test-editormd-view">
+    <textarea style="display:none; font-size: 100px" name="articleText">
+    </textarea>
+</div>
+
+<script type="text/javascript">
+    var testEditormdView;
+    $(function() {
+        testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+
+</script>
+</body>
+</html>
