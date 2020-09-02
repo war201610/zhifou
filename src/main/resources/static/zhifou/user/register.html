@@ -2,13 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>register</title>
+    <title>注册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <form action="/zhifou/user/register" method="get">
-        <label>用户名: <input name="name" type="text"/></label><br/>
-        <label>密码: <input name="password" type="password"/></label><br/>
-        <input type="submit" value="提交"/>
+    <form action="/zhifou/user/register" method="get" style="text-align: center">
+        <div style="width: 380px; text-align: center">
+        <div class="input-group mb-3" >
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">用户名:</span>
+            </div>
+            <input type="text" name="name" class="form-control" placeholder="name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">密&nbsp;&nbsp;&nbsp;码:</span>
+            </div>
+            <input type="password" name="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+<!--        <label>用户名: <input name="name" type="text"/></label><br/>-->
+<!--        <label>密码: <input name="password" type="password"/></label><br/>-->
+        <div style="text-align: center"><input type="submit" value="提交" class="btn btn-primary"/></div>
+        </div>
     </form>
 <span>
 
