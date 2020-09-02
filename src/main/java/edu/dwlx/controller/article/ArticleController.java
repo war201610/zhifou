@@ -2,9 +2,11 @@ package edu.dwlx.controller.article;
 
 import edu.dwlx.entity.Article;
 import edu.dwlx.services.ArticleService;
+import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,10 +17,12 @@ import java.util.List;
 public class ArticleController {
 
     ArticleService articleService;
+    UserService userService;
 
     @Autowired
-    public ArticleController(ArticleService articleService) {
+    public ArticleController(ArticleService articleService, UserService userService) {
         this.articleService = articleService;
+        this.userService = userService;
     }
 
     @RequestMapping("/edit")
@@ -27,22 +31,23 @@ public class ArticleController {
     }
 
     @RequestMapping
-    public String show(Model model){
+    @ResponseBody
+    public List<Article> show(Model model){
         List<Article> articleList = articleService.getAllArticle();
         model.addAttribute("articleList", articleList);
-        return "/zhifou/article/showArticle.html";
+        return articleList;
     }
 
     @RequestMapping("/show/info")
-    @ResponseBody
-    public List<Article> getAllArticle() {
-        return articleService.getAllArticle();
+//    @ResponseBody
+    public String getAllArticle() {
+        return "/zhifou/article/showArticle.html";
     }
 
-    @RequestMapping("/show")
-    public String getArticle(Model model){
-        model.addAttribute("article", articleService.searchArticleById(5));
-        return "/zhifou/article/showArticle.html";
+    @RequestMapping("/showone/{articleId}")
+    public String getArticle(Model model, @PathVariable("articleId")int articleId){
+        model.addAttribute("article", articleService.searchArticleById(articleId));
+        return "/zhifou/article/showOne.html";
     }
 
     @RequestMapping("/save")
