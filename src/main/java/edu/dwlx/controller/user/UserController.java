@@ -1,13 +1,10 @@
 package edu.dwlx.controller.user;
 
-import edu.dwlx.Session.MySessionContext;
 import edu.dwlx.entity.User;
-import edu.dwlx.mapper.UserMapper;
 import edu.dwlx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +23,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private MySessionContext mySessionContext;
     //登陆处理
     @RequestMapping("/login")
     public String userLogin(String username, String password, Model model, HttpSession session,
@@ -47,7 +42,6 @@ public class UserController {
             page = "redirect:/zhifou/know/know.html";
             session.setAttribute("user", user);
             model.addAttribute("user", user);
-            mySessionContext.addSession(session);
             Cookie cookie = new Cookie("user", user.toString());
         }
         else
