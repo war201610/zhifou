@@ -22,7 +22,7 @@ public class ArticleController {
 
     @RequestMapping("/show")
     public String show(Model model){
-        model.addAttribute("article", articleService.searchArticleById(5));
+        model.addAttribute("article", articleService.searchArticleById((int)model.getAttribute("articleId")));
         return "/zhifou/article/showArticle.html";
     }
 
@@ -31,11 +31,11 @@ public class ArticleController {
     public int save(Article article){
         if(article.getId() == 0){
             articleService.insertArticle(article);
+            return 0;
         }else{
             articleService.updateArticle(article);
+            return 1;
         }
-
-        return -1;
     }
 
 
