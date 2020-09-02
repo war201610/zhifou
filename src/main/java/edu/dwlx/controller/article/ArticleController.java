@@ -28,24 +28,29 @@ public class ArticleController {
 
     @RequestMapping
     public String show(Model model){
-        model.addAttribute("article", articleService.searchArticleById(4));
+        List<Article> articleList = articleService.getAllArticle();
+        model.addAttribute("articleList", articleList);
         return "/zhifou/article/showArticle.html";
     }
 
     @RequestMapping("/show/info")
+    @ResponseBody
     public List<Article> getAllArticle() {
         return articleService.getAllArticle();
     }
 
     @RequestMapping("/save")
     @ResponseBody
-    public int save(Article article){
+    public int save(Article article, String[] checkbox){
+        String tag = "";
+        for(String s: checkbox)
+            tag += "#" + s;
+        article.setTag(tag);
         if(article.getId() == 0){
             articleService.insertArticle(article);
         }else{
             articleService.updateArticle(article);
         }
-
         return -1;
     }
 }

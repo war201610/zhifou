@@ -32,7 +32,7 @@
         </where>
     </select>
 
-    <select id="getAllArticle" resultType="list">
+    <select id="getAllArticle" resultType="Article">
         select * from article
     </select>
 
