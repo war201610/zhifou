@@ -1,3 +1,5 @@
+uid = parseInt(sessionStorage.getItem("uuid"))
+
 // 保存当前页面的问题id
 var qid
 
@@ -351,6 +353,7 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     getQuestion()
+    console.log("answer uid:", uid)
     // localStorage.setItem("u", "nihao")
     // localStorage.setItem("u", "hello")
     // uid = $(".session-user").val()

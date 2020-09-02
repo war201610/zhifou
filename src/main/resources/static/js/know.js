@@ -1,7 +1,7 @@
-// 获取session中的uid
-// var uid
+// 获取cookie中的uid
+ uid = parseInt(sessionStorage.getItem("uuid"))
 
-
+// getUser()
 
 // 获取推荐（首页）列表
 function getKnowList() {
@@ -49,6 +49,6 @@ function getKnowList() {
 
 
 $(document).ready(function () {
-    // console.log("know:", uid)
+    uid = sessionStorage.getItem("uuid")
     getKnowList()
 })

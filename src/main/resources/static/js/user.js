@@ -9,9 +9,9 @@ const pathName = window.location.pathname
 
 // 字符串分隔获取uid
 // const uid = pathName.substring(15)
-
+uid = parseInt(sessionStorage.getItem("uuid"))
 // 从url中获取登陆用户的uid
-const suid = parseInt(pathName.substring(15))
+var suid = parseInt(pathName.substring(15))
 
 /* 个人信息请求，加载页面 */
 function getUser() {
@@ -271,7 +271,19 @@ function printAnswerList(qid, aid, aContent) {
 function visitOther() {
     if (suid !== uid) {
         console.log("suid!==uid")
+        // 去除编辑按钮
         $("#btn-edit-user").hide()
+        // 判断是否已关注
+        $.ajax({
+            url: "/zhifou/follow/wether",
+            async: false,
+            type: "post",
+            success: function (result) {
+                if (result===true) {
+                    toggleCare($("#btn-follow-user"), "已关注")
+                }
+            }
+        })
     }else {
         console.log("suid===uid")
         $("#btn-follow-user").hide()
@@ -280,21 +292,32 @@ function visitOther() {
 
 // 点击事件-进入他人主页关注Ta
 $("#btn-follow-user").click(function () {
-    $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
-        console.log("发起了关注Ta：", result)
-        toggleCare($("#btn-follow-user"))
-    })
+    if($("#btn-follow-user").val()==="关注Ta") {
+        $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
+            console.log("发起了关注Ta：", result)
+            toggleCare($("#btn-follow-user"), "已关注")
+        })
+    }else {
+        $.ajax({
+            url: "/zhifou/people/".concat(uid).concat("following").concat(suid),
+            async: false,
+            success: function (result) {
+                console.log("发起了取消关注：", result)
+                toggleCare($("#btn-follow-user"), "关注Ta")
+            }
+        })
+    }
 })
 
 // 关注后显示已关注
-function toggleCare(element) {
-    element.val("已关注")
+function toggleCare(element, wether) {
+    element.val(wether)
 }
 
 // visitOther()
 $(document).ready(function () {
+    // 获取个人主页数据
+    // getUser()
     // 若非自己的主页，去除修改按钮
     visitOther()
-    // 获取个人主页数据
-    getUser()
 });
