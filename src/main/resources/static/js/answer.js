@@ -479,9 +479,25 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
     })
 })
 
+// 判断回答页或问题页
+function jump() {
+    var pathName1 = window.location.pathname
+    var pathName2 = pathName1.split("/")
+    if (pathName2.length===4) {
+        return true
+    }else {
+        return false
+    }
+}
+
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     suid = parseInt(sessionStorage.getItem("suid"))
-    getQuestion()
+    if (jump()) {
+        getQuestion()
+    }else {
+        getAnswer()
+    }
+    // getQuestion()
     wetherFollowAuthor(suid)
 })
