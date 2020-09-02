@@ -68,7 +68,7 @@ function editUser(){
     };
     $.post(pathName.concat("/edit"), user, function (result) {
         /* todo 重新获取个人信息，加载页面 */
-        getUser();
+        getUserInfo();
         // console.log(result)
         console.log("向", pathName.concat("/edit"), "发起了post请求")
     })
