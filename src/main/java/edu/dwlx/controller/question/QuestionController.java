@@ -78,8 +78,6 @@ public class QuestionController {
         Map<String, Object> map = new HashMap<>();
         Question question = questionService.searchQuestionById(questionId);
 
-//        System.out.println(question.toString());
-
         map.put("question", question);
         List<Answer> list = answerService.searchAnswerByQuestionId(questionId);
         Answer answer1 = list.get(answerId-1);
