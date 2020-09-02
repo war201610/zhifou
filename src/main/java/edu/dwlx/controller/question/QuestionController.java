@@ -74,7 +74,7 @@ public class QuestionController {
     @RequestMapping("/{questionId}/answer/{answerId}/info")
     @ResponseBody
     public Map<String, Object> getCollectAnswer(@PathVariable("questionId")int questionId, @PathVariable("answerId")int answerId){
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         Question question = questionService.searchQuestionById(questionId);
         map.put("question", question);
         List<Answer> list = answerService.searchAnswerByQuestionId(questionId);

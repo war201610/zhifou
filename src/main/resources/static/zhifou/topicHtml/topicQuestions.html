@@ -47,19 +47,6 @@
             </div>
         </div>
     </div>
-<!--<div th:if="${questionList}">-->
-    <div th:each="question:${questionList}">
-        <div>
-            <p>标题:<p th:text="${question.content}"></p></p>
-            <p>简介:<p th:text="${question.introduction}"></p></p>
-            <p>标签:<p th:text="${question.tag}"></p></p>
-            <p>点赞:<p th:text="${question.agreeCount}"></p></p>
-            <p>浏览数量:<p th:text="${question.viewCount}"></p></p>
-            <p>收藏数量:<p th:text="${question.collectCount}"></p></p>
-            <p>创建日期:<p th:text="${question.createDate}"></p></p>
-        </div>
-    </div>
-<!--</div>-->
     <div class="question-container">
         <div class="question-area">
 
