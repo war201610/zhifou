@@ -32,7 +32,7 @@ function getHot(url) {
                     "                                    </div>\n" +
                     "                                    <!-- 图片 -->\n" +
                     "                                    <div class=\"hot-img\">\n" +
-                    "                                        <img src=\"../../img/zhoumou.jpg\" alt=\"\">\n" +
+                    "                                        <img src=\"../../img/jie.jpg\" alt=\"\">\n" +
                     "                                    </div>\n" +
                     "                                    <!-- 热度 -->\n" +
                     "                                    <div class=\"hot-footer\">\n" +
