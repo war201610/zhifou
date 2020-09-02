@@ -3,6 +3,9 @@ uid = parseInt(sessionStorage.getItem("uuid"))
 // 保存当前页面的问题id
 var qid
 
+// 当前问题页提问者id
+var suid
+
 // 回答id，非回答者id
 var towho
 
@@ -12,9 +15,10 @@ var answers
 // 问题的评论表名
 var commentValue
 
-//打印问题
+// 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
     const question = questionMap.question
+    suid = question.uid
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -32,19 +36,101 @@ function showQuestion(questionMap) {
     $("#collectCount").text(question.collectCount)
     // 隐藏的问题的评论表名
     $("#hidden-commentValue").val(question.comment)
+
+    // 提问者
+    $.ajax({
+        url: "/zhifou/people/".concat(question.uid).concat("/info"),
+        async: false,
+        success: function (user) {
+            $(".card-author").empty()
+            var html = "<div class=\"author-area\">\n" +
+                "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
+                "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nikeName +"</h6></div>\n" +
+                "                                <div class=\"author-follow\">\n" +
+                "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
+                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">\n" +
+                "                                        关注Ta\n" +
+                "                                    </button>\n" +
+                "                                </div>\n" +
+                "                            </div>\n" +
+                "                            <div class=\"author-info\">\n" +
+                "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
+                "                                <div class=\"industry\">所在行业：<span>"+ user.industry +"</span></div>\n" +
+                "                            </div>"
+            $(".card-author").append(html)
+        }
+    })
 }
 
 // 回答页
 function getAnswer() {
     const pathName = window.location.pathname
-    $.get(pathName, function (resultMap) {
+    $.get(pathName.concat("/info"), function (resultMap) {
         const question = resultMap.question
         const answers = resultMap.List
         qid = question.id
         showQuestion(question)
 
     })
+    $.ajax({
+        url: pathName.concat("/info"),
+        async: false,
+        success: function (resultMap) {
+            const question = resultMap.question
+            const answer = resultMap.List
+            qid = question.id
+            showQuestion(question)
+            showAnswer(answer)
+        }
+    })
 }
+
+function showAnswer(answer) {
+    var html = ""
+    for (i = 0; i < answer.length; i++) {
+        // 请求用户头像、名称等信息
+        // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
+        answers = answer[i]
+        $.ajax({
+            url: "/zhifou/people/".concat(answer[i].uid).concat("/info"),
+            async: false,
+            success: function (user) {
+                $.ajax({
+                    url: "/zhifou/comment/".concat(answers.comment).concat("/number"),
+                    async: false,
+                    success: function (commentNumber) {
+                        html = "<div class=\"card shadow-sm\">\n" +
+                            "                           <div class='answer card-body'>\n" +
+                            "                            <!-- 回答者头像和信息区域 -->\n" +
+                            "                            <div class=\"user\">\n" +
+                            "                                <!-- 头像 -->\n" +
+                            "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                            "                                <!-- 个人id和简介 -->\n" +
+                            "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
+                            "                            </div>\n" +
+                            "                            <!-- 回答内容信息 -->\n" +
+                            "                            <div class=\"answer-info\">\n" +
+                            "                                <pre>" + answers.content +
+                            "                                </pre>\n" +
+                            "                            </div>\n" +
+                            "                            <div class=\"container-footer2\">\n" +
+                            "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
+                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
+                            "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
+                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                            "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
+                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                       </div>"
+                        $("#answer-area").append(html)
+                    }
+                })
+            }
+        })
+    }
+}
+
 
 
 // 问题页
@@ -122,49 +208,50 @@ function getQuestion() {
                 url: "/zhifou/answer/get/".concat(question.answer),
                 async: false,
                 success: function (answer) {
-                    var html = ""
-                    for (i = 0; i < answer.length; i++) {
-                        // 请求用户头像、名称等信息
-                        // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
-                        answers = answer[i]
-                        $.ajax({
-                            url: "/zhifou/people/".concat(answer[i].uid).concat("/info"),
-                            async: false,
-                            success: function (user) {
-                                $.ajax({
-                                    url: "/zhifou/comment/".concat(answers.comment).concat("/number"),
-                                    async: false,
-                                    success: function (commentNumber) {
-                                        html = "<div class=\"card shadow-sm\">\n" +
-                                            "                           <div class='answer card-body'>\n" +
-                                            "                            <!-- 回答者头像和信息区域 -->\n" +
-                                            "                            <div class=\"user\">\n" +
-                                            "                                <!-- 头像 -->\n" +
-                                            "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
-                                            "                                <!-- 个人id和简介 -->\n" +
-                                            "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
-                                            "                            </div>\n" +
-                                            "                            <!-- 回答内容信息 -->\n" +
-                                            "                            <div class=\"answer-info\">\n" +
-                                            "                                <pre>" + answers.content +
-                                            "                                </pre>\n" +
-                                            "                            </div>\n" +
-                                            "                            <div class=\"container-footer2\">\n" +
-                                            "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
-                                            "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
-                                            "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
-                                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
-                                            "                            </div>\n" +
-                                            "                        </div>\n" +
-                                            "                       </div>"
-                                        $("#answer-area").append(html)
-                                    }
-                                })
-                            }
-                        })
-                    }
+                    showAnswer(answer)
+                    // var html = ""
+                    // for (i = 0; i < answer.length; i++) {
+                    //     // 请求用户头像、名称等信息
+                    //     // 此处前一个请求的响应数据无法在下一个请求的回调函数中使用
+                    //     answers = answer[i]
+                    //     $.ajax({
+                    //         url: "/zhifou/people/".concat(answer[i].uid).concat("/info"),
+                    //         async: false,
+                    //         success: function (user) {
+                    //             $.ajax({
+                    //                 url: "/zhifou/comment/".concat(answers.comment).concat("/number"),
+                    //                 async: false,
+                    //                 success: function (commentNumber) {
+                    //                     html = "<div class=\"card shadow-sm\">\n" +
+                    //                         "                           <div class='answer card-body'>\n" +
+                    //                         "                            <!-- 回答者头像和信息区域 -->\n" +
+                    //                         "                            <div class=\"user\">\n" +
+                    //                         "                                <!-- 头像 -->\n" +
+                    //                         "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                    //                         "                                <!-- 个人id和简介 -->\n" +
+                    //                         "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
+                    //                         "                            </div>\n" +
+                    //                         "                            <!-- 回答内容信息 -->\n" +
+                    //                         "                            <div class=\"answer-info\">\n" +
+                    //                         "                                <pre>" + answers.content +
+                    //                         "                                </pre>\n" +
+                    //                         "                            </div>\n" +
+                    //                         "                            <div class=\"container-footer2\">\n" +
+                    //                         "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
+                    //                         "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
+                    //                         "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
+                    //                         "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                    //                         "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
+                    //                         "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                    //                         "                            </div>\n" +
+                    //                         "                        </div>\n" +
+                    //                         "                       </div>"
+                    //                     $("#answer-area").append(html)
+                    //                 }
+                    //             })
+                    //         }
+                    //     })
+                    // }
                 }
             })
         }
@@ -263,6 +350,47 @@ $("#answer-area").delegate("#footer-comment3", "click", function () {
     showComment(commentValue, $(".all-comment"))
 })
 
+// 点击关注作者
+$(".author-follow").delegate("#follow-author", "click", function () {
+    const suid = $(this).prev().val()
+    if($("#follow-author").val()==="关注Ta") {
+        $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
+            console.log("发起了关注Ta：", result)
+            toggleCare($("#follow-author"), "已关注")
+        })
+    }else {
+        $.ajax({
+            url: "/zhifou/people/".concat(uid).concat("following").concat(suid),
+            async: false,
+            success: function (result) {
+                console.log("发起了取消关注：", result)
+                toggleCare($("#follow-author"), "关注Ta")
+            }
+        })
+    }
+})
+
+// 进入问题页判断是否关注过作者
+function wetherFollowAuthor(suid) {
+    if (suid !== uid) {
+        console.log("suid!==uid")
+        // 去除编辑按钮
+        // 判断是否已关注
+        $.ajax({
+            url: "/zhifou/follow/wether",
+            async: false,
+            type: "post",
+            data: { "uid": uid,
+                "suid": suid },
+            success: function (result) {
+                if (result===true) {
+                    toggleCare($("#follow-author"), "已关注")
+                }
+            }
+        })
+    }
+}
+
 // 点击事件-获取问题的评论内容
 $("#question-comment").click(function () {
     // towho = $(this).next().val()
@@ -353,6 +481,7 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     getQuestion()
+    wetherFollowAuthor(suid)
     console.log("answer uid:", uid)
     // localStorage.setItem("u", "nihao")
     // localStorage.setItem("u", "hello")
