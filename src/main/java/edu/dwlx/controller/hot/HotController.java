@@ -46,13 +46,17 @@ public class HotController {
         while(questionIterator.hasNext()){
             Question question = questionIterator.next();
             int hotDegree = (int) ((question.getViewCount() + question.getAgreeCount()*3 +
-                                /*answerService.getAnswerCount(question.getAnswer())*5 + */question.getCollectCount()*20 + 100)
+                                answerService.getAnswerCount(question.getAnswer())*5 + question.getCollectCount()*20 + 100)
                     / ((current.getTime() - question.getCreateDate().getTime()) /1000/3600/24) + 1);
             hotList.add(new Node(hotDegree, questionList.indexOf(question)));
             System.out.println(hotDegree);
         }
 
         Collections.sort(hotList);
+
+        System.out.println("/////////////////////**********************************************///////////////////////////");
+        System.out.println(hotList.toString());
+
         List<Question> list = new ArrayList<>();
         Iterator<Node> it = hotList.iterator();
         while(it.hasNext()){

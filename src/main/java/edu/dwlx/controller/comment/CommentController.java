@@ -47,8 +47,8 @@ public class CommentController {
     @ResponseBody
     public List<Comment> getCommentList(String comment) {
         List<Comment> commentList = commentMapper.searchCommentByTableName(comment);
-        for(Comment c:commentList)
-            System.out.println(c.toString());
+//        for(Comment c:commentList)
+//            System.out.println(c.toString());
         return commentList;
     }
     //获取总评论的条数
