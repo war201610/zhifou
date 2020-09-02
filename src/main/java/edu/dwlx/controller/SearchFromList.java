@@ -3,6 +3,7 @@ package edu.dwlx.controller;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
+import edu.dwlx.entity.User;
 
 import java.util.List;
 
@@ -50,6 +51,22 @@ public class SearchFromList {
             if(questionList.get(mid).getId() == id)
                 return questionList.get(mid);
             else if(questionList.get(mid).getId() > id)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        return null;
+    }
+    public static User searchUser(int id, List<User> userList) {
+        int size = userList.size();
+        int left = 0;
+        int right = size - 1;
+        int mid;
+        while(left <= right) {
+            mid = left + (right - left)/2;
+            if(userList.get(mid).getUid() == id)
+                return userList.get(mid);
+            else if(userList.get(mid).getUid() > id)
                 right = mid - 1;
             else
                 left = mid + 1;

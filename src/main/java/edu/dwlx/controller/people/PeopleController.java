@@ -26,9 +26,7 @@ public class PeopleController {
     QuestionService questionService;
     //个人首页
     @RequestMapping("/{uid}")
-    public String personalHomepage(@PathVariable("uid") int uid, HttpSession session) {
-        User user = userService.searchUserById(uid);
-        session.setAttribute("user", user);
+    public String personalHomepage(@PathVariable("uid") int uid) {
         return "/zhifou/people/user.html";
     }
     //查看个人信息
