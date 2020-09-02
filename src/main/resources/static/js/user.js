@@ -29,7 +29,7 @@ function getUserInfo() {
         $("#gender").text(gender)
         $("#introduction").text(user.introduction)
         $("#career").text(user.career)
-        $("#industry").text(user.industry)
+        // $("#industry").text(user.industry)
         $("#email").text(user.email)
         $("#registerDate").text(user.registerDate)
     })
@@ -40,7 +40,7 @@ function getEditUser() {
     $("#exampleFormControlSelect1").val($("#gender").text());
     $("#exampleFormControlTextarea1").val($("#introduction").text());
     $("#exampleFormControlInput1").val($("#career").text());
-    $("#exampleFormControlSelect2").val($("#industry").text());
+    // $("#exampleFormControlSelect2").val($("#industry").text());
     $("#exampleFormControlInput3").val($("#email").text());
 }
 
@@ -63,7 +63,7 @@ function editUser(){
         "gender": gender,
         "introduction": $("#exampleFormControlTextarea1").val(),
         "career": $("#exampleFormControlInput1").val(),
-        "industry": $("#exampleFormControlSelect2").val(),
+        // "industry": $("#exampleFormControlSelect2").val(),
         "email": $("#exampleFormControlInput3").val()
     };
     $.post(pathName.concat("/edit"), user, function (result) {
