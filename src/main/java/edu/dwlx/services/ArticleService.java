@@ -26,6 +26,10 @@ public class ArticleService {
         return true;
     }
 
+    public List<Article> getAllArticle() {
+        return articleMapper.getAllArticle();
+    }
+
     public void deleteArticle(Article article){
         articleMapper.deleteArticle(article);
     }
