@@ -4,7 +4,6 @@ import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
-import edu.dwlx.entity.User;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.CommentService;
 import edu.dwlx.services.QuestionService;
@@ -23,14 +22,18 @@ import java.util.List;
 @RequestMapping("/zhifou/agree")
 public class AgreeController {
 
+    private final UserService userService;
+    private final QuestionService questionService;
+    private final AnswerService answerService;
+    private final CommentService commentService;
+
     @Autowired
-    UserService userService;
-    @Autowired
-    QuestionService questionService;
-    @Autowired
-    AnswerService answerService;
-    @Autowired
-    CommentService commentService;
+    public AgreeController(UserService u,QuestionService q, AnswerService a, CommentService c) {
+        this.questionService = q;
+        this.userService = u;
+        this.commentService = c;
+        this.answerService = a;
+    }
 
     @RequestMapping
     @ResponseBody
@@ -38,22 +41,22 @@ public class AgreeController {
     //回答点赞更新需要更新回答的点赞和用户的赞同
     //问题点赞更新需要更新问题的点赞和用户的赞同
     //评论点赞更新需要更新评论的点赞
-
     public boolean agree(String kind, int uid, int qid,
-                         @RequestParam(value="cid", defaultValue = "0", required=true) int cid,
-                         @RequestParam(value="aid", defaultValue = "0", required=true)int aid,
+                         @RequestParam(value="cid", defaultValue = "0", required=false) int cid,
+                         @RequestParam(value="aid", defaultValue = "0", required=false)int aid,
                          HttpServletRequest request, Model model) {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         String exceptionName;
         String exceptionContent;
         Question question = questionService.searchQuestionById(qid);
-        User user = userService.searchUserById(uid);
         Answer answer;
         Comment comment;
         switch (kind) {
             case "answer": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
                 answer = SearchFromList.searchAnswer(aid, answerList);
+                if(answer == null)
+                    return false;
                 try {
                     int answerAgreenum = answer.getAgree() + 1;
                     answer.setAgree(answerAgreenum);
@@ -88,8 +91,12 @@ public class AgreeController {
             case "comment": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
                 answer = SearchFromList.searchAnswer(aid, answerList);
+                if(answer == null)
+                    return false;
                 List<Comment> commentList = commentService.searchCommentByTableName(answer.getComment());
                 comment = SearchFromList.searchComment(cid, commentList);
+                if(comment == null)
+                    return false;
                 comment.setAgree(comment.getAgree());
                 commentService.updateComment(comment, answer.getComment());
             }

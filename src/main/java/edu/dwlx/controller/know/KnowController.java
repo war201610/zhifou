@@ -26,12 +26,17 @@ import static java.lang.Math.random;
 @RequestMapping("/zhifou/know")
 public class KnowController {
 
-    @Autowired
     UserService userService;
-    @Autowired
     QuestionService questionService;
-    @Autowired
     AnswerService answerService;
+
+    @Autowired
+    public KnowController(UserService userService, QuestionService questionService,
+                          AnswerService answerService) {
+        this.userService = userService;
+        this.answerService = answerService;
+        this.questionService = questionService;
+    }
 
     //首页显示推荐
     @RequestMapping
