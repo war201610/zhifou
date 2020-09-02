@@ -37,6 +37,12 @@ public class QuestionController {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         return "/zhifou/question/answer.html";
     }
+    //回答页
+    @RequestMapping("/**/answer/**")
+    public String answerPage() {
+        return "/zhifou/question/answer.html";
+    }
+
     //返回问题数据
     @RequestMapping("/{id}/info")
     @ResponseBody
@@ -65,7 +71,7 @@ public class QuestionController {
         return questionList;
     }
 
-    @RequestMapping("/{questionId}/answer/{answerId}")
+    @RequestMapping("/{questionId}/answer/{answerId}/info")
     @ResponseBody
     public Map<String, Object> getCollectAnswer(@PathVariable("questionId")int questionId, @PathVariable("answerId")int answerId){
         Map<String, Object> map = new HashMap<String, Object>();
