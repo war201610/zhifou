@@ -1,5 +1,6 @@
 package edu.dwlx.controller.collection;
 
+import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Article;
 import edu.dwlx.services.AnswerService;
@@ -34,27 +35,10 @@ public class CollectionController {
         if(kind.equals("article"))
             userService.insertCollectArticle(uid, id);
         else if(kind.equals("answer")){
-            Answer answer = searchAnswer(id, answerService.searchAnswerByQuestionId(qid));
+            Answer answer = SearchFromList.searchAnswer(id, answerService.searchAnswerByQuestionId(qid));
             userService.insertCollectAnswer(uid, answer);
         } else
             return false;
         return true;
     }
-    public Answer searchAnswer(int id, List<Answer> answerList) {
-        int size = answerList.size();
-        int left = 0;
-        int right = size - 1;
-        int mid;
-        while(left <= right) {
-            mid = left + (right - left)/2;
-            if(answerList.get(mid).getId() == id)
-                return answerList.get(mid);
-            else if(answerList.get(mid).getId() > id)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-        return null;
-    }
-
 }
