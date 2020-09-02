@@ -24,11 +24,13 @@ function getKnowList() {
                             "                            <!-- 第一个模块内容区 -->\n" +
                             "                            <div class=\"card-body\">\n" +
                             "                                <!-- 标题和内容 -->\n" +
-                            "                                <div>\n" +
+                            "                                <div class=\"question-list\">\n" +
+                            "                                   <a href=\""+ "/zhifou/question/".concat(questionList[i].id) +"\">\n"+
                             "                                    <h5 class=\"card-title\">"+ questionList[i].content +"</h5>\n" +
                             "                                    <p class=\"card-text\">\n" +
                             "                                        "+ questionList[i].introduction +"\n" +
                             "                                    </p>\n" +
+                            "                                   </a>\n"+
                             "                                </div>\n" +
                             "                                <!-- 赞同评论收藏 -->\n" +
                             "                                <div class=\"container-footer\">\n" +
@@ -49,6 +51,6 @@ function getKnowList() {
 
 
 $(document).ready(function () {
-    uid = sessionStorage.getItem("uuid")
+    // uid = sessionStorage.getItem("uuid")
     getKnowList()
 })
