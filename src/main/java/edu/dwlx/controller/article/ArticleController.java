@@ -4,6 +4,8 @@ import edu.dwlx.entity.Article;
 import edu.dwlx.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +20,12 @@ public class ArticleController {
         return "/zhifou/article/ceshi.html";
     }
 
+    @RequestMapping("/show")
+    public String show(Model model){
+        model.addAttribute("article", articleService.searchArticleById(5));
+        return "/zhifou/article/showArticle.html";
+    }
+
     @RequestMapping("/save")
     @ResponseBody
     public int save(Article article){
@@ -29,4 +37,7 @@ public class ArticleController {
 
         return -1;
     }
+
+
+
 }
