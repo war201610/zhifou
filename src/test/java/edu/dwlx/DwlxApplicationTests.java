@@ -88,7 +88,7 @@ class DwlxApplicationTests {
     @Test
     public void zswTest(){
         try {
-            mockMvc.perform(MockMvcRequestBuilders.get("/zhifou/hot"));
+            mockMvc.perform(MockMvcRequestBuilders.get("/zhifou/hot/getHot"));
         } catch (Exception e) {
             e.printStackTrace();
         }
