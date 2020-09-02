@@ -17,10 +17,8 @@ var commentValue
 
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
-    // console.log(questionMap)
     const question = questionMap.question
-    // var d = question.uid
-    // sessionStorage.setItem("suid", d)
+    sessionStorage.setItem("suid", question.uid)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -44,20 +42,24 @@ function showQuestion(questionMap) {
         url: "/zhifou/people/".concat(question.uid).concat("/info"),
         async: false,
         success: function (user) {
-            $(".card-author").empty()
-            var html = "<div class=\"author-area\">\n" +
-                "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"../../img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
-                "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
-                "                                <div class=\"author-follow\">\n" +
-                "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
-                "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                            <div class=\"author-info\">\n" +
-                "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
-                "                                <div class=\"industry\">职业：<span>"+ user.career +"</span></div>\n" +
-                "                            </div>"
-            $(".card-author").append(html)
+            $(".author-name").text(user.nickname)
+            $("#hide-qid").val(user.uid)
+            $("#introduction-id").text(user.introduction)
+            $("#career-id").text(user.career)
+            // $(".card-author").empty()
+            // var html = "<div class=\"author-area\">\n" +
+            //     "                                <div class=\"author-head\"><a href=\""+ "/zhifou/people/".concat(question.uid) +"\"><img src=\"/img/icons8-online-support-38.png\" alt=\"\"></a></div>\n" +
+            //     "                                <div class=\"author-title\"><h6 class=\"author-name\">"+ user.nickname +"</h6></div>\n" +
+            //     "                                <div class=\"author-follow\" id=\"author-follow-id\">\n" +
+            //     "                                    <input type=\"hidden\" value=\""+ question.uid +"\">"+
+            //     "                                    <button type=\"button\" class=\"btn btn-outline-info btn-sm\" id=\"follow-author\">关注Ta</button>\n" +
+            //     "                                </div>\n" +
+            //     "                            </div>\n" +
+            //     "                            <div class=\"author-info\">\n" +
+            //     "                                <div class=\"author-introduction\">介绍：<span>"+ user.introduction +"</span></div>\n" +
+            //     "                                <div class=\"industry\">职业：<span>"+ user.career +"</span></div>\n" +
+            //     "                            </div>"
+            // $(".card-author").append(html)
         }
     })
 }
@@ -72,9 +74,13 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
-            sessionStorage.setItem("suid", d)
+<<<<<<< HEAD
+            // sessionStorage.setItem("suid", d)
             console.log(resultMap)
             showQuestion(resultMap)
+=======
+            showQuestion(question)
+>>>>>>> parent of 7bb80c7... Merge branch 'master' of https://github.com/war201610/zhifou
             showAnswer(answer)
         }
     })
@@ -100,7 +106,7 @@ function showAnswer(answer) {
                             "                            <!-- 回答者头像和信息区域 -->\n" +
                             "                            <div class=\"user\">\n" +
                             "                                <!-- 头像 -->\n" +
-                            "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                            "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
                             "                                <!-- 个人id和简介 -->\n" +
                             "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
                             "                            </div>\n" +
@@ -111,11 +117,11 @@ function showAnswer(answer) {
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\">\n" +
                             "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
+                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                            "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
-                            "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                            "                                <div class=\"footer-star2\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                             "                            </div>\n" +
                             "                        </div>\n" +
                             "                       </div>"
@@ -160,7 +166,7 @@ function showAnswer(answer) {
 //                             "                            <!-- 回答者头像和信息区域 -->\n" +
 //                             "                            <div class=\"user\">\n" +
 //                             "                                <!-- 头像 -->\n" +
-//                             "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+//                             "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
 //                             "                                <!-- 个人id和简介 -->\n" +
 //                             "                                <div class=\"user-info\">"+ user.name + "<span class=\"user-intro\">"+ user.introduction +"</span></div>\n" +
 //                             "                            </div>\n" +
@@ -171,11 +177,11 @@ function showAnswer(answer) {
 //                             "                            </div>\n" +
 //                             "                            <div class=\"container-footer2\">\n" +
 //                             "                                <input type=\"hidden\" value=\""+ answers.id +"\">\n" +
-//                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
+//                             "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>"+ answer[i].agree +"</span></button>\n" +
 //                             "                                <input type=\"hidden\" value=\""+ answers.comment +"\">\n" +
-//                             "                                <div class=\"footer-comment2\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
+//                             "                                <div class=\"footer-comment2\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>"+ commentNumber +" </span>&nbsp;条评论</div>\n" +
 //                             "                                <input type=\"hiden\" value=\""+ user.uid +"\">\n" +
-//                             "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answers.collection +"</span>&nbsp;收藏</div>\n" +
+//                             "                                <div class=\"footer-star2\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>"+ answers.collection +"</span>&nbsp;收藏</div>\n" +
 //                             "                            </div>\n" +
 //                             "                        </div>")
 //                     })
@@ -224,7 +230,7 @@ function getQuestion() {
                     //                         "                            <!-- 回答者头像和信息区域 -->\n" +
                     //                         "                            <div class=\"user\">\n" +
                     //                         "                                <!-- 头像 -->\n" +
-                    //                         "                                <div class=\"user-head\"><img src=\"../../img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
+                    //                         "                                <div class=\"user-head\"><img src=\"/img/icons8-technical-support-38.png\" alt=\"\"></div>\n" +
                     //                         "                                <!-- 个人id和简介 -->\n" +
                     //                         "                                <div class=\"user-info\">" + user.name + "<span class=\"user-intro\">" + user.introduction + "</span></div>\n" +
                     //                         "                            </div>\n" +
@@ -235,11 +241,11 @@ function getQuestion() {
                     //                         "                            </div>\n" +
                     //                         "                            <div class=\"container-footer2\">\n" +
                     //                         "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                    //                         "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
+                    //                         "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"/img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
                     //                         "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
-                    //                         "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
+                    //                         "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"/img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                     //                         "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
-                    //                         "                                <div class=\"footer-star2\"><img src=\"../../img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
+                    //                         "                                <div class=\"footer-star2\"><img src=\"/img/icons8-star-25.png\" alt=\"\" class=\"footer-icon2\"><span>" + answers.collection + "</span>&nbsp;收藏</div>\n" +
                     //                         "                            </div>\n" +
                     //                         "                        </div>\n" +
                     //                         "                       </div>"
@@ -278,7 +284,7 @@ function showComment(commentValue, allComment) {
                             "                                    <!-- 评论者头像、账户、时间 -->\n" +
                             "                                    <div class=\"comment-info\">\n" +
                             "                                        <div class=\"comment-head\">\n" +
-                            "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+                            "                                            <img src=\"/img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
                             "                                        </div>\n" +
                             "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
                             "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
@@ -311,7 +317,7 @@ function showComment(commentValue, allComment) {
 //                     "                                    <!-- 评论者头像、账户、时间 -->\n" +
 //                     "                                    <div class=\"comment-info\">\n" +
 //                     "                                        <div class=\"comment-head\">\n" +
-//                     "                                            <img src=\"../../img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
+//                     "                                            <img src=\"/img/icons8-technical-support-38.png\" width=\"25\" height=\"25\">\n" +
 //                     "                                        </div>\n" +
 //                     "                                        <div class=\"comment-name\">"+ user.name +"</div>\n" +
 //                     "                                        <div class=\"comment-time\">"+ commentList[i].createDate +"</div>\n" +
@@ -348,16 +354,17 @@ $("#answer-area").delegate("#footer-comment3", "click", function () {
 })
 
 // 点击关注作者
-$(".author-follow").delegate("#follow-author", "click", function () {
+$("#author-follow-id").delegate("#follow-author", "click", function () {
     const suid = $(this).prev().val()
-    if($("#follow-author").val()==="关注Ta") {
+    console.log("点击了按钮", suid)
+    if($("#follow-author").text()==="关注Ta") {
         $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
             console.log("发起了关注Ta：", result)
             toggleCare($("#follow-author"), "已关注")
         })
     }else {
         $.ajax({
-            url: "/zhifou/people/".concat(uid).concat("following").concat(suid),
+            url: "/zhifou/people/".concat(uid).concat("/following/").concat(suid),
             async: false,
             success: function (result) {
                 console.log("发起了取消关注：", result)
@@ -371,7 +378,6 @@ $(".author-follow").delegate("#follow-author", "click", function () {
 function wetherFollowAuthor(suid) {
     if (suid !== uid) {
         console.log("suid!==uid")
-        // 去除编辑按钮
         // 判断是否已关注
         $.ajax({
             url: "/zhifou/follow/wether",
@@ -492,17 +498,18 @@ function jump() {
     }
 }
 
-// 问题页的关注Ta
+// 关注后显示已关注
+function toggleCare(element, wether) {
+    element.text(wether)
+}
 
 
 /* 页面dom加载完成后执行 */
 $(document).ready(function () {
     suid = parseInt(sessionStorage.getItem("suid"))
     if (jump()) {
-        console.log("getQuestion")
         getQuestion()
     }else {
-        console.log("getAnswer")
         getAnswer()
     }
     // getQuestion()

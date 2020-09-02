@@ -5,47 +5,30 @@ import edu.dwlx.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/zhifou/article")
 public class ArticleController {
-
-    ArticleService articleService;
-
     @Autowired
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
+    ArticleService articleService;
 
     @RequestMapping("/edit")
     public String test(){
         return "/zhifou/article/ceshi.html";
     }
 
-    @RequestMapping
+    @RequestMapping("/show")
     public String show(Model model){
-        List<Article> articleList = articleService.getAllArticle();
-        model.addAttribute("articleList", articleList);
+        model.addAttribute("article", articleService.searchArticleById((int)model.getAttribute("articleId")));
         return "/zhifou/article/showArticle.html";
-    }
-
-    @RequestMapping("/show/info")
-    @ResponseBody
-    public List<Article> getAllArticle() {
-        return articleService.getAllArticle();
     }
 
     @RequestMapping("/save")
     @ResponseBody
-    public int save(Article article, String[] checkbox){
-        String tag = "";
-        for(String s: checkbox)
-            tag += "#" + s;
-        article.setTag(tag);
+    public int save(Article article){
         if(article.getId() == 0){
             articleService.insertArticle(article);
             return 0;
@@ -54,4 +37,7 @@ public class ArticleController {
             return 1;
         }
     }
+
+
+
 }
