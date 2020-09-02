@@ -4,12 +4,11 @@ import edu.dwlx.entity.Question;
 import edu.dwlx.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -26,16 +25,14 @@ public class TopicController {
         return "/zhifou/topicHtml/topicList.html";
     }
 
-    /**
-     * 1. 影视：/movie
-     * 2. 视频：/video
-     * 3. 数码: /device
-     * 4. 时尚: /fashion
-     * 5. 运动: /sports
-     * 6. 科学: /science
-     */
     @RequestMapping("/zhifou/topic/{kind}")
     public String topic(@PathVariable("kind") String kind,
+                        HttpServletResponse response) throws Exception {
+        return "/zhifou/topicHtml/topicQuestions.html";
+    }
+    @RequestMapping("/zhifou/topic/{kind}/info")
+    @ResponseBody
+    public List<Question> topicData(@PathVariable("kind") String kind,
                         HttpServletResponse response) throws Exception {
         List<Question> questionList = null;
         switch (kind) {
@@ -60,6 +57,7 @@ public class TopicController {
             default:
                 response.sendError(403, "参数错误");
         }
-        return "/zhifou/topicHtml/topicQuestions.html";
+        return questionList;
     }
+
 }
