@@ -70,7 +70,7 @@ function getAnswer() {
         async: false,
         success: function (resultMap) {
             const question = resultMap.question
-            const answer = resultMap.List
+            const answer = resultMap.list
             qid = question.id
             showQuestion(question)
             showAnswer(answer)

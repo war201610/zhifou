@@ -32,14 +32,14 @@ public class QuestionController {
     }
 
     //问题页
-//    @RequestMapping("/{id}")
-//    public String questionPage(@PathVariable("id") int id, HttpServletRequest request, Model model) {
-//        model.addAttribute("user", request.getSession().getAttribute("user"));
-//        return "/zhifou/question/answer.html";
-//    }
+    @RequestMapping("/{id}")
+    public String questionPage(@PathVariable("id") int id, HttpServletRequest request, Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
+        return "/zhifou/question/answer.html";
+    }
     //回答页
 //    @RequestMapping("/{questionId}/answer/{answerId}")
-    @RequestMapping("/b/a")
+    @RequestMapping("/{questionId}/answer/{answerId}")
     public String answerPage() {
         return "/zhifou/question/answer.html";
     }
@@ -77,6 +77,9 @@ public class QuestionController {
     public Map<String, Object> getCollectAnswer(@PathVariable("questionId")int questionId, @PathVariable("answerId")int answerId){
         Map<String, Object> map = new HashMap<>();
         Question question = questionService.searchQuestionById(questionId);
+
+        System.out.println(question.toString());
+
         map.put("question", question);
         List<Answer> list = answerService.searchAnswerByQuestionId(questionId);
         Answer answer1 = list.get(answerId-1);
