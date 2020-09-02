@@ -117,4 +117,32 @@ ul{
     text-align: right;
     color: #b3b3b3;
 }
+/* 右侧作者信息区 */
+.author-area{
+    display: flex;
+    border-bottom: #b3b3b3 1px solid;
+    padding-bottom: 15px;
+}
+.author-head{
+    display: flex;
+    width: 20%;
+    justify-content: center;
+}
+.author-title{
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+}
+.author-info{
+    padding: 40px 20px 20px 20px;
+}
+.author-introduction{
+    height: 60px;
+}
+.author-follow{
+    display: flex;
+    align-items: center;
+
+}
 

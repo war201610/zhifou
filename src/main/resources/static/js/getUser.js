@@ -11,5 +11,5 @@ function getUser() {
     })
 }
 getUser()
-console.log(uuid)
+console.log("发起了getUser请求", uuid)
 sessionStorage.setItem("uuid", uuid)

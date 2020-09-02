@@ -278,6 +278,8 @@ function visitOther() {
             url: "/zhifou/follow/wether",
             async: false,
             type: "post",
+            data: { "uid": uid,
+                    "suid": suid },
             success: function (result) {
                 if (result===true) {
                     toggleCare($("#btn-follow-user"), "已关注")
