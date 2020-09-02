@@ -12,13 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping("/zhifou/topic")
 public class TopicController {
     private final QuestionService questionService;
 
     @Autowired
     public TopicController(QuestionService q) {
         this.questionService = q;
+    }
+
+    @RequestMapping("/zhifou/find")
+    public String toTopicList() {
+        return "/zhifou/topic/topicList.html";
     }
 
     /**
@@ -29,7 +33,7 @@ public class TopicController {
      * 5. 运动: /sports
      * 6. 科学: /science
      */
-    @RequestMapping("/{kind}")
+    @RequestMapping("/zhifou/topic/{kind}")
     public String topic(@PathVariable("kind") String kind, Model model,
                         HttpServletResponse response) throws Exception {
         List<Question> questionList = null;
@@ -56,6 +60,6 @@ public class TopicController {
                 response.sendError(403, "参数错误");
         }
         model.addAttribute("questionList", questionList);
-        return "";
+        return "/zhifou/topic/topicQuestions.html";
     }
 }
