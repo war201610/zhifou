@@ -45,11 +45,14 @@ public class HotController {
         Date current = new Date(System.currentTimeMillis());
         while(questionIterator.hasNext()){
             Question question = questionIterator.next();
+//            System.out.println(question.getViewCount() + "_" + question.getAgreeCount() + "_" +
+//                    answerService.getAnswerCount(question.getAnswer()) + "_" + question.getCollectCount());
+
             int hotDegree = (int) ((question.getViewCount() + question.getAgreeCount()*3 +
                                 answerService.getAnswerCount(question.getAnswer())*5 + question.getCollectCount()*20 + 100)
-                    / ((current.getTime() - question.getCreateDate().getTime() /1000/3600/24) + 1));
+                    / ((current.getTime() - question.getCreateDate().getTime()) /1000/3600/24 + 1));
             hotList.add(new Node(hotDegree, questionList.indexOf(question)));
-            System.out.println(hotDegree);
+//            System.out.println(hotDegree);
         }
 
         Collections.sort(hotList);
