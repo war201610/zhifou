@@ -74,3 +74,11 @@
     text-decoration: none!important;
     color: inherit;
 }
+.GlobalSideBar{
+    width: 345px;
+}
+.img-ad img{
+    padding-top: 5px;
+    max-width: 344px;
+    border-radius: 4px;
+}

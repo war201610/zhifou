@@ -109,7 +109,7 @@ function showAnswer(answer) {
                             "                            </div>\n" +
                             "                            <div class=\"container-footer2\">\n" +
                             "                                <input type='hidden' value=\"" + answers.id + "\">\n" +
-                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span>" + answer[i].agree + "</span></button>\n" +
+                            "                                <button type=\"button\" class=\"btn btn-outline-primary agree2\" id=\"btn-agree-answer\"'><img src=\"../../img/icons8-smiling-face-with-heart-17.png\" alt=\"\">赞同 <span id=\"agree-answer\">" + answer[i].agree + "</span></button>\n" +
                             "                                <input type='hidden' value=\"" + answers.comment + "\">\n" +
                             "                                <div class='footer-comment2' id='footer-comment3' data-toggle=\"modal\" data-target=\"#comment-modal\"><img src=\"../../img/icons8-topic-30.png\" alt=\"\"><span>" + commentNumber + " </span>&nbsp;条评论</div>\n" +
                             "                                <input type='hidden' value=\"" + user.uid + "\">\n" +
@@ -449,7 +449,9 @@ function agreeQuestion() {
     }
     $.post("/zhifou/agree", agree, function (result) {
         console.log("给问题点赞：", result)
-        getQuestion()
+        var agree = $("#agree_count").text()
+        $("#agree_count").text(parseInt(agree)+1)
+        // getQuestion()
     })
 }
 
@@ -467,9 +469,13 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
         "qid": qid,
         "aid": aid
     }
+    var commentThis = $(this).children("span#agree-answer")
     $.post("/zhifou/agree", agree, function (result) {
         console.log("点赞了回答：", result)
-        getQuestion()
+        var agree = $(commentThis).text()
+        $(commentThis).text(parseInt(agree)+1)
+        console.log("this", commentThis)
+        // getQuestion()
     })
 })
 
