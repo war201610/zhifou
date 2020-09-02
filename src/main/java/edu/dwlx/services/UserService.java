@@ -70,19 +70,12 @@ public class UserService implements UserDetailsService {
         return userMapper.searchAnswerByUid(uid);
     }
 
-//    public List<Question> searchQuestionByUid(Integer uid){
-//        return userMapper.searchQuestionByUid(uid);
-//    }
-
     public List<User> searchFollowerByUid(Integer uid){
         return userMapper.searchFollowerByUid(uid);
     }
 
     public List<User> searchFollowingByUid(Integer uid){
         return userMapper.searchFollowingByUid(uid);
-    }
-    public List<Question> searchQuestionByTag(String tag){
-        return userMapper.searchQuestionByTag(tag);
     }
 
     public void insertFollower(Integer uid, Integer followerId){
