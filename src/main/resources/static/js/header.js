@@ -1,5 +1,5 @@
 // 获取session中的uid
-var uid = parseInt(sessionStorage.getItem("uuid"))
+var uid = sessionStorage.getItem("uuid")
 
 var qid
 // getUser()

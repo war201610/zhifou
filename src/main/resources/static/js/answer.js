@@ -17,10 +17,8 @@ var commentValue
 
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
-    // console.log(questionMap)
     const question = questionMap.question
-    // var d = question.uid
-    // sessionStorage.setItem("suid", d)
+    sessionStorage.setItem("suid", question.uid)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -76,9 +74,13 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
+<<<<<<< HEAD
             // sessionStorage.setItem("suid", d)
             console.log(resultMap)
             showQuestion(resultMap)
+=======
+            showQuestion(question)
+>>>>>>> parent of 7bb80c7... Merge branch 'master' of https://github.com/war201610/zhifou
             showAnswer(answer)
         }
     })
@@ -506,10 +508,8 @@ function toggleCare(element, wether) {
 $(document).ready(function () {
     suid = parseInt(sessionStorage.getItem("suid"))
     if (jump()) {
-        console.log("getQuestion")
         getQuestion()
     }else {
-        console.log("getAnswer")
         getAnswer()
     }
     // getQuestion()
