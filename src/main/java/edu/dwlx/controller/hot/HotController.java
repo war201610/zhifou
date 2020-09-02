@@ -1,6 +1,5 @@
 package edu.dwlx.controller.hot;
 
-import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.ArticleService;
@@ -22,7 +21,7 @@ public class HotController {
     @Autowired
     AnswerService answerService;
 
-    private class Node implements Comparable<Node>{
+    static private class Node implements Comparable<Node>{
         public int hotDegree;
         public int index;
         public Node(int hotDegree,int index){
@@ -38,7 +37,7 @@ public class HotController {
 
     @RequestMapping("/getHot")
     @ResponseBody
-    public List getHot(){
+    public List<Question> getHot(){
         List<Question> questionList = questionService.getAllQuestion();
         List<Node> hotList = new LinkedList<>();
         Iterator<Question> questionIterator = questionList.iterator();
