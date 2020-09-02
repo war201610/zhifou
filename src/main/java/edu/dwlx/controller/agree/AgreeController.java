@@ -67,8 +67,8 @@ public class AgreeController {
                             exceptionName + "&exceptionContent=" + exceptionContent);
                     return false;
                 }
-                int idAgree = answer.getUid();//回答对应的用户id
-                userService.getAgree(idAgree);
+//                int idAgree = answer.getUid();//回答对应的用户id
+//                userService.getAgree(idAgree);
                 //更新数据库
                 answerService.updateAnswer(answer);
                 break;
@@ -84,7 +84,7 @@ public class AgreeController {
                             exceptionName + "&exceptionContent=" + exceptionContent);
                     return false;
                 }
-                userService.getAgree(uid);
+//                userService.getAgree(uid);
                 questionService.updateQuestion(question);
                 break;
             }

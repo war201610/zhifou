@@ -95,7 +95,7 @@ public class PeopleController {
         return true;
     }
     //取消关注用户
-    @RequestMapping("/zhifou/people/{self}/following/{subscribed}")
+    @RequestMapping("/{self}/following/{subscribed}")
     @ResponseBody
     public boolean unsubscribe(@PathVariable("self") int self, @PathVariable("subscribed") int subscribed) {
         //被关注的人删除粉丝
@@ -105,7 +105,7 @@ public class PeopleController {
         return true;
     }
     //关注用户
-    @RequestMapping("/zhifou/people/{self}/followers/{subscribed}")
+    @RequestMapping("/{self}/followers/{subscribed}")
     @ResponseBody
     public boolean subscribe(@PathVariable("self") int self, @PathVariable("subscribed") int subscribed) {
         //被关注的人添加粉丝

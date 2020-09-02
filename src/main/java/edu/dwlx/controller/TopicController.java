@@ -60,6 +60,6 @@ public class TopicController {
                 response.sendError(403, "参数错误");
         }
         model.addAttribute("questionList", questionList);
-        return "/zhifou/topic/topicQuestions.html";
+        return "forward:/zhifou/topic/topicQuestions.html";
     }
 }

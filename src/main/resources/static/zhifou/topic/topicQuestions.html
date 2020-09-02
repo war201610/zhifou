@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../css/header.css">
@@ -22,13 +22,13 @@
             <div class="HeaderTabs">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">知否</a>
+                        <a class="nav-link active" href="/zhifou/know">知否</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">首页</a>
+                        <a class="nav-link" href="/zhifou/know">首页</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">发现</a>
+                        <a class="nav-link" href="/zhifou/find">发现</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -47,7 +47,19 @@
             </div>
         </div>
     </div>
-
+<!--<div th:if="${questionList}">-->
+    <div th:each="question:${questionList}">
+        <div>
+            <p>标题:<p th:text="${question.content}"></p></p>
+            <p>简介:<p th:text="${question.introduction}"></p></p>
+            <p>标签:<p th:text="${question.tag}"></p></p>
+            <p>点赞:<p th:text="${question.agreeCount}"></p></p>
+            <p>浏览数量:<p th:text="${question.viewCount}"></p></p>
+            <p>收藏数量:<p th:text="${question.collectCount}"></p></p>
+            <p>创建日期:<p th:text="${question.createDate}"></p></p>
+        </div>
+    </div>
+<!--</div>-->
     <div class="question-container">
         <div class="question-area">
 
