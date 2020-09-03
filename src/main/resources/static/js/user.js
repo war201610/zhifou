@@ -259,7 +259,7 @@ $("#follow-card").delegate(".cancel-btn", "click", function () {
 //         console.log("发起了关注Ta：", result)
 //     })
 // })
-$(".follow-card").delegate(".care-btn", "click", function () {
+$(".followed-card").delegate(".care-btn", "click", function () {
     const fid = $(this).parent().prev().val()
     console.log("点击了关注：", fid)
     $.get(pathName.concat("/followers/").concat(fid), function (result) {
