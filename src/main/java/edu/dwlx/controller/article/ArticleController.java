@@ -51,18 +51,18 @@ public class ArticleController {
     }
 
     @RequestMapping("/save")
-    @ResponseBody
-    public int save(Article article, String[] checkbox){
+    public String save(Article article, String[] checkbox){
         String tag = "";
         for(String s: checkbox)
             tag += "#" + s;
         article.setTag(tag);
         if(article.getId() == 0){
             articleService.insertArticle(article);
-            return 0;
+
         }else{
             articleService.updateArticle(article);
-            return 1;
+
         }
+        return "/zhifou/know/know.html";
     }
 }
