@@ -418,6 +418,8 @@ $("#btn-confirm-comment").click(function () {
     $.post("/zhifou/comment/answer/".concat(qid).concat("/").concat(towho).concat("/add"), comment, function (result) {
         console.log("发起了对回答的评论：", result)
         getQuestion()
+        // 清空输入框
+        $("#answer-comment-content").val("")
         showComment(commentValue, $(".all-comment"))
     })
 })
