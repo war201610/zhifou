@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dwlx.mapper.AgreeMapper">
+    <insert id="insertAgree">
+        insert into agree_history(uid, questionId, answerId)
+            values(#{uid}, #{questionId}, #{answerId})
+    </insert>
+
+    <delete id="deleteAgree">
+        delete from agree_history
+            where uid=#{uid} and questionId=#{questionId} and answerId=#{answerId}
+<!--        <where>-->
+<!--            <if test="uid !=null and uid != -1">-->
+<!--                and uid = #{uid}-->
+<!--            </if>-->
+<!--            <if test="questionId !=null and questionId != -1">-->
+<!--                and questionId = #{questionId}-->
+<!--            </if>-->
+<!--            <if test="answerId !=null and answerId != -1">-->
+<!--                and answerId = #{answerId}-->
+<!--            </if>-->
+<!--        </where>-->
+    </delete>
+
+    <select id="searchAgree" resultType="int">
+        select count(id) from agree_history
+            where uid=#{uid} and questionId=#{questionId} and answerId=#{answerId}
+    </select>
+</mapper>

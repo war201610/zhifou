@@ -81,9 +81,16 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
+<<<<<<< HEAD
             // sessionStorage.setItem("suid", d)
             console.log(resultMap)
             showQuestion(resultMap)
+=======
+
+            console.log(resultMap)
+            showQuestion(resultMap)
+
+>>>>>>> zsw2
             showAnswer(answer)
         }
     })
