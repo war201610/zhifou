@@ -51,6 +51,7 @@ public class ArticleController {
     }
 
     @RequestMapping("/save")
+//    @ResponseBody
     public String save(Article article, String[] checkbox){
         String tag = "";
         for(String s: checkbox)
@@ -58,10 +59,8 @@ public class ArticleController {
         article.setTag(tag);
         if(article.getId() == 0){
             articleService.insertArticle(article);
-
         }else{
             articleService.updateArticle(article);
-
         }
         return "/zhifou/know/know.html";
     }
