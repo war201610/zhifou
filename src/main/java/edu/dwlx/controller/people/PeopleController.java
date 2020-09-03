@@ -1,5 +1,6 @@
 package edu.dwlx.controller.people;
 
+import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
@@ -108,10 +109,14 @@ public class PeopleController {
     @RequestMapping("/{self}/followers/{subscribed}")
     @ResponseBody
     public boolean subscribe(@PathVariable("self") int self, @PathVariable("subscribed") int subscribed) {
-        //被关注的人添加粉丝
-        userService.insertFollower(subscribed, self);
-        //关注的人添加关注者
-        userService.insertFollowing(self, subscribed);
-        return true;
+        List<User> userList = userService.searchFollowerByUid(subscribed);
+        if(SearchFromList.searchUser(self, userList)==null){
+            //被关注的人添加粉丝
+            userService.insertFollower(subscribed, self);
+            //关注的人添加关注者
+            userService.insertFollowing(self, subscribed);
+            return true;
+        }
+        return false;
     }
 }

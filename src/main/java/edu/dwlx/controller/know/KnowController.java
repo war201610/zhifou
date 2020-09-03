@@ -77,6 +77,17 @@ public class KnowController {
     //没写推荐
     //根据用户收藏和的内容对应自身或者问题的标签统计对应标签的数量, 选取前三个, 在数据库中查找含有相关标签的内容, 按照浏览数排序
     public Map<String , Object> getRecommendList() {
+        List<Question> allQuestionList = questionService.getAllQuestion();
+        if(allQuestionList.size() < PAGE_LENGTH * 2) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("questionList", allQuestionList);
+            List<Integer> sizeList = new ArrayList<>();
+            for(Question q : allQuestionList)
+                sizeList.add(answerService.getAnswerCount(q.getAnswer()));
+            map.put("answerCountList", sizeList);
+            System.out.println(allQuestionList.size());
+            return map;
+        }
         User user = userService.searchUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         List<Answer> collectAnswerList = userService.searchCollectAnswerByUid(user.getUid());
         List<KV> countList = new ArrayList<>();//长度为6, 从0到5对应时尚, 数码, 视频, 电影, 科学, 运动
@@ -161,7 +172,6 @@ public class KnowController {
         int size = finalList.size();
         if(size < 12) {
             while(true) {
-                List<Question> allQuestionList = questionService.getAllQuestion();
                 int allSize = allQuestionList.size();
                 int limit = (allSize - allSize%10);
                 for(Question q : allQuestionList){
@@ -176,7 +186,7 @@ public class KnowController {
             }
         } else {
             while(true) {
-                List<Question> allQuestionList = questionService.getAllQuestion();
+                allQuestionList = questionService.getAllQuestion();
                 int allSize = allQuestionList.size();
                 int limit = (allSize - allSize%10);
                 for(Question q : allQuestionList){
