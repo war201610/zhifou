@@ -48,7 +48,22 @@ public class KnowController {
     //没写推荐
     //根据用户收藏和的内容对应自身或者问题的标签统计对应标签的数量, 选取前三个, 在数据库中查找含有相关标签的内容, 按照浏览数排序
     public Map<String , Object> getRecommendList() {
-
+//        User user = userService.searchUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+//        List<Answer> collectAnswerList = userService.searchCollectAnswerByUid(user.getUid());
+//        List<Integer> countList = new ArrayList<>();//长度为6, 从0到5对应时尚, 数码, 视频, 电影, 科学, 运动
+//        for(int i = 1 ; i <= 6; i++)
+//            countList.add(0);
+//        for(Answer a : collectAnswerList) {
+//            Question collectQuestion = questionService.searchQuestionById(a.getQuestionId());
+//            String[] tags = collectQuestion.getTag().split("#");//第一个内容tags[0]为空
+//            for(String tag : tags) {
+//                switch (tag) {
+//                    case "" : {
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         List<Question> questionList = questionService.getAllQuestion();
         int size = questionList.size();
         Map<String, Object> map = new HashMap<>();
