@@ -15,6 +15,11 @@ var answers
 // 问题的评论表名
 var commentValue
 
+// 关注后显示已关注
+function toggleCare(element, wether) {
+    element.text(wether)
+}
+
 // 打印 问题 和 提问者 信息
 function showQuestion(questionMap) {
     // console.log(questionMap)
@@ -355,14 +360,14 @@ $("#answer-area").delegate("#footer-comment3", "click", function () {
 // 点击关注作者
 $(".author-follow").delegate("#follow-author", "click", function () {
     const suid = $(this).prev().val()
-    if($("#follow-author").val()==="关注Ta") {
+    if($("#follow-author").text()==="关注Ta") {
         $.get("/zhifou/people/".concat(uid).concat("/followers/").concat(suid), function (result) {
             console.log("发起了关注Ta：", result)
             toggleCare($("#follow-author"), "已关注")
         })
     }else {
         $.ajax({
-            url: "/zhifou/people/".concat(uid).concat("following").concat(suid),
+            url: "/zhifou/people/".concat(uid).concat("/following/").concat(suid),
             async: false,
             success: function (result) {
                 console.log("发起了取消关注：", result)
@@ -497,7 +502,6 @@ function jump() {
     }
 }
 
-// 问题页的关注Ta
 
 // 点击事件-收藏
 $("#answer-area").delegate("#footer-star3", "click", function () {

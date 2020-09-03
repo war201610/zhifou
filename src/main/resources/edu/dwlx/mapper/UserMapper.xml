@@ -103,8 +103,8 @@
     </delete>
 
     <insert id="insertCollectAnswer" parameterType="java.util.Map">
-        insert into #{uid}_collect_answer(id, uid, questionId, content, agree, comment, collectCount, createDate)
-            values(#{id}, #{answerUid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collectCount}, #{createDate})
+        insert into #{uid}_collect_answer(id, uid, questionId, content, agree, comment, collection, createDate)
+            values(#{id}, #{answerUid}, #{questionId}, #{content}, #{agree}, #{comment}, #{collection}, #{createDate})
     </insert>
 
     <delete id="deleteCollectAnswer" parameterType="java.util.Map">
