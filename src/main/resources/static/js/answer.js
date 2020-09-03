@@ -24,8 +24,8 @@ function toggleCare(element, wether) {
 function showQuestion(questionMap) {
     // console.log(questionMap)
     const question = questionMap.question
-    // var d = question.uid
-    // sessionStorage.setItem("suid", d)
+    var d = question.uid
+    sessionStorage.setItem("suid", d)
     var tagArr = question.tag.split("#")
     $("#tag").empty()
     for (i=1; i<tagArr.length; i++) {
@@ -381,9 +381,6 @@ $(".author-follow").delegate("#follow-author", "click", function () {
 
 // 进入问题页判断是否关注过作者
 function wetherFollowAuthor(suid) {
-    if (suid !== uid) {
-        console.log("suid!==uid")
-        // 去除编辑按钮
         // 判断是否已关注
         $.ajax({
             url: "/zhifou/follow/wether",
@@ -397,7 +394,6 @@ function wetherFollowAuthor(suid) {
                 }
             }
         })
-    }
 }
 
 // 点击事件-获取问题的评论内容

@@ -235,22 +235,37 @@ $("#btn6").click(function () {
 })
 
 /* 点击事件-取消关注 */
-$(".cancel-btn").click(function () {
+// $(".cancel-btn").click(function () {
+//     const fid = $(this).parent().prev().val()
+//     $.get(pathName.concat("/following/").concat(fid), function (result) {
+//         getFollowing()
+//         console.log("发起了取消关注:", result)
+//     })
+// })
+$("#follow-card").delegate(".cancel-btn", "click", function () {
     const fid = $(this).parent().prev().val()
+    console.log("点击了取消：", fid)
     $.get(pathName.concat("/following/").concat(fid), function (result) {
         getFollowing()
         console.log("发起了取消关注:", result)
     })
 })
 
-/* 点击事件-关注Ta*/
-$(".care-btn").click(function () {
+// /* 点击事件-关注Ta*/
+// $(".care-btn").click(function () {
+//     const fid = $(this).parent().prev().val()
+//     $.get(pathName.concat("/followers/").concat(fid), function (result) {
+//         getFollowers()
+//         console.log("发起了关注Ta：", result)
+//     })
+// })
+$(".follow-card").delegate(".care-btn", "click", function () {
     const fid = $(this).parent().prev().val()
+    console.log("点击了关注：", fid)
     $.get(pathName.concat("/followers/").concat(fid), function (result) {
         getFollowers()
         console.log("发起了关注Ta：", result)
     })
-
 })
 
 /* 打印（收藏、提出的问题、回答的问题、关注的问题）列表*/
