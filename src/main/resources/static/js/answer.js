@@ -461,9 +461,10 @@ function agreeQuestion() {
     }
     $.post("/zhifou/agree", agree, function (result) {
         console.log("给问题点赞：", result)
-        var agree = $("#agree_count").text()
-        $("#agree_count").text(parseInt(agree)+1)
-        // getQuestion()
+        if (result===true) {
+            var agree = $("#agree_count").text()
+            $("#agree_count").text(parseInt(agree)+1)
+        }
     })
 }
 
@@ -484,10 +485,12 @@ $("#answer-area").delegate("#btn-agree-answer", "click", function () {
     var commentThis = $(this).children("span#agree-answer")
     $.post("/zhifou/agree", agree, function (result) {
         console.log("点赞了回答：", result)
-        var agree = $(commentThis).text()
-        $(commentThis).text(parseInt(agree)+1)
-        console.log("this", commentThis)
-        // getQuestion()
+        if (result===true) {
+            var agree = $(commentThis).text()
+            $(commentThis).text(parseInt(agree)+1)
+            console.log("this", commentThis)
+            // getQuestion()
+        }
     })
 })
 
