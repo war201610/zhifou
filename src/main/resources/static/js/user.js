@@ -219,7 +219,6 @@ function getFollowers() {
                 "                                                    </div>\n" +
                 "                                                </a>\n" +
                 "                                                <input type=\"hidden\" value=\""+ followersList[i].uid +"\">\n" +
-                "                                                <div class=\"follow-btn\"><button type=\"button\" class=\"btn btn-info care-btn\">关注Ta</button></div>\n" +
                 "                                            </div>\n" +
                 "                                        </li></ul>\n" +
                 "                                    </div>"

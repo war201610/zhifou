@@ -169,45 +169,46 @@ public class KnowController {
 //            System.out.println(q);
 
         //补充列表
-        int size = finalList.size();
-        while(true) {
-            List<Question> allQuestionList = questionService.getAllQuestion();
-            int allSize = allQuestionList.size();
-            int limit = (allSize - allSize%10);
-            for(Question q : allQuestionList){
-                if(finalList.size() >= FINAL_LIST_SIZE)
-                    break;
-                if(Math.random() < 1.0/limit)
-                    if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
-                        finalList.add(q);
-            }
-
-            if(finalList.size() >= FINAL_LIST_SIZE)
-                break;
-        }
-
-        Collections.sort(finalList, new Comparator<Question>() {
-            @Override
-            public int compare(Question o1, Question o2) {
-                if(o1.getCreateDate().after(o2.getCreateDate()))
-                    return -1;
-                else if(o2.getCreateDate().after(o1.getCreateDate()))
-                    return 1;
-                return 0;
-            }
-        });
-
-//        System.out.println("finalList modified: ");
+//        int size = finalList.size();
+//        while(true) {
+//            List<Question> allQuestionList = questionService.getAllQuestion();
+//            int allSize = allQuestionList.size();
+//            int limit = (allSize - allSize%10);
+//            for(Question q : allQuestionList){
+//                if(finalList.size() >= FINAL_LIST_SIZE)
+//                    break;
+//                if(Math.random() < 1.0/limit)
+//                    if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
+//                        finalList.add(q);
+//            }
+//
+//            if(finalList.size() >= FINAL_LIST_SIZE)
+//                break;
+//        }
+//
+//        Collections.sort(finalList, new Comparator<Question>() {
+//            @Override
+//            public int compare(Question o1, Question o2) {
+//                if(o1.getCreateDate().after(o2.getCreateDate()))
+//                    return -1;
+//                else if(o2.getCreateDate().after(o1.getCreateDate()))
+//                    return 1;
+//                return 0;
+//            }
+//        });
+//
+////        System.out.println("finalList modified: ");
+////        for(Question q : finalList)
+////            System.out.println(q);
+//
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("questionList", finalList);
+//        List<Integer> sizeList = new ArrayList<>();
 //        for(Question q : finalList)
-//            System.out.println(q);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("questionList", finalList);
-        List<Integer> sizeList = new ArrayList<>();
-        for(Question q : finalList)
-            sizeList.add(answerService.getAnswerCount(q.getAnswer()));
-        map.put("answerCountList", sizeList);
-//        System.out.println(finalList.size());
-        return map;
+//            sizeList.add(answerService.getAnswerCount(q.getAnswer()));
+//        map.put("answerCountList", sizeList);
+////        System.out.println(finalList.size());
+//        return map;
+        return new HashMap<>();
     }
 }
