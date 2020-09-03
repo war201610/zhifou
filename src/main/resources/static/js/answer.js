@@ -506,13 +506,9 @@ function jump() {
 // 点击事件-收藏
 $("#answer-area").delegate("#footer-star3", "click", function () {
     const id = $(this).prev().prev().prev().prev().prev().val()
-    putCollection(id, qid, uid)
-    var collectId = $(this).children("#collect-id").text()
-    $(this).children("#collect-id").text(parseInt(collectId)+1)
-})
-
-// 收藏回答请求
-function putCollection(id, qid, uid) {
+    // var result = putCollection(id, qid, uid)
+    // console.log(result);
+    var thisc = $(this).children("#collect-id")
     $.ajax({
         url: "/zhifou/collection/answer/put",
         async: false,
@@ -522,9 +518,31 @@ function putCollection(id, qid, uid) {
             "uid": uid },
         success: function (result) {
             console.log("发起了收藏请求：", result)
+            // console.log(thisc)
+            if (result===true) {
+                var collectId = thisc.text()
+                thisc.text(parseInt(collectId)+1)
+            }
         }
     })
-}
+
+})
+
+// // 收藏回答请求
+// function putCollection(id, qid, uid) {
+//     $.ajax({
+//         url: "/zhifou/collection/answer/put",
+//         async: false,
+//         type: "post",
+//         data: { "id": id,
+//             "qid": qid,
+//             "uid": uid },
+//         success: function (result) {
+//             console.log("发起了收藏请求：", result)
+//
+//         }
+//     })
+// }
 
 
 /* 页面dom加载完成后执行 */
