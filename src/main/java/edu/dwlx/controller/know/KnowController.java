@@ -48,6 +48,7 @@ public class KnowController {
     //没写推荐
     //根据用户收藏和的内容对应自身或者问题的标签统计对应标签的数量, 选取前三个, 在数据库中查找含有相关标签的内容, 按照浏览数排序
     public Map<String , Object> getRecommendList() {
+
         List<Question> questionList = questionService.getAllQuestion();
         int size = questionList.size();
         Map<String, Object> map = new HashMap<>();

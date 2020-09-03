@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/zhifou/collection")
@@ -31,6 +33,13 @@ public class CollectionController {
     public Boolean putCollection(int id, @PathVariable("kind") String kind,
                                 @RequestParam(value = "qid", defaultValue = "0", required = false) int qid,
                                 int uid, HttpServletResponse response) throws Exception {
+        List<Answer> collectAnswerList = userService.searchCollectAnswerByUid(uid);
+        for(Answer a : collectAnswerList) {
+            if(SearchFromList.searchAnswer(id, collectAnswerList)!= null){
+                System.out.println("未添加");
+                return false;
+            }
+        }
         if(kind.equals("article"))
             userService.insertCollectArticle(uid, id);
         else if(kind.equals("answer")){
