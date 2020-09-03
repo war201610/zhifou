@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +20,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/zhifou/people")
 public class PeopleController {
+
+    private final UserService userService;
+    private final QuestionService questionService;
+
     @Autowired
-    UserService userService;
-    @Autowired
-    QuestionService questionService;
+    public PeopleController(UserService userService, QuestionService questionService) {
+        this.userService = userService;
+        this.questionService = questionService;
+    }
     //个人首页
     @RequestMapping("/{uid}")
     public String personalHomepage(@PathVariable("uid") int uid) {
