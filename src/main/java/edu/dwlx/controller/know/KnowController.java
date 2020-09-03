@@ -2,15 +2,12 @@ package edu.dwlx.controller.know;
 
 import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
-import edu.dwlx.entity.Article;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.QuestionService;
 import edu.dwlx.services.UserService;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.querydsl.QuerydslUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
-import static java.lang.Math.random;
-
 @Controller
 @RequestMapping("/zhifou/know")
 public class KnowController {
 
-    private final int FINAL_LIST_SIZE= 12;
+    private final int PAGE_LENGTH = 6;
 
     private final UserService userService;
     private final QuestionService questionService;
@@ -138,20 +133,14 @@ public class KnowController {
         List<Question> questionList3 = questionService.searchQuestionByTag(countList.get(2).getValue());
         List<Question> finalList = new ArrayList<>();
         for(Question q : questionList1) {
-            if(finalList.size() >= FINAL_LIST_SIZE)
-                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
         }
         for(Question q : questionList2) {
-            if(finalList.size() >= FINAL_LIST_SIZE)
-                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
         }
         for(Question q : questionList3) {
-            if(finalList.size() >= FINAL_LIST_SIZE)
-                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
         }
@@ -170,20 +159,37 @@ public class KnowController {
 
         //补充列表
         int size = finalList.size();
-        while(true) {
-            List<Question> allQuestionList = questionService.getAllQuestion();
-            int allSize = allQuestionList.size();
-            int limit = (allSize - allSize%10);
-            for(Question q : allQuestionList){
-                if(finalList.size() >= FINAL_LIST_SIZE)
+        if(size < 12) {
+            while(true) {
+                List<Question> allQuestionList = questionService.getAllQuestion();
+                int allSize = allQuestionList.size();
+                int limit = (allSize - allSize%10);
+                for(Question q : allQuestionList){
+                    if(finalList.size() >= PAGE_LENGTH * 2)
+                        break;
+                    if(Math.random() < 1.0/limit)
+                        if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
+                            finalList.add(q);
+                }
+                if(finalList.size() >= PAGE_LENGTH * 2)
                     break;
-                if(Math.random() < 1.0/limit)
-                    if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
-                        finalList.add(q);
+            }
+        } else {
+            while(true) {
+                List<Question> allQuestionList = questionService.getAllQuestion();
+                int allSize = allQuestionList.size();
+                int limit = (allSize - allSize%10);
+                for(Question q : allQuestionList){
+                    if(finalList.size() >= PAGE_LENGTH * 3)
+                        break;
+                    if(Math.random() < 1.0/limit)
+                        if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
+                            finalList.add(q);
+                }
+                if(finalList.size() >= PAGE_LENGTH * 3)
+                    break;
             }
 
-            if(finalList.size() >= FINAL_LIST_SIZE)
-                break;
         }
 
         Collections.sort(finalList, new Comparator<Question>() {
@@ -207,7 +213,7 @@ public class KnowController {
         for(Question q : finalList)
             sizeList.add(answerService.getAnswerCount(q.getAnswer()));
         map.put("answerCountList", sizeList);
-//        System.out.println(finalList.size());
+        System.out.println(finalList.size());
         return map;
     }
 }
