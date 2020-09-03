@@ -74,13 +74,10 @@ function getAnswer() {
             const question = resultMap.question
             const answer = resultMap.list
             qid = question.id
-<<<<<<< HEAD
-            // sessionStorage.setItem("suid", d)
+
             console.log(resultMap)
             showQuestion(resultMap)
-=======
-            showQuestion(question)
->>>>>>> parent of 7bb80c7... Merge branch 'master' of https://github.com/war201610/zhifou
+
             showAnswer(answer)
         }
     })

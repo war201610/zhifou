@@ -4,10 +4,8 @@ import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
-import edu.dwlx.services.AnswerService;
-import edu.dwlx.services.CommentService;
-import edu.dwlx.services.QuestionService;
-import edu.dwlx.services.UserService;
+import edu.dwlx.mapper.AgreeMapper;
+import edu.dwlx.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +24,15 @@ public class AgreeController {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final CommentService commentService;
+    private final AgreeService agreeService;
 
     @Autowired
-    public AgreeController(UserService u,QuestionService q, AnswerService a, CommentService c) {
+    public AgreeController(UserService u,QuestionService q, AnswerService a, CommentService c, AgreeService agreeService) {
         this.questionService = q;
         this.userService = u;
         this.commentService = c;
         this.answerService = a;
+        this.agreeService = agreeService;
     }
 
     @RequestMapping
@@ -51,15 +51,22 @@ public class AgreeController {
         Question question = questionService.searchQuestionById(qid);
         Answer answer;
         Comment comment;
+        boolean flag = true;
         switch (kind) {
             case "answer": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
                 answer = SearchFromList.searchAnswer(aid, answerList);
+
                 if(answer == null)
                     return false;
                 try {
-                    int answerAgreenum = answer.getAgree() + 1;
-                    answer.setAgree(answerAgreenum);
+                    flag = agreeService.insertAgree(uid, qid, aid);
+                    if(flag){
+                        int answerAgreenum = answer.getAgree() + 1;
+                        answer.setAgree(answerAgreenum);
+                        answerService.updateAnswer(answer);
+                    }
+                    System.out.println(flag);
                 } catch (Exception e) {
                     exceptionName = "空指针异常";
                     exceptionContent = "找不到回答";
@@ -70,13 +77,18 @@ public class AgreeController {
 //                int idAgree = answer.getUid();//回答对应的用户id
 //                userService.getAgree(idAgree);
                 //更新数据库
-                answerService.updateAnswer(answer);
+//                answerService.updateAnswer(answer);
                 break;
             }
             case "question": {
                 try {
-                    int questionAgree = question.getAgreeCount();
-                    question.setAgreeCount(questionAgree + 1);
+                    flag = agreeService.insertAgree(uid, qid, -1);
+                    if(flag) {
+                        int questionAgree = question.getAgreeCount();
+                        question.setAgreeCount(questionAgree + 1);
+                        questionService.updateQuestion(question);
+                    }
+                    System.out.println(flag);
                 } catch (Exception e) {
                     exceptionName = "空指针异常";
                     exceptionContent = "找不到问题";
@@ -85,7 +97,7 @@ public class AgreeController {
                     return false;
                 }
 //                userService.getAgree(uid);
-                questionService.updateQuestion(question);
+//                questionService.updateQuestion(question);
                 break;
             }
             case "comment": {
@@ -101,6 +113,6 @@ public class AgreeController {
                 commentService.updateComment(comment, answer.getComment());
             }
         }
-        return true;
+        return flag;
     }
 }
