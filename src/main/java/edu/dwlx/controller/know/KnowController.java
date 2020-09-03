@@ -207,7 +207,7 @@ public class KnowController {
         for(Question q : finalList)
             sizeList.add(answerService.getAnswerCount(q.getAnswer()));
         map.put("answerCountList", sizeList);
-        System.out.println(finalList.size());
+//        System.out.println(finalList.size());
         return map;
     }
 }
