@@ -25,15 +25,22 @@ public class SearchFromList {
         return null;
     }
 
-    public static Answer searchAnswer(int id, List<Answer> answerList) {
+    public static Answer searchAnswer(int id, int qid, List<Answer> answerList) {
         int size = answerList.size();
         int left = 0;
         int right = size - 1;
         int mid;
         while(left <= right) {
             mid = left + (right - left)/2;
-            if(answerList.get(mid).getId() == id)
-                return answerList.get(mid);
+            if(answerList.get(mid).getId() == id){
+                if(qid != -1){
+                    if(qid==answerList.get(mid).getQuestionId())
+                        return answerList.get(mid);
+                    else
+                        return null;
+                } else
+                    return answerList.get(mid);
+            }
             else if(answerList.get(mid).getId() > id)
                 right = mid - 1;
             else

@@ -55,7 +55,7 @@ public class AgreeController {
         switch (kind) {
             case "answer": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = SearchFromList.searchAnswer(aid, answerList);
+                answer = SearchFromList.searchAnswer(aid, -1, answerList);
 
                 if(answer == null)
                     return false;
@@ -102,7 +102,7 @@ public class AgreeController {
             }
             case "comment": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = SearchFromList.searchAnswer(aid, answerList);
+                answer = SearchFromList.searchAnswer(aid, -1, answerList);
                 if(answer == null)
                     return false;
                 List<Comment> commentList = commentService.searchCommentByTableName(answer.getComment());

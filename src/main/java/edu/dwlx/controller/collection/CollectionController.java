@@ -35,7 +35,7 @@ public class CollectionController {
                                 int uid, HttpServletResponse response) throws Exception {
         List<Answer> collectAnswerList = userService.searchCollectAnswerByUid(uid);
         for(Answer a : collectAnswerList) {
-            if(SearchFromList.searchAnswer(id, collectAnswerList)!= null){
+            if(SearchFromList.searchAnswer(id, qid, collectAnswerList)!= null){
                 System.out.println("未添加");
                 return false;
             }
@@ -43,7 +43,9 @@ public class CollectionController {
         if(kind.equals("article"))
             userService.insertCollectArticle(uid, id);
         else if(kind.equals("answer")){
-            Answer answer = SearchFromList.searchAnswer(id, answerService.searchAnswerByQuestionId(qid));
+            Answer answer = SearchFromList.searchAnswer(id, -1, answerService.searchAnswerByQuestionId(qid));
+            answer.setCollection(answer.getCollection() + 1);
+            answerService.updateAnswer(answer);
             if(answer==null){
                 response.sendError(403, "参数错误");
                 return false;
