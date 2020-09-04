@@ -99,7 +99,7 @@ public class KnowController {
         countList.add(new KV(0, "运动"));
         for(Answer a : collectAnswerList) {
             Question collectQuestion = questionService.searchQuestionById(a.getQuestionId());
-//            System.out.println("question tags : " + collectQuestion.getTag());
+            System.out.println("question tags : " + collectQuestion.getTag());
             String[] tags = collectQuestion.getTag().split("#");//第一个内容tags[0]为空
             for(String tag : tags) {
                 switch (tag) {
@@ -137,36 +137,54 @@ public class KnowController {
                 return 1;
             return 0;
         });
-//        System.out.println("kind: ");
-//        System.out.println(countList);
+        System.out.println("kind: ");
+        System.out.println(countList);
         List<Question> questionList1 = questionService.searchQuestionByTag(countList.get(0).getValue());
         List<Question> questionList2 = questionService.searchQuestionByTag(countList.get(1).getValue());
         List<Question> questionList3 = questionService.searchQuestionByTag(countList.get(2).getValue());
         List<Question> finalList = new ArrayList<>();
+        int i = 0;
         for(Question q : questionList1) {
+            if(i > 3)
+                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
+            else
+                i--;
+            i++;
         }
+        i = 0;
         for(Question q : questionList2) {
+            if(i > 3)
+                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
+            else
+                i--;
+            i++;
         }
+        i = 0;
         for(Question q : questionList3) {
+            if(i > 3)
+                break;
             if(SearchFromList.searchQuestion(q.getId(), finalList)==null)
                 finalList.add(q);
+            else
+                i--;
+            i++;
         }
-//        System.out.println("questionList1: ");
-//        for(Question q : questionList1)
-//            System.out.println(q);
-//        System.out.println("questionList2: ");
-//        for(Question q : questionList2)
-//            System.out.println(q);
-//        System.out.println("questionList3: ");
-//        for(Question q : questionList3)
-//            System.out.println(q);
-//        System.out.println("finaList: ");
-//        for(Question q : finalList)
-//            System.out.println(q);
+        System.out.println("questionList1: ");
+        for(Question q : questionList1)
+            System.out.println(q);
+        System.out.println("questionList2: ");
+        for(Question q : questionList2)
+            System.out.println(q);
+        System.out.println("questionList3: ");
+        for(Question q : questionList3)
+            System.out.println(q);
+        System.out.println("finaList: ");
+        for(Question q : finalList)
+            System.out.println(q);
 
         //补充列表
         int size = finalList.size();
@@ -213,9 +231,9 @@ public class KnowController {
             }
         });
 
-//        System.out.println("finalList modified: ");
-//        for(Question q : finalList)
-//            System.out.println(q);
+        System.out.println("finalList modified: ");
+        for(Question q : finalList)
+            System.out.println(q);
 
         Map<String, Object> map = new HashMap<>();
         map.put("questionList", finalList);
