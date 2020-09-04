@@ -74,7 +74,7 @@ public class KnowController {
     }
     @RequestMapping("/info")
     @ResponseBody
-    //没写推荐
+    //做多添加12个收藏相关推荐
     //根据用户收藏和的内容对应自身或者问题的标签统计对应标签的数量, 选取前三个, 在数据库中查找含有相关标签的内容, 按照浏览数排序
     public Map<String , Object> getRecommendList() {
         List<Question> allQuestionList = questionService.getAllQuestion();
