@@ -400,6 +400,7 @@ function wetherFollowAuthor(suid) {
 $("#question-comment").click(function () {
     // towho = $(this).next().val()
     commentValue = $(this).prev().val()
+    $(".all-comment2").empty()
     showComment(commentValue, $(".all-comment2"))
 })
 
