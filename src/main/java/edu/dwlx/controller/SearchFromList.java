@@ -25,6 +25,7 @@ public class SearchFromList {
         return null;
     }
 
+    //qid为回答对应问题id
     public static Answer searchAnswer(int id, int qid, List<Answer> answerList) {
         int size = answerList.size();
         int left = 0;
