@@ -5,6 +5,8 @@ import edu.dwlx.entity.Comment;
 import edu.dwlx.entity.Question;
 import edu.dwlx.entity.User;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SearchFromList {
@@ -49,7 +51,16 @@ public class SearchFromList {
         }
         return null;
     }
+    //如果出现重复查看排序是不是排反了
     public static Question searchQuestion(int id, List<Question> questionList) {
+        Collections.sort(questionList, (o1, o2) -> {
+            if(o1.getId() > o2.getId())
+                return 1;
+            else if(o1.getId() < o2.getId())
+                return -1;
+            else
+                return 0;
+        });
         int size = questionList.size();
         int left = 0;
         int right = size - 1;
@@ -66,6 +77,14 @@ public class SearchFromList {
         return null;
     }
     public static User searchUser(int id, List<User> userList) {
+        Collections.sort(userList, (o1, o2) -> {
+            if(o1.getUid() > o2.getUid())
+                return -1;
+            else if(o1.getUid() < o2.getUid())
+                return 1;
+            else
+                return 0;
+        });
         int size = userList.size();
         int left = 0;
         int right = size - 1;

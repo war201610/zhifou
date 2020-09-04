@@ -65,7 +65,7 @@ public class QuestionController {
         for(String k : keyword) {
             List<Question> temp = questionService.searchQuestionByContent(k);
             for(Question q : temp) {
-                if(SearchFromList.searchQuestion(q.getId(), questionList)==null)
+                if(SearchFromList.searchQuestion(q.getId(), questionList)==null)//问题的存储保证是有序的
                     questionList.add(q);
             }
         }

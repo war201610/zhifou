@@ -4,6 +4,7 @@ import edu.dwlx.controller.SearchFromList;
 import edu.dwlx.entity.Answer;
 import edu.dwlx.services.AnswerService;
 import edu.dwlx.services.UserService;
+import org.hibernate.sql.ANSICaseFragment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class CollectionController {
                                 int uid, HttpServletResponse response) throws Exception {
         List<Answer> collectAnswerList = userService.searchCollectAnswerByUid(uid);
         for(Answer a : collectAnswerList) {
-            if(SearchFromList.searchAnswer(id, qid, collectAnswerList)!= null){
+            if(searchAnswer1(id, qid, collectAnswerList)!= null){
                 System.out.println("未添加");
                 return false;
             }
@@ -55,4 +56,12 @@ public class CollectionController {
             return false;
         return true;
     }
+    public Answer searchAnswer1(int id, int qid, List<Answer> answerList) {
+        for(Answer a : answerList) {
+            if(a.getId() == id && a.getQuestionId() == qid)
+                return a;
+        }
+        return null;
+    }
+
 }

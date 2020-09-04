@@ -55,7 +55,7 @@ public class AgreeController {
         switch (kind) {
             case "answer": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = SearchFromList.searchAnswer(aid, -1, answerList);
+                answer = SearchFromList.searchAnswer(aid, -1, answerList);//问题的回答是有序的
 
                 if(answer == null)
                     return false;
@@ -102,11 +102,11 @@ public class AgreeController {
             }
             case "comment": {
                 List<Answer> answerList = answerService.searchAnswerByQuestionId(qid);
-                answer = SearchFromList.searchAnswer(aid, -1, answerList);
+                answer = SearchFromList.searchAnswer(aid, -1, answerList);//问题对应回答也是有序的
                 if(answer == null)
                     return false;
                 List<Comment> commentList = commentService.searchCommentByTableName(answer.getComment());
-                comment = SearchFromList.searchComment(cid, commentList);
+                comment = SearchFromList.searchComment(cid, commentList);//评论也是有序的
                 if(comment == null)
                     return false;
                 comment.setAgree(comment.getAgree());
